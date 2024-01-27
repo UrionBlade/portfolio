@@ -197,7 +197,7 @@ export default function Home() {
         </div>
         <div className="flex justify-end items-center w-[129px]">
           <ArrowLongUpIcon
-            className={`w-8 h-8 ${
+            className={`w-8 h-8 hidden lg:inline ${
               activeIndex === 0
                 ? 'cursor-not-allowed'
                 : 'hover:animate-bounce cursor-pointer'
@@ -206,7 +206,7 @@ export default function Home() {
             onClick={() => swiper.slidePrev()}
           />
           <ArrowLongDownIcon
-            className={`w-8 h-8 ${
+            className={`w-8 h-8 hidden lg:inline ${
               activeIndex === 3
                 ? 'cursor-not-allowed'
                 : 'hover:animate-bounce cursor-pointer'
@@ -214,7 +214,7 @@ export default function Home() {
             color={activeIndex === 3 ? '#d1d1d1' : '#f6f6f6'}
             onClick={() => swiper.slideNext()}
           />
-          <h5 className="text-gray-50 h5-text ml-4 !font-semibold w-16 select-none">
+          <h5 className="text-gray-50 h5-text ml-4 !font-thin w-16 select-none">
             {activeIndex + 1} / 4
           </h5>
         </div>
