@@ -1,113 +1,221 @@
-import Image from "next/image";
+'use client';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Mousewheel, EffectCreative } from 'swiper/modules';
+import { useState } from 'react';
+import {
+  ArrowLongDownIcon,
+  ArrowLongUpIcon,
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from '@heroicons/react/24/solid';
+import ScrollInvitation from '@/components/ScrollInvitation';
+import Input from '@/components/Input';
+import Image from 'next/image';
+import Textarea from '@/components/Textarea';
 
 export default function Home() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiper, setSwiper] = useState<any | null>(null);
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="bg-white p-4 w-screen h-screen overflow-hidden relative">
+      <Image
+        src={'/images/me.png'}
+        width={100}
+        height={100}
+        className="absolute top-8 left-4 z-50 cursor-pointer"
+        alt="logo"
+        onClick={() => swiper.slideTo(0)}
+      />
+      <Swiper
+        className="w-full h-[calc(100vh-2rem)] overflow-hidden"
+        onSwiper={setSwiper}
+        direction={'vertical'}
+        slidesPerView={1}
+        mousewheel={true}
+        effect="creative"
+        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            translate: [0, '-20%', -1],
+          },
+          next: {
+            translate: [0, '100%', 0],
+          },
+        }}
+        modules={[Mousewheel, EffectCreative]}
+      >
+        <SwiperSlide>
+          <section
+            id="home"
+            className="bg-red-400 w-full h-full relative flex justify-start items-center flex-col"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
+              <h1 className="text-gray-50 title-text col-span-full">
+                {`Hi, I'm Matteo`}
+              </h1>
+              <h2 className="text-gray-50 h3-text col-span-full lg:col-span-7">
+                I’m the sorcerer behind the pixels and the architect of seamless
+                user experiences
+              </h2>
+            </div>
+            <div className="absolute bottom-8">
+              <ScrollInvitation />
+            </div>
+          </section>
+        </SwiperSlide>
+        <SwiperSlide>
+          <section id="about" className="bg-yellow-500 w-full h-full">
+            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
+              <h1 className="text-gray-50 title-text col-span-full">
+                {`Hi, I'm Matteo`}
+              </h1>
+              <h2 className="text-gray-50 h3-text col-span-7">
+                I’m the sorcerer behind the pixels and the architect of seamless
+                user experiences
+              </h2>
+            </div>
+          </section>
+        </SwiperSlide>
+        <SwiperSlide>
+          <section id="projects" className="bg-green-500 w-full h-full">
+            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
+              <h1 className="text-gray-50 title-text col-span-full">
+                {`Hi, I'm Matteo`}
+              </h1>
+              <h2 className="text-gray-50 h3-text col-span-7">
+                I’m the sorcerer behind the pixels and the architect of seamless
+                user experiences
+              </h2>
+            </div>
+          </section>
+        </SwiperSlide>
+        <SwiperSlide>
+          <section id="about" className="bg-blue-500 w-full h-full">
+            <div className="container-system flex justify-start items-start lg:items-center lg:h-full flex-col pt-48 lg:pt-0 grid-system">
+              <div className="col-span-full lg:col-span-6">
+                <span className="flex justify-start items-center space-x-4">
+                  <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-32 w-32 flex justify-center items-center">
+                    <Image
+                      src={'/images/me.png'}
+                      width={120}
+                      height={120}
+                      alt="logo"
+                    />
+                  </div>
+                  <h2 className="text-gray-50 title-text">Get in touch</h2>
+                </span>
+                <div className="w-full h-[2px] bg-gray-50 my-8" />
+                <div className="flex justify-start items-center space-x-8">
+                  <EnvelopeIcon className="w-8 h-8 text-gray-50" />
+                  <h4 className="h4-text text-gray-50">
+                    matteo.poli4@gmail.com
+                  </h4>
+                </div>
+
+                <div className="flex justify-start items-center space-x-8 mt-8">
+                  <PhoneIcon className="w-8 h-8 text-gray-50" />
+                  <h4 className="h4-text text-gray-50">+39 3773066802</h4>
+                </div>
+
+                <div className="flex justify-start items-center space-x-8 mt-8">
+                  <MapPinIcon className="w-8 h-8 text-gray-50" />
+                  <h4 className="h4-text text-gray-50">Como, Italy</h4>
+                </div>
+              </div>
+              <div className="col-span-full lg:col-span-6 flex justify-center items-center flex-col space-y-8 h-full lg:px-8 mt-12 lg:mt-18">
+                <Input
+                  placeholder="Name"
+                  value={form.name}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      name: e.target.value,
+                    })
+                  }
+                />
+                <Input
+                  placeholder="Email"
+                  value={form.email}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      email: e.target.value,
+                    })
+                  }
+                />
+                <Textarea
+                  placeholder="Message"
+                  rows={7}
+                  className="overflow-hidden"
+                  maxLength={400}
+                  value={form.message}
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      message: e.target.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+          </section>
+        </SwiperSlide>
+      </Swiper>
+      <footer className="w-full left-0 bottom-8 absolute z-50 px-8 flex justify-between items-center">
+        <div className="w-[129px]" />
+        <div className="w-1/2 flex justify-center items-center">
+          <div className="w-1/2 h-[2px] relative">
+            <div className="bg-gray-50 w-full h-[2px] absolute" />
+            <div
+              className="bg-gray-300 h-[2px] absolute transiton-all duration-500"
+              style={{
+                width: `${(3 - activeIndex) * 33.333}%`,
+              }}
             />
-          </a>
+          </div>
+          <div className="w-1/2 h-[2px] relative">
+            <div className="bg-gray-300 w-full h-[2px] absolute" />
+            <div
+              className="bg-gray-50 h-[2px] absolute transiton-all duration-500"
+              style={{
+                width: `${activeIndex * 33.333}%`,
+              }}
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div className="flex justify-end items-center w-[129px]">
+          <ArrowLongUpIcon
+            className={`w-8 h-8 ${
+              activeIndex === 0
+                ? 'cursor-not-allowed'
+                : 'hover:animate-bounce cursor-pointer'
+            }`}
+            color={activeIndex === 0 ? '#d1d1d1' : '#f6f6f6'}
+            onClick={() => swiper.slidePrev()}
+          />
+          <ArrowLongDownIcon
+            className={`w-8 h-8 ${
+              activeIndex === 3
+                ? 'cursor-not-allowed'
+                : 'hover:animate-bounce cursor-pointer'
+            }`}
+            color={activeIndex === 3 ? '#d1d1d1' : '#f6f6f6'}
+            onClick={() => swiper.slideNext()}
+          />
+          <h5 className="text-gray-50 h5-text ml-4 !font-semibold w-16 select-none">
+            {activeIndex + 1} / 4
+          </h5>
+        </div>
+      </footer>
     </main>
   );
 }

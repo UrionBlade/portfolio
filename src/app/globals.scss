@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: CameraObscura;
+  src: url('/fonts/CameraObscura.otf') format('opentype');
+}
+
+:root {
+  @media screen and (max-width: 640px) {
+    font-size: 10px
+  }
+
+  @media screen and (min-width: 640px) and (max-width: 1024px) {
+    font-size: 12px
+  }
+  font-size: 16px;
+}
+
+.grid-system {
+  @apply grid grid-cols-xs gap-x-[16px] sm:grid-cols-sm md:grid-cols-md md:gap-x-[24px] lg:grid-cols-lg xl:grid-cols-xl 2xl:grid-cols-2xl 3xl:grid-cols-3xl 4xl:grid-cols-4xl;
+}
+
+.container-system {
+  @apply max-w-[1920px] mx-auto px-4 lg:px-[107px];
+}
+
+.title-text {
+  @apply font-camera-obscura text-[4.5rem] leading-[4.75rem] tracking-tight;
+}
+
+.h2-text {
+  @apply text-[3.5rem] leading-[3.75rem] font-normal;
+}
+
+.h3-text {
+  @apply text-[3rem] leading-[3.25rem] font-normal; 
+}
+
+.h4-text {
+  @apply text-[2rem] leading-[2.25rem] font-normal;
+}
+
+.h5-text {
+  @apply text-[1.5rem] leading-[1.75rem] font-normal;
+}
+
+.h6-text {
+  @apply text-[1.25rem] leading-[1.5rem] font-normal;
+}
