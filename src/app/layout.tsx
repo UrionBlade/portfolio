@@ -1,10 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Poppins } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.scss';
 import 'swiper/css';
 import 'swiper/less/mousewheel';
 import 'swiper/css/effect-creative';
-import Head from 'next/head';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
