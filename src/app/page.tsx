@@ -13,6 +13,7 @@ import ScrollInvitation from '@/components/ScrollInvitation';
 import Input from '@/components/Input';
 import Image from 'next/image';
 import Textarea from '@/components/Textarea';
+import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -24,12 +25,14 @@ export default function Home() {
     message: '',
   });
 
+  const { isDesktop } = useDeviceDetection();
+
   return (
     <main className="bg-white p-4 w-screen h-screen overflow-hidden relative">
       <Image
         src={'/images/me.png'}
-        width={100}
-        height={100}
+        width={isDesktop ? 100 : 70}
+        height={isDesktop ? 100 : 70}
         className="absolute top-8 left-4 z-50 cursor-pointer"
         alt="logo"
         onClick={() => swiper.slideTo(0)}
