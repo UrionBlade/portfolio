@@ -14,7 +14,7 @@ const Textarea: React.FC<TTextarea> = ({ ...props }) => {
     <div className="relative w-full">
       <textarea
         {...props}
-        className="w-full rounded-[2rem] outline-none px-6 py-6 placeholder:italic text-gray-800 bg-gray-50 placeholder-gray-200 h6-text"
+        className="w-full rounded-[2rem] outline-none px-6 py-6 placeholder:italic text-gray-800 bg-gray-50 placeholder-gray-200 h6-text cursor-text"
       />
       <h6 className="h6-text text-gray-200 absolute bottom-6 right-6 z-50">
         {`${stringValue.length} / ${props.maxLength!}`}

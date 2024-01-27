@@ -14,6 +14,7 @@ import Input from '@/components/Input';
 import Image from 'next/image';
 import Textarea from '@/components/Textarea';
 import { useDeviceDetection } from '@/hooks/useDeviceDetection';
+import Button from '@/components/Button';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -27,13 +28,40 @@ export default function Home() {
 
   const { isDesktop } = useDeviceDetection();
 
+  const skills = [
+    {
+      name: 'HTML',
+      percentage: 0.9,
+    },
+    {
+      name: 'CSS',
+      percentage: 0.8,
+    },
+    {
+      name: 'TypeScript',
+      percentage: 0.9,
+    },
+    {
+      name: 'React',
+      percentage: 0.8,
+    },
+    {
+      name: 'Next.js',
+      percentage: 0.8,
+    },
+    {
+      name: 'React Native',
+      percentage: 0.6,
+    },
+  ];
+
   return (
     <main className="bg-white p-4 w-screen h-screen overflow-hidden relative">
       <Image
         src={'/images/me.png'}
         width={isDesktop ? 100 : 70}
         height={isDesktop ? 100 : 70}
-        className="absolute top-8 left-4 z-50 cursor-pointer"
+        className="absolute top-8 left-4 z-50 cursor-pointer hidden lg:block"
         alt="logo"
         onClick={() => swiper.slideTo(0)}
       />
@@ -61,14 +89,14 @@ export default function Home() {
             id="home"
             className="bg-red-400 w-full h-full relative flex justify-start items-center flex-col"
           >
-            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
+            <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
               <h1 className="text-gray-50 title-text col-span-full">
                 {`Hi, I'm Matteo`}
               </h1>
-              <h2 className="text-gray-50 h3-text col-span-full lg:col-span-7">
+              <h3 className="text-gray-50 h3-text col-span-full lg:col-span-7">
                 I’m the sorcerer behind the pixels and the architect of seamless
                 user experiences
-              </h2>
+              </h3>
             </div>
             <div className="absolute bottom-8">
               <ScrollInvitation />
@@ -77,20 +105,75 @@ export default function Home() {
         </SwiperSlide>
         <SwiperSlide>
           <section id="about" className="bg-yellow-500 w-full h-full">
-            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
-              <h1 className="text-gray-50 title-text col-span-full">
-                {`Hi, I'm Matteo`}
-              </h1>
-              <h2 className="text-gray-50 h3-text col-span-7">
-                I’m the sorcerer behind the pixels and the architect of seamless
-                user experiences
-              </h2>
+            <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
+              <div className="col-span-7">
+                <h2 className="text-gray-50 title-text">My Skills</h2>
+                <h3 className="text-gray-50 h4-text">
+                  {`When I'm not busy casting spells, I'm usually busy learning new ones`}
+                </h3>
+              </div>
+              <div className="col-span-full lg:col-span-6 space-y-4 lg:space-y-8 mt-8 lg:mt-16">
+                {skills.splice(0, 3).map((skill, index) => (
+                  <div
+                    className="flex justify-start items-start flex-col space-y-2 lg:space-y-4"
+                    key={skill.name}
+                  >
+                    <div className="flex justify-start items-center space-x-4">
+                      <h6 className="text-gray-50 h6-text">{skill.name}</h6>
+                      <h6 className="text-gray-50 h6-text">
+                        {skill.percentage * 10} / 10
+                      </h6>
+                    </div>
+                    <div className="flex justify-start items-center">
+                      {Array.from(Array(skill.percentage * 10).keys()).map(
+                        (_, index) => (
+                          <Image
+                            src={'/images/fireball.png'}
+                            width={isDesktop ? 60 : 35}
+                            height={isDesktop ? 60 : 35}
+                            key={index}
+                            alt="fireball-skill"
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="col-span-full lg:col-span-6 space-y-4 lg:space-y-8 mt-4 lg:mt-16">
+                {skills.splice(0, 3).map((skill, index) => (
+                  <div
+                    className="flex justify-start items-start flex-col  space-y-2 lg:space-y-4"
+                    key={skill.name}
+                  >
+                    <div className="flex justify-start items-center space-x-4">
+                      <h6 className="text-gray-50 h6-text">{skill.name}</h6>
+                      <h6 className="text-gray-50 h6-text">
+                        {skill.percentage * 10} / 10
+                      </h6>
+                    </div>
+                    <div className="flex justify-start items-center">
+                      {Array.from(Array(skill.percentage * 10).keys()).map(
+                        (_, index) => (
+                          <Image
+                            src={'/images/fireball.png'}
+                            width={isDesktop ? 60 : 35}
+                            height={isDesktop ? 60 : 35}
+                            key={index}
+                            alt="fireball-skill"
+                          />
+                        )
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </SwiperSlide>
         <SwiperSlide>
           <section id="projects" className="bg-green-500 w-full h-full">
-            <div className="container-system flex justify-start items-start flex-col pt-48 lg:pt-36 grid-system">
+            <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
               <h1 className="text-gray-50 title-text col-span-full">
                 {`Hi, I'm Matteo`}
               </h1>
@@ -103,7 +186,7 @@ export default function Home() {
         </SwiperSlide>
         <SwiperSlide>
           <section id="about" className="bg-blue-500 w-full h-full">
-            <div className="container-system flex justify-start items-start lg:items-center lg:h-full flex-col pt-48 lg:pt-0 grid-system">
+            <div className="container-system flex justify-start items-start lg:items-center lg:h-full flex-col pt-24 lg:pt-0 grid-system">
               <div className="col-span-full lg:col-span-6">
                 <span className="flex justify-start items-center space-x-4">
                   <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-32 w-32 flex justify-center items-center">
@@ -116,7 +199,7 @@ export default function Home() {
                   </div>
                   <h2 className="text-gray-50 title-text">Get in touch</h2>
                 </span>
-                <div className="w-full h-[2px] bg-gray-50 my-8" />
+                <div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
                 <div className="flex justify-start items-center space-x-8">
                   <EnvelopeIcon className="w-8 h-8 text-gray-50" />
                   <h4 className="h4-text text-gray-50">
@@ -124,17 +207,17 @@ export default function Home() {
                   </h4>
                 </div>
 
-                <div className="flex justify-start items-center space-x-8 mt-8">
+                <div className="flex justify-start items-center space-x-8 mt-4 md:mt-8">
                   <PhoneIcon className="w-8 h-8 text-gray-50" />
                   <h4 className="h4-text text-gray-50">+39 3773066802</h4>
                 </div>
 
-                <div className="flex justify-start items-center space-x-8 mt-8">
+                <div className="flex justify-start items-center space-x-8 mt-4 md:mt-8">
                   <MapPinIcon className="w-8 h-8 text-gray-50" />
                   <h4 className="h4-text text-gray-50">Como, Italy</h4>
                 </div>
               </div>
-              <div className="col-span-full lg:col-span-6 flex justify-center items-center flex-col space-y-8 h-full lg:px-8 mt-12 lg:mt-18">
+              <div className="col-span-full lg:col-span-6 flex justify-center items-end flex-col space-y-8 h-full lg:px-8 mt-8 lg:mt-48">
                 <Input
                   placeholder="Name"
                   value={form.name}
@@ -168,6 +251,7 @@ export default function Home() {
                     })
                   }
                 />
+                <Button>Send message</Button>
               </div>
             </div>
           </section>
@@ -214,7 +298,7 @@ export default function Home() {
             color={activeIndex === 3 ? '#d1d1d1' : '#f6f6f6'}
             onClick={() => swiper.slideNext()}
           />
-          <h5 className="text-gray-50 h5-text ml-4 !font-thin w-16 select-none">
+          <h5 className="text-gray-50 h5-text ml-4 !font-thin w-16 select-none cursor-text">
             {activeIndex + 1} / 4
           </h5>
         </div>

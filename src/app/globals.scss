@@ -18,6 +18,10 @@
   font-size: 16px;
 }
 
+body {
+  @apply cursor-default
+}
+
 .grid-system {
   @apply grid grid-cols-xs gap-x-[16px] sm:grid-cols-sm md:grid-cols-md md:gap-x-[24px] lg:grid-cols-lg xl:grid-cols-xl 2xl:grid-cols-2xl 3xl:grid-cols-3xl 4xl:grid-cols-4xl;
 }
@@ -27,25 +31,57 @@
 }
 
 .title-text {
-  @apply font-camera-obscura text-[4.5rem] leading-[4.75rem] tracking-tight;
+  @apply font-camera-obscura text-[4.2rem] md:text-[4.5rem] leading-[4.75rem] tracking-tight cursor-text;
 }
 
 .h2-text {
-  @apply text-[3.5rem] leading-[3.75rem] font-normal;
+  @apply text-[3.5rem] leading-[3.75rem] font-normal cursor-text;
 }
 
 .h3-text {
-  @apply text-[3rem] leading-[3.25rem] font-normal; 
+  @apply text-[3rem] leading-[3.25rem] font-normal cursor-text; 
 }
 
 .h4-text {
-  @apply text-[2rem] leading-[2.25rem] font-normal;
+  @apply text-[2rem] leading-[2.25rem] font-normal cursor-text;
 }
 
 .h5-text {
-  @apply text-[1.5rem] leading-[1.75rem] font-normal;
+  @apply text-[1.5rem] leading-[1.75rem] font-normal cursor-text;
 }
 
 .h6-text {
-  @apply text-[1.25rem] leading-[1.5rem] font-normal;
+  @apply text-[1.25rem] leading-[1.5rem] font-normal cursor-text;
+}
+
+.bn632-hover {
+  text-align:center;
+  background-size: 300% 100%;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.bn632-hover:focus {
+  outline: none;
+}
+
+.bn632-hover.bn19 {
+  background-image: linear-gradient(
+    to right,
+    #edbd42,
+    #e43603,
+    #fa7199,
+    #e85a19
+  );
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
 }

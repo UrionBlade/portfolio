@@ -19,6 +19,14 @@ const config: Config = {
     },
 
     extend: {
+
+      cursor: {
+        default: 'url(/cursors/pointer.png), default',
+        pointer: 'url(/cursors/link.png), pointer',
+        text: 'url(/cursors/text.png), text',
+        'not-allowed': 'url(/cursors/unavailable.png), not-allowed',
+      },
+
       fontFamily: {
         'camera-obscura': ['CameraObscura'],
       },
