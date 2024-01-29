@@ -15,6 +15,7 @@ import Image from 'next/image';
 import Textarea from '@/components/Textarea';
 import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 import Button from '@/components/Button';
+import emailjs from '@emailjs/browser';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -26,7 +27,7 @@ export default function Home() {
     message: '',
   });
 
-  const { isDesktop } = useDeviceDetection();
+  const { isDesktop, isAbove1440 } = useDeviceDetection();
 
   const skills = [
     {
@@ -54,6 +55,23 @@ export default function Home() {
       percentage: 0.6,
     },
   ];
+
+  const sendEmail = async () => {
+    try {
+      emailjs.send(
+        'service_8c0pmqx',
+        'template_p1s2o3v',
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        'qbspO0cIvvnJZOjVk'
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <main className="bg-white p-4 w-screen h-screen overflow-hidden relative">
@@ -112,13 +130,13 @@ export default function Home() {
                   {`When I'm not busy casting spells, I'm usually busy learning new ones`}
                 </h3>
               </div>
-              <div className="col-span-full lg:col-span-6 space-y-4 lg:space-y-8 mt-8 lg:mt-16">
+              <div className="col-span-full md:col-span-6 space-y-4 lg:space-y-8 mt-8 lg:mt-16">
                 {skills.splice(0, 3).map((skill, index) => (
                   <div
                     className="flex justify-start items-start flex-col space-y-2 lg:space-y-4"
                     key={skill.name}
                   >
-                    <div className="flex justify-start items-center space-x-4">
+                    <div className="flex justify-start items-center space-x-2">
                       <h6 className="text-gray-50 h6-text">{skill.name}</h6>
                       <h6 className="text-gray-50 h6-text">
                         {skill.percentage * 10} / 10
@@ -129,8 +147,20 @@ export default function Home() {
                         (_, index) => (
                           <Image
                             src={'/images/fireball.png'}
-                            width={isDesktop ? 60 : 35}
-                            height={isDesktop ? 60 : 35}
+                            width={isAbove1440 ? 60 : 30}
+                            height={isAbove1440 ? 60 : 30}
+                            key={index}
+                            alt="fireball-skill"
+                          />
+                        )
+                      )}
+                      {Array.from(Array(10 - skill.percentage * 10).keys()).map(
+                        (_, index) => (
+                          <Image
+                            src={'/images/fireball.png'}
+                            className=" grayscale-[60%]"
+                            width={isAbove1440 ? 60 : 30}
+                            height={isAbove1440 ? 60 : 30}
                             key={index}
                             alt="fireball-skill"
                           />
@@ -140,7 +170,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <div className="col-span-full lg:col-span-6 space-y-4 lg:space-y-8 mt-4 lg:mt-16">
+              <div className="col-span-full md:col-span-6 space-y-4 lg:space-y-8 mt-4 lg:mt-16">
                 {skills.splice(0, 3).map((skill, index) => (
                   <div
                     className="flex justify-start items-start flex-col  space-y-2 lg:space-y-4"
@@ -157,8 +187,20 @@ export default function Home() {
                         (_, index) => (
                           <Image
                             src={'/images/fireball.png'}
-                            width={isDesktop ? 60 : 35}
-                            height={isDesktop ? 60 : 35}
+                            width={isAbove1440 ? 60 : 30}
+                            height={isAbove1440 ? 60 : 30}
+                            key={index}
+                            alt="fireball-skill"
+                          />
+                        )
+                      )}
+                      {Array.from(Array(10 - skill.percentage * 10).keys()).map(
+                        (_, index) => (
+                          <Image
+                            src={'/images/fireball.png'}
+                            className=" grayscale-[60%]"
+                            width={isAbove1440 ? 60 : 30}
+                            height={isAbove1440 ? 60 : 30}
                             key={index}
                             alt="fireball-skill"
                           />
@@ -267,7 +309,12 @@ export default function Home() {
                     })
                   }
                 />
-                <Button>Send message</Button>
+                <Button
+                  disabled={!form.message || !form.email || !form.name}
+                  onClick={() => sendEmail()}
+                >
+                  Send message
+                </Button>
               </div>
             </div>
           </section>

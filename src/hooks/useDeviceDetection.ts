@@ -12,6 +12,8 @@ export const useDeviceDetection = () => {
     'only screen and (min-width: 1441px) and (max-width: 1536px)',
   )
 
+  const isAbove1440 = useBetterMediaQuery('only screen and (min-width: 1441px)')
+
   //2xl
   const is1440 = useBetterMediaQuery(
     'only screen and (min-width: 1280px) and (max-width: 1440px)',
@@ -37,6 +39,7 @@ export const useDeviceDetection = () => {
     isTablet,
     isMobile,
     isDesktop,
+    isAbove1440,
     is1440,
     is1536,
     is1920,
