@@ -202,14 +202,30 @@ export default function Home() {
                 <div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
                 <div className="flex justify-start items-center space-x-8">
                   <EnvelopeIcon className="w-8 h-8 text-gray-50" />
-                  <h4 className="h4-text text-gray-50">
-                    matteo.poli4@gmail.com
-                  </h4>
+                  <button
+                    onClick={() =>
+                      navigator.clipboard.writeText('matteo.poli4@gmail.com')
+                    }
+                    className="cursor-pointer"
+                  >
+                    <h4 className="h4-text text-gray-50 !cursor-pointer underline">
+                      matteo.poli4@gmail.com
+                    </h4>
+                  </button>
                 </div>
 
                 <div className="flex justify-start items-center space-x-8 mt-4 md:mt-8">
                   <PhoneIcon className="w-8 h-8 text-gray-50" />
-                  <h4 className="h4-text text-gray-50">+39 3773066802</h4>
+                  <button
+                    onClick={() =>
+                      navigator.clipboard.writeText('+39 3773066802')
+                    }
+                    className="cursor-pointer"
+                  >
+                    <h4 className="h4-text text-gray-50 !cursor-pointer underline">
+                      +39 3773066802
+                    </h4>
+                  </button>
                 </div>
 
                 <div className="flex justify-start items-center space-x-8 mt-4 md:mt-8">
