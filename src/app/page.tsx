@@ -16,15 +16,24 @@ import Textarea from '@/components/Textarea';
 import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 import Button from '@/components/Button';
 import emailjs from '@emailjs/browser';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiper, setSwiper] = useState<any | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const [form, setForm] = useState({
+  const initialValues = {
     name: '',
     email: '',
     message: '',
+  };
+
+  const validationSchema = yup.object().shape({
+    name: yup.string().required('Required'),
+    email: yup.string().email('Invalid email').required('Required'),
+    message: yup.string().required('Required'),
   });
 
   const { isDesktop, isAbove1440 } = useDeviceDetection();
@@ -56,21 +65,23 @@ export default function Home() {
     },
   ];
 
-  const sendEmail = async () => {
+  const sendEmail = async (name: string, email: string, message: string) => {
     try {
-      emailjs.send(
+      setLoading(true);
+      await emailjs.send(
         'service_8c0pmqx',
         'template_p1s2o3v',
         {
-          name: form.name,
-          email: form.email,
-          message: form.message,
+          name: name,
+          email: email,
+          message: message,
         },
         'qbspO0cIvvnJZOjVk'
       );
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   };
 
   return (
@@ -275,47 +286,47 @@ export default function Home() {
                   <h4 className="h4-text text-gray-50">Como, Italy</h4>
                 </div>
               </div>
-              <div className="col-span-full lg:col-span-6 flex justify-center items-end flex-col space-y-8 h-full lg:px-8 mt-8 lg:mt-48">
-                <Input
-                  placeholder="Name"
-                  value={form.name}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      name: e.target.value,
-                    })
-                  }
-                />
-                <Input
-                  placeholder="Email"
-                  value={form.email}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      email: e.target.value,
-                    })
-                  }
-                />
-                <Textarea
-                  placeholder="Message"
-                  rows={7}
-                  className="overflow-hidden"
-                  maxLength={400}
-                  value={form.message}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      message: e.target.value,
-                    })
-                  }
-                />
-                <Button
-                  disabled={!form.message || !form.email || !form.name}
-                  onClick={() => sendEmail()}
-                >
-                  Send message
-                </Button>
-              </div>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={(values) => {
+                  sendEmail(values.name, values.email, values.message);
+                }}
+                validationSchema={validationSchema}
+                validateOnChange={false}
+                validateOnBlur
+                validateOnMount={false}
+              >
+                {({ values, setFieldValue, handleSubmit }) => (
+                  <div className="col-span-full lg:col-span-6 flex justify-center items-end flex-col space-y-8 h-full lg:px-8 mt-8 lg:mt-48">
+                    <Input
+                      placeholder="Name"
+                      value={values.name}
+                      onChange={(e) => setFieldValue('name', e.target.value)}
+                    />
+                    <Input
+                      placeholder="Email"
+                      value={values.email}
+                      onChange={(e) => setFieldValue('email', e.target.value)}
+                    />
+                    <Textarea
+                      placeholder="Message"
+                      rows={7}
+                      className="overflow-hidden resize-none"
+                      maxLength={400}
+                      value={values.message}
+                      onChange={(e) => setFieldValue('message', e.target.value)}
+                    />
+                    <Button
+                      disabled={
+                        !values.message || !values.email || !values.name
+                      }
+                      onClick={() => handleSubmit()}
+                    >
+                      Send message
+                    </Button>
+                  </div>
+                )}
+              </Formik>
             </div>
           </section>
         </SwiperSlide>

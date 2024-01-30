@@ -24,6 +24,8 @@ const config: Config = {
         default: 'url(/cursors/pointer.png), default',
         pointer: 'url(/cursors/link.png), pointer',
         text: 'url(/cursors/text.png), text',
+        'nwse-resize': 'url(/cursors/resize.png), nwse-resize',
+        'ns-resize': 'url(/cursors/resize.png), ns-resize',
         'not-allowed': 'url(/cursors/unavailable.png), not-allowed',
       },
 
