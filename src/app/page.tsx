@@ -71,6 +71,19 @@ export default function Home() {
     },
   ];
 
+  const projects = [
+    {
+      name: 'NFT Factory',
+      image: '/images/logo-violet.png',
+      url: 'https://nft-factory.club',
+    },
+    {
+      name: 'Cataclysm',
+      image: '/images/logo-cataclysm.png',
+      url: 'https://cataclysm-game.com',
+    },
+  ];
+
   useEffect(() => {
     let currentPercentage = 0;
     const interval = setInterval(() => {
@@ -308,12 +321,27 @@ export default function Home() {
               <section id="projects" className="bg-green-500 w-full h-full">
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
                   <h1 className="text-gray-50 title-text col-span-full">
-                    {`Hi, I'm Matteo`}
+                    I worked on
                   </h1>
-                  <h2 className="text-gray-50 h3-text col-span-7">
-                    I’m the sorcerer behind the pixels and the architect of
-                    seamless user experiences
-                  </h2>
+                  {projects.map((project, index) => (
+                    <button
+                      className="col-span-2 lg:col-span-4 flex justify-center items-center flex-col mt-16 cursor-pointer"
+                      onClick={() => open(project.url)}
+                      key={project.name}
+                    >
+                      <div className="w-2/3 aspect-square rounded-full relative bg-green-200 border-2 lg:border-[6px] border-white">
+                        <Image
+                          src={project.image}
+                          fill
+                          alt="logo"
+                          className="rounded-full object-scale-down"
+                        />
+                      </div>
+                      <h3 className="text-gray-50 h4-text lg:h3-text mt-4">
+                        {project.name}
+                      </h3>
+                    </button>
+                  ))}
                 </div>
               </section>
             </SwiperSlide>
