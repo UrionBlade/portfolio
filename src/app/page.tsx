@@ -22,6 +22,7 @@ import PageLoader from '@/components/PageLoader';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import { loadingAnimation, successAnimation } from '@/utils/animations';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -81,6 +82,16 @@ export default function Home() {
       name: 'Cataclysm',
       image: '/images/logo-cataclysm.png',
       url: 'https://cataclysm-game.com',
+    },
+    {
+      name: 'Monuverse',
+      image: '/images/logo-monuverse.png',
+      url: 'https://monuverse.xyz',
+    },
+    {
+      name: 'Reasoned Art',
+      image: '/images/logo-reasoned-art.png',
+      url: 'https://reasonedart.com',
     },
   ];
 
@@ -364,11 +375,12 @@ export default function Home() {
                     <div className="flex justify-start items-center space-x-8">
                       <EnvelopeIcon className="w-8 h-8 text-gray-50" />
                       <button
-                        onClick={() =>
+                        onClick={() => {
                           navigator.clipboard.writeText(
                             'matteo.poli4@gmail.com'
-                          )
-                        }
+                          );
+                          toast('Copied to clipboard');
+                        }}
                         className="cursor-pointer"
                       >
                         <h4 className="h4-text text-gray-50 !cursor-pointer underline">
@@ -380,9 +392,10 @@ export default function Home() {
                     <div className="flex justify-start items-center space-x-8 mt-4 md:mt-8">
                       <PhoneIcon className="w-8 h-8 text-gray-50" />
                       <button
-                        onClick={() =>
-                          navigator.clipboard.writeText('+39 3773066802')
-                        }
+                        onClick={() => {
+                          navigator.clipboard.writeText('+39 3773066802');
+                          toast('Copied to clipboard');
+                        }}
                         className="cursor-pointer"
                       >
                         <h4 className="h4-text text-gray-50 !cursor-pointer underline">
@@ -495,6 +508,17 @@ export default function Home() {
           </div>
         </footer>
       )}
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          style: {
+            color: '#f6f6f6',
+            backgroundColor: '#212121',
+          },
+          duration: 1000,
+        }}
+      />
     </main>
   );
 }
