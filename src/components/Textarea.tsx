@@ -17,7 +17,7 @@ const Textarea: React.FC<TTextarea> = ({ ...props }) => {
       <textarea
         {...props}
         className={`w-full rounded-[2rem] outline-none px-6 py-6 placeholder:italic text-gray-800 bg-gray-50 placeholder-gray-200 h6-text cursor-text border-2 transition-all duration-200 ${
-          error ? 'border-red-500 bg-red-100' : ''
+          error ? 'border-red-500 bg-red-100' : 'border-white'
         }`}
       />
       <h6 className="h6-text text-gray-200 z-50 !font-medium">
