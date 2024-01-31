@@ -322,11 +322,11 @@ export default function Home() {
                 <div className="container-system flex justify-start items-start pt-24 2xl:pt-36 lg:h-full flex-col grid-system">
                   <div className="col-span-full lg:col-span-6">
                     <span className="flex justify-start items-center space-x-4">
-                      <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-28 w-28xl:h-32 xl:w-32 flex justify-center items-center">
+                      <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-28 w-28 xl:h-32 xl:w-32 flex justify-center items-center">
                         <Image
                           src={'/images/me.png'}
-                          width={120}
-                          height={120}
+                          width={isDesktop ? 120 : 80}
+                          height={isDesktop ? 120 : 80}
                           alt="logo"
                         />
                       </div>
@@ -379,7 +379,7 @@ export default function Home() {
                     validateOnMount={false}
                   >
                     {({ values, setFieldValue, handleSubmit, errors }) => (
-                      <div className="col-span-full lg:col-span-6 flex justify-start items-end flex-col space-y-8 h-full">
+                      <div className="col-span-full lg:col-span-6 flex justify-start items-end flex-col space-y-8 h-full mt-12 lg:mt-0">
                         <Input
                           placeholder="Name"
                           value={values.name}
