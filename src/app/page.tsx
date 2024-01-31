@@ -336,7 +336,7 @@ export default function Home() {
                   </h1>
                   {projects.map((project, index) => (
                     <button
-                      className="col-span-2 lg:col-span-4 flex justify-center items-center flex-col mt-16 cursor-pointer"
+                      className="col-span-2 xl:col-span-3 flex justify-center items-center flex-col mt-16 cursor-pointer"
                       onClick={() => open(project.url)}
                       key={project.name}
                     >
