@@ -20,12 +20,15 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import PageLoader from '@/components/PageLoader';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import { loadingAnimation, successAnimation } from '@/utils/animations';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiper, setSwiper] = useState<any | null>(null);
   const [percentage, setPercentage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const initialValues = {
     name: '',
@@ -77,8 +80,6 @@ export default function Home() {
       } else {
         clearInterval(interval);
       }
-
-      console.log(currentPercentage);
     }, 100);
   }, []);
 
@@ -95,19 +96,62 @@ export default function Home() {
         },
         'qbspO0cIvvnJZOjVk'
       );
+
+      setLoading(false);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <main className="bg-white p-4 w-screen h-screen overflow-hidden relative">
+      {loading && (
+        <motion.section
+          className="w-[calc(100vw-2rem)] h-[calc(100vh-2rem)] bg-green-700 bg-opacity-80 flex justify-center items-center flex-col absolute top-4 left-4 z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            type: 'easeInOut',
+            stiffness: 260,
+            damping: 20,
+            duration: 0.2,
+          }}
+        >
+          <Lottie animationData={loadingAnimation} className="w-56 h-56" />
+          <h2 className="title-text text-gray-50">Loading</h2>
+        </motion.section>
+      )}
+      {success && (
+        <motion.section
+          className="w-[calc(100vw-2rem)] h-[calc(100vh-2rem)] bg-green-700 bg-opacity-80 flex justify-center items-center flex-col absolute top-4 left-4 z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            type: 'easeInOut',
+            stiffness: 260,
+            damping: 20,
+            duration: 0.2,
+          }}
+        >
+          <Lottie
+            animationData={successAnimation}
+            className="w-56 h-56"
+            loop={false}
+          />
+        </motion.section>
+      )}
       <Image
         src={'/images/me.png'}
         width={isDesktop ? 100 : 70}
         height={isDesktop ? 100 : 70}
-        className="absolute top-8 left-4 z-50 cursor-pointer hidden lg:block"
+        className="absolute top-8 left-4 z-40 cursor-pointer hidden lg:block"
         alt="logo"
         onClick={() => swiper.slideTo(0)}
       />
@@ -275,10 +319,10 @@ export default function Home() {
             </SwiperSlide>
             <SwiperSlide key={'contacts'}>
               <section id="about" className="bg-blue-500 w-full h-full">
-                <div className="container-system flex justify-start items-start lg:items-center lg:h-full flex-col pt-24 lg:pt-0 grid-system">
+                <div className="container-system flex justify-start items-start pt-24 2xl:pt-36 lg:h-full flex-col grid-system">
                   <div className="col-span-full lg:col-span-6">
                     <span className="flex justify-start items-center space-x-4">
-                      <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-32 w-32 flex justify-center items-center">
+                      <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-28 w-28xl:h-32 xl:w-32 flex justify-center items-center">
                         <Image
                           src={'/images/me.png'}
                           width={120}
@@ -334,14 +378,15 @@ export default function Home() {
                     validateOnBlur
                     validateOnMount={false}
                   >
-                    {({ values, setFieldValue, handleSubmit }) => (
-                      <div className="col-span-full lg:col-span-6 flex justify-center items-end flex-col space-y-8 h-full lg:px-8 mt-8 lg:mt-48">
+                    {({ values, setFieldValue, handleSubmit, errors }) => (
+                      <div className="col-span-full lg:col-span-6 flex justify-start items-end flex-col space-y-8 h-full">
                         <Input
                           placeholder="Name"
                           value={values.name}
                           onChange={(e) =>
                             setFieldValue('name', e.target.value)
                           }
+                          error={!!errors.name}
                         />
                         <Input
                           placeholder="Email"
@@ -349,6 +394,7 @@ export default function Home() {
                           onChange={(e) =>
                             setFieldValue('email', e.target.value)
                           }
+                          error={!!errors.email}
                         />
                         <Textarea
                           placeholder="Message"
@@ -359,13 +405,9 @@ export default function Home() {
                           onChange={(e) =>
                             setFieldValue('message', e.target.value)
                           }
+                          error={!!errors.message}
                         />
-                        <Button
-                          disabled={
-                            !values.message || !values.email || !values.name
-                          }
-                          onClick={() => handleSubmit()}
-                        >
+                        <Button onClick={() => handleSubmit()}>
                           Send message
                         </Button>
                       </div>
@@ -378,7 +420,7 @@ export default function Home() {
         )}
       </Swiper>
       {percentage >= 1 && (
-        <footer className="w-full left-0 bottom-8 absolute z-50 px-8 flex justify-between items-center">
+        <footer className="w-full left-0 bottom-8 absolute z-40 px-8 flex justify-between items-center">
           <div className="w-[129px]" />
           <div className="w-1/2 flex justify-center items-center">
             <div className="w-1/2 h-[2px] relative">
