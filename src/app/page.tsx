@@ -246,7 +246,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <div className="col-span-full md:col-span-6 space-y-4 lg:space-y-8 mt-8 lg:mt-16">
-                    {skills.splice(0, 3).map((skill, index) => (
+                    {skills.splice(0, 3).map((skill) => (
                       <div
                         className="flex justify-start items-start flex-col space-y-2 lg:space-y-4"
                         key={skill.name}
@@ -266,6 +266,7 @@ export default function Home() {
                                 height={isAbove1440 ? 60 : 30}
                                 key={`fill-${index}`}
                                 alt="fireball-skill"
+                                className="hover:scale-110 transition-all duration-100"
                               />
                             )
                           )}
@@ -274,11 +275,11 @@ export default function Home() {
                           ).map((_, index) => (
                             <Image
                               src={'/images/fireball.png'}
-                              className=" grayscale-[60%]"
                               width={isAbove1440 ? 60 : 30}
                               height={isAbove1440 ? 60 : 30}
                               key={`empty-${index}`}
                               alt="fireball-skill"
+                              className="grayscale-[60%] hover:scale-110 transition-all duration-100"
                             />
                           ))}
                         </div>
@@ -286,7 +287,7 @@ export default function Home() {
                     ))}
                   </div>
                   <div className="col-span-full md:col-span-6 space-y-4 lg:space-y-8 mt-4 lg:mt-16">
-                    {skills.splice(0, 3).map((skill, index) => (
+                    {skills.splice(0, 3).map((skill) => (
                       <div
                         className="flex justify-start items-start flex-col  space-y-2 lg:space-y-4"
                         key={skill.name}
@@ -306,6 +307,7 @@ export default function Home() {
                                 height={isAbove1440 ? 60 : 30}
                                 key={`fill-right-${index}`}
                                 alt="fireball-skill"
+                                className="hover:scale-110 transition-all duration-100"
                               />
                             )
                           )}
@@ -314,11 +316,11 @@ export default function Home() {
                           ).map((_, index) => (
                             <Image
                               src={'/images/fireball.png'}
-                              className=" grayscale-[60%]"
                               width={isAbove1440 ? 60 : 30}
                               height={isAbove1440 ? 60 : 30}
                               key={`empty-right-${index}`}
                               alt="fireball-skill"
+                              className="grayscale-[60%] hover:scale-110 transition-all duration-100"
                             />
                           ))}
                         </div>
@@ -334,7 +336,7 @@ export default function Home() {
                   <h1 className="text-gray-50 title-text col-span-full">
                     I worked on
                   </h1>
-                  {projects.map((project, index) => (
+                  {projects.map((project) => (
                     <button
                       className="col-span-2 xl:col-span-3 flex justify-center items-center flex-col mt-16 cursor-pointer"
                       onClick={() => open(project.url)}
@@ -359,7 +361,7 @@ export default function Home() {
             <SwiperSlide key={'contacts'}>
               <section id="about" className="bg-blue-500 w-full h-full">
                 <div className="container-system flex justify-start items-start pt-24 2xl:pt-36 lg:h-full flex-col grid-system">
-                  <div className="col-span-full lg:col-span-6">
+                  <div className="col-span-full lg:col-span-4 xl:col-span-6">
                     <span className="flex justify-start items-center space-x-4">
                       <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-28 w-28 xl:h-32 xl:w-32 flex justify-center items-center">
                         <Image
@@ -408,6 +410,31 @@ export default function Home() {
                       <MapPinIcon className="w-8 h-8 text-gray-50" />
                       <h4 className="h4-text text-gray-50">Como, Italy</h4>
                     </div>
+
+                    <div className="flex justify-center items-center space-x-8 mt-4 md:mt-8">
+                      <button
+                        onClick={() =>
+                          open('https://www.linkedin.com/in/urion/')
+                        }
+                      >
+                        <Image
+                          src={'/images/ln.png'}
+                          width={30}
+                          height={30}
+                          alt="linkedin"
+                        />
+                      </button>
+                      <button
+                        onClick={() => open('https://twitter.com/MatteoPoli15')}
+                      >
+                        <Image
+                          src={'/images/twitter.png'}
+                          width={30}
+                          height={30}
+                          alt="twitter"
+                        />
+                      </button>
+                    </div>
                   </div>
                   <Formik
                     initialValues={initialValues}
@@ -420,7 +447,7 @@ export default function Home() {
                     validateOnMount={false}
                   >
                     {({ values, setFieldValue, handleSubmit, errors }) => (
-                      <div className="col-span-full lg:col-span-6 flex justify-start items-end flex-col space-y-8 h-full mt-12 lg:mt-0">
+                      <div className="col-span-full lg:col-span-4 xl:col-span-6 flex justify-start items-end flex-col space-y-8 h-full mt-12 lg:mt-0">
                         <Input
                           placeholder="Name"
                           value={values.name}
@@ -462,7 +489,9 @@ export default function Home() {
       </Swiper>
       {percentage >= 1 && (
         <footer className="w-full left-0 bottom-8 absolute z-40 px-8 flex justify-between items-center">
-          <div className="w-[129px]" />
+          <div className="w-[170px]">
+            <h6 className="text-gray-50">© 2024 - Matteo Poli</h6>
+          </div>
           <div className="w-1/2 flex justify-center items-center">
             <div className="w-1/2 h-[2px] relative">
               <div className="bg-gray-50 w-full h-[2px] absolute" />
@@ -483,7 +512,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="flex justify-end items-center w-[129px]">
+          <div className="flex justify-end items-center w-[170px]">
             <ArrowLongUpIcon
               className={`w-8 h-8 hidden lg:inline ${
                 activeIndex === 0

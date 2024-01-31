@@ -20,7 +20,7 @@ const Textarea: React.FC<TTextarea> = ({ ...props }) => {
           error ? 'border-red-500 bg-red-100' : 'border-white'
         }`}
       />
-      <h6 className="h6-text text-gray-200 z-50 !font-medium">
+      <h6 className="h6-text text-gray-50 z-50 !font-medium">
         {`${stringValue.length} / ${props.maxLength!}`}
       </h6>
     </div>
