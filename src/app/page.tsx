@@ -83,16 +83,16 @@ export default function Home() {
       image: '/images/logo-cataclysm.png',
       url: 'https://cataclysm-game.com',
     },
-    {
-      name: 'Monuverse',
-      image: '/images/logo-monuverse.png',
-      url: 'https://monuverse.xyz',
-    },
-    {
-      name: 'Reasoned Art',
-      image: '/images/logo-reasoned-art.png',
-      url: 'https://reasonedart.com',
-    },
+    // {
+    //   name: 'Monuverse',
+    //   image: '/images/logo-monuverse.png',
+    //   url: 'https://monuverse.xyz',
+    // },
+    // {
+    //   name: 'Reasoned Art',
+    //   image: '/images/logo-reasoned-art.png',
+    //   url: 'https://reasonedart.com',
+    // },
   ];
 
   useEffect(() => {
