@@ -83,16 +83,6 @@ export default function Home() {
       image: '/images/logo-cataclysm.png',
       url: 'https://cataclysm-game.com',
     },
-    // {
-    //   name: 'Monuverse',
-    //   image: '/images/logo-monuverse.png',
-    //   url: 'https://monuverse.xyz',
-    // },
-    // {
-    //   name: 'Reasoned Art',
-    //   image: '/images/logo-reasoned-art.png',
-    //   url: 'https://reasonedart.com',
-    // },
   ];
 
   useEffect(() => {
@@ -204,6 +194,7 @@ export default function Home() {
             className="bg-red-400 w-full h-full relative flex justify-center items-center"
             style={{ backgroundColor: percentage < 1 ? '#06282d' : '#ff6666' }}
           >
+            <div className="absolute h-full w-full bg-[radial-gradient(#ffc7c7_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
             {percentage < 1 && <PageLoader percentage={percentage} />}
             {percentage >= 1 && (
               <motion.div
@@ -237,7 +228,8 @@ export default function Home() {
         {percentage >= 1 && (
           <>
             <SwiperSlide key={'skills'}>
-              <section id="about" className="bg-yellow-500 w-full h-full">
+              <section id="about" className="bg-yellow-500 w-full h-full relative">
+                <div className="absolute h-full w-full bg-[radial-gradient(#f5e192_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
                   <div className="col-span-7">
                     <h2 className="text-gray-50 title-text">My Skills</h2>
@@ -331,7 +323,8 @@ export default function Home() {
               </section>
             </SwiperSlide>
             <SwiperSlide key={'projects'}>
-              <section id="projects" className="bg-green-500 w-full h-full">
+              <section id="projects" className="bg-green-500 w-full h-full relative">
+                <div className="absolute h-full w-full bg-[radial-gradient(#b1e9c1_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
                   <h1 className="text-gray-50 title-text col-span-full">
                     I worked on
@@ -359,9 +352,10 @@ export default function Home() {
               </section>
             </SwiperSlide>
             <SwiperSlide key={'contacts'}>
-              <section id="about" className="bg-blue-500 w-full h-full">
+              <section id="about" className="bg-blue-500 w-full h-full relative">
+                <div className="absolute h-full w-full bg-[radial-gradient(#9cf3ee_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start pt-24 2xl:pt-36 lg:h-full flex-col grid-system">
-                  <div className="col-span-full lg:col-span-4 xl:col-span-6">
+                  <div className="col-span-full lg:col-span-4 xl:col-span-6 z-10">
                     <span className="flex justify-start items-center space-x-4">
                       <div className="border-[4px] border-gray-50 bg-green-200 rounded-full h-28 w-28 xl:h-32 xl:w-32 flex justify-center items-center">
                         <Image
@@ -447,7 +441,7 @@ export default function Home() {
                     validateOnMount={false}
                   >
                     {({ values, setFieldValue, handleSubmit, errors }) => (
-                      <div className="col-span-full lg:col-span-4 xl:col-span-6 flex justify-start items-end flex-col space-y-8 h-full mt-12 lg:mt-0">
+                      <div className="col-span-full lg:col-span-4 xl:col-span-6 flex justify-start items-end flex-col space-y-8 h-full mt-12 lg:mt-0 z-10">
                         <Input
                           placeholder="Name"
                           value={values.name}
