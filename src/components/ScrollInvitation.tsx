@@ -2,11 +2,15 @@ import { ArrowLongDownIcon } from '@heroicons/react/24/solid';
 import Scroll from './icons/Scroll';
 import { useDeviceDetection } from '@/hooks/useDeviceDetection';
 
-const ScrollInvitation: React.FC = () => {
+type ScrollInvitationProps = {
+  onClick: () => void;
+};
+
+const ScrollInvitation: React.FC<ScrollInvitationProps> = ({onClick}) => {
   const { isDesktop } = useDeviceDetection();
 
   return (
-    <div className="flex justify-center items-center relative">
+    <button className="flex justify-center items-center relative cursor-pointer" onClick={() => onClick()}>
       <div className="animate-[spin_10s_linear_infinite] ">
         <Scroll />
       </div>
@@ -14,10 +18,10 @@ const ScrollInvitation: React.FC = () => {
         <ArrowLongDownIcon
           width={isDesktop ? 70 : 50}
           height={isDesktop ? 70 : 50}
-          className="text-gray-50"
+          className="text-gray-50"          
         />
       </div>
-    </div>
+    </button>
   );
 };
 

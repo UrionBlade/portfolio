@@ -219,7 +219,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="absolute bottom-8">
-                  <ScrollInvitation />
+                  <ScrollInvitation onClick={() => swiper.slideNext()}/>
                 </div>
               </motion.div>
             )}
@@ -410,6 +410,7 @@ export default function Home() {
                         onClick={() =>
                           open('https://www.linkedin.com/in/urion/')
                         }
+                        className='cursor-pointer'
                       >
                         <Image
                           src={'/images/ln.png'}
@@ -420,6 +421,7 @@ export default function Home() {
                       </button>
                       <button
                         onClick={() => open('https://twitter.com/MatteoPoli15')}
+                        className='cursor-pointer'
                       >
                         <Image
                           src={'/images/twitter.png'}
