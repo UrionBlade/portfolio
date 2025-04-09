@@ -213,10 +213,10 @@ export default function Home() {
                   <h1 className="text-gray-50 title-text col-span-full">
                     {`Hi, I'm Matteo`}
                   </h1>
-                  <h3 className="text-gray-50 h3-text col-span-full lg:col-span-7">
+                  <h2 className="text-gray-50 h3-text col-span-full lg:col-span-7">
                     I’m the sorcerer behind the pixels and the architect of
                     seamless user experiences
-                  </h3>
+                  </h2>
                 </div>
                 <div className="absolute bottom-8">
                   <ScrollInvitation onClick={() => swiper.slideNext()} />
