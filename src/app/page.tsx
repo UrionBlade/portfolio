@@ -164,7 +164,7 @@ export default function Home() {
       <Image
         src={'/images/me.png'}
         width={isDesktop ? 100 : 70}
-        height={isDesktop ? 100 : 70}
+        height={isDesktop ? 84.38 : 59.06}
         className="absolute top-8 left-4 z-40 cursor-pointer hidden lg:block"
         alt="logo"
         onClick={() => swiper.slideTo(0)}
