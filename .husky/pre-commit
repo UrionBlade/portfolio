@@ -1,2 +1,2 @@
 pnpm run build:storybook:next
-git add ../public/storybook
+git add public/storybook
