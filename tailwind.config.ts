@@ -2,9 +2,13 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  safelist: [
+    'grid-cols-xs', // Force Tailwind to include this class
   ],
   theme: {
     screens: {
@@ -40,7 +44,7 @@ const config: Config = {
         lg: "repeat(8, minmax(0px, 1fr))",
         xl: "repeat(12, minmax(0px, 1fr))",
         "2xl": "repeat(12, minmax(0px, 1fr))",
-        "3xl": "repea(12, minmax(0px, 1fr))",
+        "3xl": "repeat(12, minmax(0px, 1fr))",
         "4xl": "repeat(12, minmax(0px, 1fr))",
       },
 
