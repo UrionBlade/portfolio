@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build:storybook:next": "npm run build-storybook && rm -rf public/storybook && cp -r storybook-static public/storybook",
+    "build:storybook:next": "npm run build-storybook && rm -rf public/storybook && cp -r storybook-static public/storybook && next build",
     "prepare": "husky"
   },
   "dependencies": {
