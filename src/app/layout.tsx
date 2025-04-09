@@ -1,9 +1,11 @@
-import type { Metadata, Viewport } from 'next';
+import Viewport from 'next';
+import Metadata from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.scss';
 import 'swiper/css';
 import 'swiper/less/mousewheel';
 import 'swiper/css/effect-creative';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -35,6 +37,7 @@ export default function RootLayout({
         name="viewport"
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
       />
+      <SpeedInsights />
       <body className={poppins.className}>{children}</body>
     </html>
   );
