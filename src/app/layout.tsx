@@ -1,11 +1,10 @@
-import Viewport from 'next';
-import Metadata from 'next';
-import { Poppins } from 'next/font/google';
-import './globals.scss';
-import 'swiper/css';
-import 'swiper/less/mousewheel';
-import 'swiper/css/effect-creative';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { default as Metadata, default as Viewport } from 'next';
+import { Poppins } from 'next/font/google';
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+import 'swiper/less/mousewheel';
+import './globals.scss';
 
 const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],

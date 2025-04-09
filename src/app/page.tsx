@@ -1,7 +1,12 @@
 'use client';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Mousewheel, EffectCreative } from 'swiper/modules';
-import { useEffect, useState } from 'react';
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+import PageLoader from '@/components/PageLoader';
+import ScrollInvitation from '@/components/ScrollInvitation';
+import Textarea from '@/components/Textarea';
+import { useDeviceDetection } from '@/hooks/useDeviceDetection';
+import { loadingAnimation, successAnimation } from '@/utils/animations';
+import emailjs from '@emailjs/browser';
 import {
   ArrowLongDownIcon,
   ArrowLongUpIcon,
@@ -9,20 +14,15 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/solid';
-import ScrollInvitation from '@/components/ScrollInvitation';
-import Input from '@/components/Input';
-import Image from 'next/image';
-import Textarea from '@/components/Textarea';
-import { useDeviceDetection } from '@/hooks/useDeviceDetection';
-import Button from '@/components/Button';
-import emailjs from '@emailjs/browser';
 import { Formik } from 'formik';
-import * as yup from 'yup';
-import PageLoader from '@/components/PageLoader';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import { loadingAnimation, successAnimation } from '@/utils/animations';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { EffectCreative, Mousewheel } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import * as yup from 'yup';
 
 export default function Home() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -219,7 +219,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <div className="absolute bottom-8">
-                  <ScrollInvitation onClick={() => swiper.slideNext()}/>
+                  <ScrollInvitation onClick={() => swiper.slideNext()} />
                 </div>
               </motion.div>
             )}
@@ -228,7 +228,10 @@ export default function Home() {
         {percentage >= 1 && (
           <>
             <SwiperSlide key={'skills'}>
-              <section id="about" className="bg-yellow-500 w-full h-full relative">
+              <section
+                id="about"
+                className="bg-yellow-500 w-full h-full relative"
+              >
                 <div className="absolute h-full w-full bg-[radial-gradient(#f5e192_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
                   <div className="col-span-7">
@@ -323,7 +326,10 @@ export default function Home() {
               </section>
             </SwiperSlide>
             <SwiperSlide key={'projects'}>
-              <section id="projects" className="bg-green-500 w-full h-full relative">
+              <section
+                id="projects"
+                className="bg-green-500 w-full h-full relative"
+              >
                 <div className="absolute h-full w-full bg-[radial-gradient(#b1e9c1_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
                   <h1 className="text-gray-50 title-text col-span-full">
@@ -352,7 +358,10 @@ export default function Home() {
               </section>
             </SwiperSlide>
             <SwiperSlide key={'contacts'}>
-              <section id="about" className="bg-blue-500 w-full h-full relative">
+              <section
+                id="about"
+                className="bg-blue-500 w-full h-full relative"
+              >
                 <div className="absolute h-full w-full bg-[radial-gradient(#9cf3ee_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start pt-24 2xl:pt-36 lg:h-full flex-col grid-system">
                   <div className="col-span-full lg:col-span-4 xl:col-span-6 z-10">
@@ -410,7 +419,7 @@ export default function Home() {
                         onClick={() =>
                           open('https://www.linkedin.com/in/urion/')
                         }
-                        className='cursor-pointer'
+                        className="cursor-pointer"
                       >
                         <Image
                           src={'/images/ln.png'}
@@ -421,7 +430,7 @@ export default function Home() {
                       </button>
                       <button
                         onClick={() => open('https://twitter.com/MatteoPoli15')}
-                        className='cursor-pointer'
+                        className="cursor-pointer"
                       >
                         <Image
                           src={'/images/twitter.png'}
