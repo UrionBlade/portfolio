@@ -247,10 +247,10 @@ export default function Home() {
                         key={skill.name}
                       >
                         <div className="flex justify-start items-center space-x-2">
-                          <h6 className="text-gray-50 h6-text">{skill.name}</h6>
-                          <h6 className="text-gray-50 h6-text">
+                          <h4 className="text-gray-50 h6-text">{skill.name}</h4>
+                          <h4 className="text-gray-50 h6-text">
                             {skill.percentage * 10} / 10
-                          </h6>
+                          </h4>
                         </div>
                         <div className="flex justify-start items-center">
                           {Array.from(Array(skill.percentage * 10).keys()).map(
@@ -288,10 +288,10 @@ export default function Home() {
                         key={skill.name}
                       >
                         <div className="flex justify-start items-center space-x-4">
-                          <h6 className="text-gray-50 h6-text">{skill.name}</h6>
-                          <h6 className="text-gray-50 h6-text">
+                          <h4 className="text-gray-50 h6-text">{skill.name}</h4>
+                          <h4 className="text-gray-50 h6-text">
                             {skill.percentage * 10} / 10
-                          </h6>
+                          </h4>
                         </div>
                         <div className="flex justify-start items-center">
                           {Array.from(Array(skill.percentage * 10).keys()).map(
@@ -332,9 +332,9 @@ export default function Home() {
               >
                 <div className="absolute h-full w-full bg-[radial-gradient(#b1e9c1_1px,transparent_1px)] [background-size:14px_14px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_20%,transparent_90%)]" />
                 <div className="container-system flex justify-start items-start flex-col pt-24 lg:pt-36 grid-system">
-                  <h1 className="text-gray-50 title-text col-span-full">
+                  <h2 className="text-gray-50 title-text col-span-full">
                     I worked on
-                  </h1>
+                  </h2>
                   {projects.map((project) => (
                     <button
                       className="col-span-2 xl:col-span-3 flex justify-center items-center flex-col mt-16 cursor-pointer"
@@ -388,9 +388,9 @@ export default function Home() {
                         }}
                         className="cursor-pointer"
                       >
-                        <h4 className="h4-text text-gray-50 !cursor-pointer underline">
+                        <h3 className="h4-text text-gray-50 !cursor-pointer underline">
                           matteo.poli4@gmail.com
-                        </h4>
+                        </h3>
                       </button>
                     </div>
 
@@ -403,9 +403,9 @@ export default function Home() {
                         }}
                         className="cursor-pointer"
                       >
-                        <h4 className="h4-text text-gray-50 !cursor-pointer underline">
+                        <h3 className="h4-text text-gray-50 !cursor-pointer underline">
                           +39 3773066802
-                        </h4>
+                        </h3>
                       </button>
                     </div>
 
@@ -495,7 +495,7 @@ export default function Home() {
       {percentage >= 1 && (
         <footer className="w-full left-0 bottom-8 absolute z-40 px-8 flex justify-between items-center">
           <div className="w-[170px]">
-            <h6 className="text-gray-50">© 2024 - Matteo Poli</h6>
+            <h2 className="text-gray-50">© 2024 - Matteo Poli</h2>
           </div>
           <div className="w-1/2 flex justify-center items-center">
             <div className="w-1/2 h-[2px] relative">
@@ -536,9 +536,9 @@ export default function Home() {
               color={activeIndex === 3 ? '#d1d1d1' : '#f6f6f6'}
               onClick={() => swiper.slideNext()}
             />
-            <h5 className="text-gray-50 h5-text ml-4 !font-thin w-16 select-none cursor-text">
+            <h2 className="text-gray-50 h5-text ml-4 !font-thin w-16 select-none cursor-text">
               {activeIndex + 1} / 4
-            </h5>
+            </h2>
           </div>
         </footer>
       )}
