@@ -7,9 +7,6 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./.storybook/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: [
-    'grid-cols-xs', // Force Tailwind to include this class
-  ],
   theme: {
     screens: {
       xs: "360px",
