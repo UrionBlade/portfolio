@@ -8,11 +8,11 @@ type TInput = DetailedHTMLProps<
 };
 
 const Input: React.FC<TInput> = ({ ...props }) => {
-  const { error } = props;
+  const { error, ...other } = props;
 
   return (
     <input
-      {...props}
+      {...other}
       className={`w-full rounded-full outline-none px-6 py-4 placeholder:italic text-gray-800 bg-gray-50 placeholder-gray-200 h6-text cursor-text border-2 transition-all duration-200 ${
         error ? 'border-red-500 bg-red-100' : 'border-white'
       }`}
