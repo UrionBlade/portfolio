@@ -14,6 +14,7 @@ const ScrollInvitation: React.FC<ScrollInvitationProps> = ({ onClick }) => {
       className="flex justify-center items-center relative cursor-pointer"
       onClick={() => onClick()}
       name="scroll-invitation"
+      aria-label="Scroll invitation"
     >
       <div className="animate-[spin_10s_linear_infinite] ">
         <Scroll />
