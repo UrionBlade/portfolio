@@ -1,12 +1,16 @@
-export interface WaterButtonProps {
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+
+export interface WaterButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: string;
-  onClick?: () => void;
 }
 
-const WaterButton: React.FC<WaterButtonProps> = ({ children, onClick }) => {
+const WaterButton: React.FC<WaterButtonProps> = (props) => {
+
+  const { children, ...rest } = props;
+
   return (
-    <button className="wave-button" onClick={onClick}>
-      <div className="wave"></div>
+    <button className="wave-button" {...rest}>
+      <div className="wave" />
       <span>{children}</span>
     </button>
   );

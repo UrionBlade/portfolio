@@ -12,6 +12,9 @@ const meta: Meta<typeof Example> = {
     },
   },
   parameters: {
+    doc: {
+      toc: true,
+    },
     controls: {
       exclude: ['onClick'],
     },
