@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
 					"w-full px-5 py-3 rounded-md border transition-all duration-300",
 					isDark
 						? "bg-dark-muted text-white border-dark-accent placeholder-white/40 focus:ring-yellow-500 focus:ring-2 focus:outline-none"
-						: "bg-white text-gray-900 placeholder-gray-400 border-transparent shadow-md focus:outline-none focus:ring-2 focus:ring-violet-500 focus:shadow-[0_0_12px_#a78bfa]",
+						: "bg-white text-gray-900 placeholder-gray-400 border-transparent shadow-md focus:outline-none focus:ring-2 focus:ring-grass-500 focus:shadow-[0_0_12px_#33ff33]",
 				)}
 			/>
 			{error && <p className="text-red-400 text-sm mt-1">{error}</p>}
