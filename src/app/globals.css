@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+	.cursor-default {
+		cursor: url(/cursors/pointer.png), default;
+	}
+	.cursor-pointer {
+		cursor: url(/cursors/link.png), pointer;
+	}
+	.cursor-text {
+		cursor: url(/cursors/text.png), text;
+	}
+	.cursor-nwse-resize {
+		cursor: url(/cursors/resize.png), nwse-resize;
+	}
+	.cursor-ns-resize {
+		cursor: url(/cursors/resize.png), ns-resize;
+	}
+	.cursor-not-allowed {
+		cursor: url(/cursors/unavailable.png), not-allowed;
+	}
+}
+
+@theme static {
+	/* FRAME */
+	--color-frame-white: #ffffff;
+
+	/* VIVID BACKGROUNDS */
+	--color-coral-50: #ffeaea;
+	--color-coral-100: #ffcfcf;
+	--color-coral-200: #ffb3b3;
+	--color-coral-300: #ff9999;
+	--color-coral-400: #ff7f7f;
+	--color-coral-500: #ff6b6b;
+	--color-coral-600: #e65f5f;
+	--color-coral-700: #cc5252;
+	--color-coral-800: #b34646;
+	--color-coral-900: #993a3a;
+
+	--color-sky-50: #e6f2ff;
+	--color-sky-100: #cce6ff;
+	--color-sky-200: #99ccff;
+	--color-sky-300: #66b3ff;
+	--color-sky-400: #3399ff;
+	--color-sky-500: #007fff;
+	--color-sky-600: #0066cc;
+	--color-sky-700: #004d99;
+	--color-sky-800: #003366;
+	--color-sky-900: #001a33;
+
+	--color-mint-50: #e6fff8;
+	--color-mint-100: #ccfff1;
+	--color-mint-200: #99ffe3;
+	--color-mint-300: #66ffd4;
+	--color-mint-400: #33ffc6;
+	--color-mint-500: #00ffb8;
+	--color-mint-600: #00cc93;
+	--color-mint-700: #00996e;
+	--color-mint-800: #00664a;
+	--color-mint-900: #003326;
+
+	--color-orange-50: #fff2e6;
+	--color-orange-100: #ffe6cc;
+	--color-orange-200: #ffcc99;
+	--color-orange-300: #ffb366;
+	--color-orange-400: #ff9933;
+	--color-orange-500: #ff8000;
+	--color-orange-600: #cc6600;
+	--color-orange-700: #994d00;
+	--color-orange-800: #663300;
+	--color-orange-900: #331a00;
+
+	--color-sun-50: #fffde6;
+	--color-sun-100: #fff9cc;
+	--color-sun-200: #fff399;
+	--color-sun-300: #ffed66;
+	--color-sun-400: #ffe633;
+	--color-sun-500: #ffdf00;
+	--color-sun-600: #ccb300;
+	--color-sun-700: #998600;
+	--color-sun-800: #665a00;
+	--color-sun-900: #332d00;
+
+	--color-orchid-50: #fbeeff;
+	--color-orchid-100: #f5d4ff;
+	--color-orchid-200: #ecadff;
+	--color-orchid-300: #e386ff;
+	--color-orchid-400: #da5eff;
+	--color-orchid-500: #d137ff;
+	--color-orchid-600: #a92ccc;
+	--color-orchid-700: #811f99;
+	--color-orchid-800: #591466;
+	--color-orchid-900: #300733;
+
+	--color-ocean-50: #e6f3ff;
+	--color-ocean-100: #cce6ff;
+	--color-ocean-200: #99cdff;
+	--color-ocean-300: #66b3ff;
+	--color-ocean-400: #339aff;
+	--color-ocean-500: #007fff;
+	--color-ocean-600: #0066cc;
+	--color-ocean-700: #004d99;
+	--color-ocean-800: #003366;
+	--color-ocean-900: #001a33;
+
+	--color-grass-50: #f0fff4;
+	--color-grass-100: #ccffcc;
+	--color-grass-200: #99ff99;
+	--color-grass-300: #66ff66;
+	--color-grass-400: #33ff33;
+	--color-grass-500: #00ff00;
+	--color-grass-600: #00cc00;
+	--color-grass-700: #009900;
+	--color-grass-800: #006600;
+	--color-grass-900: #003300;
+
+	--color-violet-50: #f3e6ff;
+	--color-violet-100: #e0ccff;
+	--color-violet-200: #c299ff;
+	--color-violet-300: #a366ff;
+	--color-violet-400: #854dff;
+	--color-violet-500: #662eff;
+	--color-violet-600: #5224cc;
+	--color-violet-700: #3d1999;
+	--color-violet-800: #290f66;
+	--color-violet-900: #140733;
+
+	/* DARK MODE BACKGROUNDS */
+	--color-dark-bg-1: #121212;
+	--color-dark-bg-2: #1a1a1a;
+	--color-dark-surface: #1e1e1e;
+	--color-dark-muted: #2a2a2a;
+	--color-dark-accent: #444444;
+
+	/* TEXT COLORS */
+	--color-text-light: #fafafa;
+	--color-text-dark: #1e1e1e;
+
+	--breakpoint-xs: 360px;
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 834px;
+	--breakpoint-lg: 1280px;
+	--breakpoint-xl: 1440px;
+	--breakpoint-2xl: 1680px;
+
+	--font-size-6xl: 60px;
+	--font-size-7xl: 72px;
+
+	--leading-6xl: 68px;
+	--leading-7xl: 80px;
+
+	--spacing-xs: 4px;
+	--spacing-sm: 8px;
+	--spacing-md: 16px;
+	--spacing-lg: 24px;
+	--spacing-xl: 32px;
+	--spacing-2xl: 48px;
+	--spacing-3xl: 64px;
+	--spacing-4xl: 80px;
+	--spacing-5xl: 120px;
+
+	--grid-cols-1: repeat(1, minmax(0, 1fr));
+	--grid-cols-2: repeat(2, minmax(0, 1fr));
+	--grid-cols-3: repeat(3, minmax(0, 1fr));
+	--grid-cols-4: repeat(4, minmax(0, 1fr));
+	--grid-cols-fluid: repeat(auto-fit, minmax(250px, 1fr));
+
+	--z-header: 50;
+	--z-overlay: 100;
+	--z-modal: 150;
+	--z-max: 9999;
+}
+
+.animated-background {
+	background-size: 130%;
+
+	-webkit-animation: animation 3s ease infinite;
+	-moz-animation: animation 3s ease infinite;
+	animation: animation 3s ease infinite;
+}
+
+@keyframes animation {
+	0%,
+	100% {
+		background-position: 0% 50%;
+	}
+
+	50% {
+		background-position: 20% 50%;
+	}
+}
+
+@keyframes rotateSun {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes cloudSlide {
+	0% {
+		transform: translateX(-30%);
+	}
+	100% {
+		transform: translateX(130vw);
+	}
+}
