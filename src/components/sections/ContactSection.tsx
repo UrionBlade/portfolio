@@ -140,7 +140,7 @@ const ContactSection: FC = () => {
 	}, [isDark]);
 
 	return (
-		<section className="relative w-full min-h-screen px-6 py-24 overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
+		<section className="relative w-full h-full px-6 py-24 overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
 			{isDesktop && !isDark && (
 				<>
 					<div className="absolute bottom-40 left-20 w-32 h-32 rotate-180 z-[15]">
@@ -184,7 +184,7 @@ const ContactSection: FC = () => {
 				/>
 			)}
 			<div className="absolute top-0 left-0 w-full h-full bg-white/5 backdrop-blur-[1px] z-0" />
-			<div className="relative z-10 w-full md:max-w-screen-xl mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-center gap-12">
+			<div className="relative z-10 w-full h-full md:max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-center gap-12">
 				<div className="flex-1 space-y-6">
 					<span className="flex items-center gap-4">
 						<h2 className="text-gray-50 text-4xl font-bold">
