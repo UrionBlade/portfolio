@@ -1,20 +1,48 @@
 "use client";
 
 import ThemeToggle from "@/components/dumb/ThemeToggle";
-import AboutSection from "@/components/sections/AboutSection";
-import ContactSection from "@/components/sections/ContactSection";
-import HeroSection from "@/components/sections/HeroSection";
-import ProjectsSection from "@/components/sections/ProjectSection";
-import ServicesSection from "@/components/sections/ServicesSection";
 import SiteGuide from "@/components/sections/SiteGuide";
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type SwiperCore from "swiper";
 import { EffectCreative, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+
+const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), {
+	ssr: false,
+});
+
+const AboutSection = dynamic(
+	() => import("@/components/sections/AboutSection"),
+	{
+		ssr: false,
+	},
+);
+
+const ContactSection = dynamic(
+	() => import("@/components/sections/ContactSection"),
+	{
+		ssr: false,
+	},
+);
+
+const ProjectsSection = dynamic(
+	() => import("@/components/sections/ProjectSection"),
+	{
+		ssr: false,
+	},
+);
+
+const ServicesSection = dynamic(
+	() => import("@/components/sections/ServicesSection"),
+	{
+		ssr: false,
+	},
+);
 
 const SECTION_NUMBER = 5;
 
@@ -23,7 +51,7 @@ export default function Home() {
 	const [swiper, setSwiper] = useState<SwiperCore | null>(null);
 	const { isMobile, isDesktop } = useDeviceDetection();
 
-	const { t } = useTranslation();
+	const { t } = useTranslation("translation");
 
 	return (
 		<main className="w-screen h-screen overflow-hidden relative bg-frame-white p-[clamp(8px,2vw,16px)] cursor-default">
@@ -33,9 +61,10 @@ export default function Home() {
 					src={"/images/me.png"}
 					width={isDesktop ? 100 : 70}
 					height={isDesktop ? 84.38 : 59.06}
-					className="cursor-pointer"
+					className="cursor-pointer w-auto h-auto"
 					alt="logo"
 					onClick={() => swiper?.slideTo(0)}
+					priority
 				/>
 				<ThemeToggle />
 			</div>

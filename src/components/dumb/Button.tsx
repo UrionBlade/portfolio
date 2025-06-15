@@ -1,7 +1,6 @@
 import { useTheme } from "@/hooks/useTheme";
 import type { FC, ReactNode, MouseEvent } from "react";
 import { twMerge } from "tailwind-merge";
-import gsap from "gsap";
 import { useRef, useCallback, useEffect } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -32,23 +31,28 @@ export const Button: FC<ButtonProps> = ({
 
 	// parallax hover
 	const handleMouseMove = useCallback(
-		(e: MouseEvent<HTMLButtonElement>) => {
+		async (e: MouseEvent<HTMLButtonElement>) => {
 			if (isDark || !btnRef.current) return;
+
 			const rect = btnRef.current.getBoundingClientRect();
 			const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
 			const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+
+			const gsap = (await import("gsap")).default;
 			gsap.to(btnRef.current, { x, y, duration: 0.3, ease: "power3.out" });
 		},
 		[isDark],
 	);
 
-	const handleMouseLeave = useCallback(() => {
+	const handleMouseLeave = useCallback(async () => {
 		if (isDark || !btnRef.current) return;
+		const gsap = (await import("gsap")).default;
 		gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.5, ease: "power3.out" });
 	}, [isDark]);
 
-	const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+	const handleClick = async (e: MouseEvent<HTMLButtonElement>) => {
 		if (!btnRef.current || isDark) return onClick?.(e);
+		const gsap = (await import("gsap")).default;
 		gsap.fromTo(
 			btnRef.current,
 			{ scale: 0.96 },
@@ -59,12 +63,14 @@ export const Button: FC<ButtonProps> = ({
 
 	useEffect(() => {
 		if (!isDark && btnRef.current) {
-			gsap.to(btnRef.current, {
-				boxShadow: "0 0 20px 4px rgba(255,255,255,0.3)",
-				repeat: -1,
-				yoyo: true,
-				duration: 1.6,
-				ease: "sine.inOut",
+			import("gsap").then((gsap) => {
+				gsap.default.to(btnRef.current, {
+					boxShadow: "0 0 20px 4px rgba(255,255,255,0.3)",
+					repeat: -1,
+					yoyo: true,
+					duration: 1.6,
+					ease: "sine.inOut",
+				});
 			});
 		}
 	}, [isDark]);

@@ -15,7 +15,6 @@ import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 const ContactSection: FC = () => {
 	const { t } = useTranslation();
 	const [loading, setLoading] = useState(false);
-	const [success, setSuccess] = useState(false);
 
 	const { theme } = useTheme();
 	const isDark = useMemo(() => theme === "dark", [theme]);
@@ -42,8 +41,7 @@ const ContactSection: FC = () => {
 				"qbspO0cIvvnJZOjVk",
 			);
 			setLoading(false);
-			setSuccess(true);
-			setTimeout(() => setSuccess(false), 3000);
+			toast(t("contacts.success") || "Message sent successfully!");
 		} catch (error) {
 			console.log(error);
 			setLoading(false);
@@ -184,14 +182,16 @@ const ContactSection: FC = () => {
 				/>
 			)}
 			<div className="absolute top-0 left-0 w-full h-full bg-white/5 backdrop-blur-[1px] z-0" />
-			<div className="relative z-10 w-full h-full md:max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-center gap-12">
+			<div className="relative z-10 w-full md:not-only:h-full md:max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-center gap-6 md:gap-12">
 				<div className="flex-1 space-y-6">
 					<span className="flex items-center gap-4">
 						<h2 className="text-gray-50 text-4xl font-bold">
 							{t("contacts.title")}
 						</h2>
 					</span>
-					<div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
+					{isDesktop && (
+						<div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
+					)}
 					<div className="flex items-center gap-4">
 						<Mail className="w-6 h-6 text-gray-50" />
 						<button
@@ -234,50 +234,48 @@ const ContactSection: FC = () => {
 							sendEmail(name, email, message)
 						}
 					>
-						{({ values, setFieldValue, handleSubmit, errors }) => (
-							<form className="space-y-6" onSubmit={handleSubmit}>
-								<div>
-									<Input
-										placeholder={t("contacts.placeholderName") || "Il tuo nome"}
-										value={values.name}
-										onChange={(e) => setFieldValue("name", e.target.value)}
-										error={errors.name}
-									/>
-								</div>
-								<div>
-									<Input
-										placeholder={
-											t("contacts.placeholderEmail") || "La tua email"
-										}
-										value={values.email}
-										onChange={(e) => setFieldValue("email", e.target.value)}
-										error={errors.email}
-									/>
-								</div>
-								<div>
-									<Textarea
-										placeholder={
-											t("contacts.placeholderMessage") || "Il tuo messaggio"
-										}
-										rows={6}
-										value={values.message}
-										onChange={(e) => setFieldValue("message", e.target.value)}
-										error={errors.message}
-									/>
-								</div>
-								<Button disabled={loading} type="submit">
-									{t("contacts.sendButton") || "Invia"}
-								</Button>
-							</form>
-						)}
+						{({ values, setFieldValue, handleSubmit, errors }) => {
+							console.log(errors);
+							return (
+								<form className="space-y-6" onSubmit={handleSubmit}>
+									<div>
+										<Input
+											placeholder={
+												t("contacts.placeholderName") || "Il tuo nome"
+											}
+											value={values.name}
+											onChange={(e) => setFieldValue("name", e.target.value)}
+											error={errors.name}
+										/>
+									</div>
+									<div>
+										<Input
+											placeholder={
+												t("contacts.placeholderEmail") || "La tua email"
+											}
+											value={values.email}
+											onChange={(e) => setFieldValue("email", e.target.value)}
+											error={errors.email}
+										/>
+									</div>
+									<div>
+										<Textarea
+											placeholder={
+												t("contacts.placeholderMessage") || "Il tuo messaggio"
+											}
+											rows={6}
+											value={values.message}
+											onChange={(e) => setFieldValue("message", e.target.value)}
+											error={errors.message}
+										/>
+									</div>
+									<Button disabled={loading} type="submit">
+										{t("contacts.sendButton") || "Invia"}
+									</Button>
+								</form>
+							);
+						}}
 					</Formik>
-					{success && (
-						<div className="flex justify-center items-center mt-4">
-							<div className="bg-green-500 text-white text-sm px-4 py-2 rounded-full shadow-lg animate-fade-in">
-								{t("contacts.success") || "Messaggio inviato con successo!"}
-							</div>
-						</div>
-					)}
 				</div>
 			</div>
 		</section>

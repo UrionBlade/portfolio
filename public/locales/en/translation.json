@@ -1,0 +1,100 @@
+{
+	"guide": {
+		"title": "Scopri i temi",
+		"description": "Clicca in alto a destra per passare da una modalità più formale a una più giocosa. Provale entrambe!",
+		"cta": "Chiudi"
+	},
+	"hero": {
+		"custom_development": "Sviluppo su misura",
+		"headline": "Costruisco esperienze digitali che fanno dire ",
+		"exclamation": "wow",
+		"description": "Animazioni su misura, design fluidi e codice che converte. Lavoro con piccole aziende per creare prodotti che sembrano magia.",
+		"cta_projects": "Guarda i progetti",
+		"cta_contact": "Scrivimi un’idea"
+	},
+	"services": {
+		"title": "Cosa posso realizzare per te",
+		"description": "Ogni progetto è costruito su misura per comunicare meglio, vendere di più o semplicemente stupire.",
+		"items": {
+			"0": {
+				"title": "Siti vetrina",
+				"text": "Presenta la tua azienda online con stile e velocità. Responsive, moderni e memorabili."
+			},
+			"1": {
+				"title": "E-commerce",
+				"text": "Un negozio online che converte, con un'esperienza d'acquisto semplice e intuitiva."
+			},
+			"2": {
+				"title": "Landing page",
+				"text": "Pagine focalizzate su un obiettivo: convertire. Perfette per campagne marketing o annunci."
+			},
+			"3": {
+				"title": "Applicazioni su misura",
+				"text": "Gestionali, portali o tool interni. Costruiti attorno al tuo flusso di lavoro, non il contrario."
+			}
+		}
+	},
+	"about": {
+		"title": "Chi sono",
+		"description": "Sviluppatore front-end freelance con una forte attenzione al design, all'esperienza utente e alla qualità del codice. Collaboro con team dinamici per creare soluzioni moderne e coinvolgenti.",
+		"quote": "L'interfaccia migliore è quella che sa farsi dimenticare, ma resta impressa.",
+		"timeline": [
+			{
+				"year": "oggi",
+				"title": "Coverzen",
+				"description": "Freelance front-end dev per prodotto interno per broker assicurativi."
+			},
+			{
+				"year": "2022",
+				"title": "NFT Factory",
+				"description": "Co-founder e full-stack dev in una startup blockchain/game dev."
+			},
+			{
+				"year": "2022",
+				"title": "KNOBS",
+				"description": "Front-end dev per prodotti Web3 in ambito blockchain."
+			},
+			{
+				"year": "2021",
+				"title": "DonTouch",
+				"description": "Team lead tecnico su progetti mobile per clienti internazionali."
+			},
+			{
+				"year": "2020",
+				"title": "Yumi",
+				"description": "Sviluppo app mobile, back-end e DevOps per un prodotto HR-tech."
+			},
+			{
+				"year": "2019",
+				"title": "Efficiam",
+				"description": "Front-end dev su soluzioni software/mobile per clienti enterprise."
+			},
+			{
+				"year": "2016",
+				"title": "Tecniplast",
+				"description": "Software tester e dev su prodotti IOT complessi."
+			}
+		]
+	},
+	"contacts": {
+		"title": "Contattami",
+		"description": "Hai un’idea, un progetto, una sfida? Scrivimi.",
+		"email": "matteo.poli4@gmail.com",
+		"phone": "+39 377 30 66 802",
+		"location": "Como, Italia",
+		"placeholderName": "Il tuo nome",
+		"placeholderEmail": "La tua email",
+		"placeholderMessage": "Il tuo messaggio",
+		"sendButton": "Invia messaggio",
+		"success": "Messaggio inviato con successo!",
+		"copied": "Copiato negli appunti!"
+	},
+
+	"footer": {
+		"copyright": "© 2025 - Matteo Poli",
+		"navigation": {
+			"prev": "Precedente",
+			"next": "Successivo"
+		}
+	}
+}

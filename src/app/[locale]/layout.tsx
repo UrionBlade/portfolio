@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
-import I18NProvider from "./i18n-providers";
+import "../globals.css";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
+import { dir } from "i18next";
+import { I18nProvider } from "@/i18n/I18nProvider";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -25,15 +27,23 @@ export const viewport: Viewport = {
 	userScalable: false,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
-}: Readonly<{
+	params,
+}: {
 	children: React.ReactNode;
-}>) {
+	params: { locale: string };
+}) {
+	const { locale } = await params; // Await params before accessing its properties
+
 	return (
-		<html lang="en">
+		<html lang={locale} dir={dir(locale)}>
 			<body className={`${poppins.className} antialiased`}>
-				<I18NProvider>{children}</I18NProvider>
+				<I18nProvider locale={locale}>{children}</I18nProvider>
+				<Toaster
+					position="top-center"
+					toastOptions={{ duration: 3000, style: { marginTop: "2rem" } }}
+				/>
 			</body>
 		</html>
 	);
