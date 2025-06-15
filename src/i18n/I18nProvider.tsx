@@ -12,13 +12,13 @@ export function I18nProvider({
 	children: React.ReactNode;
 	locale: string;
 }) {
-	const { i18n } = useTranslation();
+	// const { i18n } = useTranslation();
 
-	useEffect(() => {
-		if (i18n.language !== locale) {
-			i18n.changeLanguage(locale);
-		}
-	}, [locale, i18n]);
+	// useEffect(() => {
+	// 	if (i18n.language !== locale) {
+	// 		i18n.changeLanguage(locale);
+	// 	}
+	// }, [locale, i18n]);
 
 	return <>{children}</>;
 }
