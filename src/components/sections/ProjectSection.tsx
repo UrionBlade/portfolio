@@ -122,6 +122,7 @@ const ProjectCard = ({
 						src={image}
 						alt={title}
 						fill
+						loading="lazy"
 						className="rounded-xl w-full h-48 object-cover object-top mb-4 group-hover:scale-105 transition duration-500"
 					/>
 				</div>

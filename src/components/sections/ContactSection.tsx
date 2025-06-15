@@ -220,7 +220,7 @@ const ContactSection: FC = () => {
 					</div>
 					<div className="flex items-center gap-4 mt-4">
 						<MapPin className="w-6 h-6 text-gray-50" />
-						<h4 className="text-gray-50 text-base">{t("contacts.location")}</h4>
+						<h3 className="text-gray-50 text-base">{t("contacts.location")}</h3>
 					</div>
 				</div>
 				<div className="w-full flex-1">
