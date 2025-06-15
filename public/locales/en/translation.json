@@ -1,100 +1,99 @@
 {
 	"guide": {
-		"title": "Scopri i temi",
-		"description": "Clicca in alto a destra per passare da una modalità più formale a una più giocosa. Provale entrambe!",
-		"cta": "Chiudi"
+		"title": "Discover the themes",
+		"description": "Click on the top right to switch between a more formal and a more playful mode. Try both!",
+		"cta": "Close"
 	},
 	"hero": {
-		"custom_development": "Sviluppo su misura",
-		"headline": "Costruisco esperienze digitali che fanno dire ",
+		"custom_development": "Custom development",
+		"headline": "I build digital experiences that make you say ",
 		"exclamation": "wow",
-		"description": "Animazioni su misura, design fluidi e codice che converte. Lavoro con piccole aziende per creare prodotti che sembrano magia.",
-		"cta_projects": "Guarda i progetti",
-		"cta_contact": "Scrivimi un’idea"
+		"description": "Custom animations, fluid designs, and code that converts. I work with small businesses to create products that feel like magic.",
+		"cta_projects": "View projects",
+		"cta_contact": "Pitch me an idea"
 	},
 	"services": {
-		"title": "Cosa posso realizzare per te",
-		"description": "Ogni progetto è costruito su misura per comunicare meglio, vendere di più o semplicemente stupire.",
+		"title": "What I can build for you",
+		"description": "Every project is tailor-made to communicate better, sell more, or simply impress.",
 		"items": {
 			"0": {
-				"title": "Siti vetrina",
-				"text": "Presenta la tua azienda online con stile e velocità. Responsive, moderni e memorabili."
+				"title": "Showcase websites",
+				"text": "Present your company online with style and speed. Responsive, modern, and memorable."
 			},
 			"1": {
 				"title": "E-commerce",
-				"text": "Un negozio online che converte, con un'esperienza d'acquisto semplice e intuitiva."
+				"text": "An online store that converts, with a simple and intuitive shopping experience."
 			},
 			"2": {
-				"title": "Landing page",
-				"text": "Pagine focalizzate su un obiettivo: convertire. Perfette per campagne marketing o annunci."
+				"title": "Landing pages",
+				"text": "Pages focused on one goal: conversion. Perfect for marketing campaigns or ads."
 			},
 			"3": {
-				"title": "Applicazioni su misura",
-				"text": "Gestionali, portali o tool interni. Costruiti attorno al tuo flusso di lavoro, non il contrario."
+				"title": "Custom applications",
+				"text": "Management tools, portals, or internal tools. Built around your workflow, not the other way around."
 			}
 		}
 	},
 	"about": {
-		"title": "Chi sono",
-		"description": "Sviluppatore front-end freelance con una forte attenzione al design, all'esperienza utente e alla qualità del codice. Collaboro con team dinamici per creare soluzioni moderne e coinvolgenti.",
-		"quote": "L'interfaccia migliore è quella che sa farsi dimenticare, ma resta impressa.",
+		"title": "About me",
+		"description": "Freelance front-end developer with a strong focus on design, user experience, and code quality. I collaborate with dynamic teams to create modern and engaging solutions.",
+		"quote": "The best interface is the one that fades away, but leaves a mark.",
 		"timeline": [
 			{
-				"year": "oggi",
+				"year": "now",
 				"title": "Coverzen",
-				"description": "Freelance front-end dev per prodotto interno per broker assicurativi."
+				"description": "Freelance front-end dev for an internal product for insurance brokers."
 			},
 			{
 				"year": "2022",
 				"title": "NFT Factory",
-				"description": "Co-founder e full-stack dev in una startup blockchain/game dev."
+				"description": "Co-founder and full-stack dev in a blockchain/game dev startup."
 			},
 			{
 				"year": "2022",
 				"title": "KNOBS",
-				"description": "Front-end dev per prodotti Web3 in ambito blockchain."
+				"description": "Front-end dev for Web3 products in the blockchain space."
 			},
 			{
 				"year": "2021",
 				"title": "DonTouch",
-				"description": "Team lead tecnico su progetti mobile per clienti internazionali."
+				"description": "Technical team lead on mobile projects for international clients."
 			},
 			{
 				"year": "2020",
 				"title": "Yumi",
-				"description": "Sviluppo app mobile, back-end e DevOps per un prodotto HR-tech."
+				"description": "Developed mobile app, backend, and DevOps for an HR-tech product."
 			},
 			{
 				"year": "2019",
 				"title": "Efficiam",
-				"description": "Front-end dev su soluzioni software/mobile per clienti enterprise."
+				"description": "Front-end dev on software/mobile solutions for enterprise clients."
 			},
 			{
 				"year": "2016",
 				"title": "Tecniplast",
-				"description": "Software tester e dev su prodotti IOT complessi."
+				"description": "Software tester and dev on complex IoT products."
 			}
 		]
 	},
 	"contacts": {
-		"title": "Contattami",
-		"description": "Hai un’idea, un progetto, una sfida? Scrivimi.",
+		"title": "Contact me",
+		"description": "Do you have an idea, a project, a challenge? Write to me.",
 		"email": "matteo.poli4@gmail.com",
 		"phone": "+39 377 30 66 802",
-		"location": "Como, Italia",
-		"placeholderName": "Il tuo nome",
-		"placeholderEmail": "La tua email",
-		"placeholderMessage": "Il tuo messaggio",
-		"sendButton": "Invia messaggio",
-		"success": "Messaggio inviato con successo!",
-		"copied": "Copiato negli appunti!"
+		"location": "Como, Italy",
+		"placeholderName": "Your name",
+		"placeholderEmail": "Your email",
+		"placeholderMessage": "Your message",
+		"sendButton": "Send message",
+		"success": "Message sent successfully!",
+		"copied": "Copied to clipboard!"
 	},
-
 	"footer": {
 		"copyright": "© 2025 - Matteo Poli",
 		"navigation": {
-			"prev": "Precedente",
-			"next": "Successivo"
+			"prev": "Previous",
+			"next": "Next"
 		}
 	}
 }
