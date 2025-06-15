@@ -25,15 +25,15 @@ export const viewport: Viewport = {
 	width: "device-width",
 	userScalable: false,
 };
-
 export default async function RootLayout({
 	children,
 	params,
 }: {
 	children: React.ReactNode;
-	params: Promise<{ locale: string }>;
+	params: { locale: string };
 }) {
 	const { locale } = await params;
+
 	return (
 		<html lang={locale}>
 			<body className={`${poppins.className} antialiased`}>
