@@ -36,7 +36,7 @@ export default async function RootLayout({
 }) {
 	const { locale } = await params;
 	return (
-		<html lang={locale} dir={dir(locale)}>
+		<html lang={locale}>
 			<body className={`${poppins.className} antialiased`}>
 				<I18nProvider locale={locale}>{children}</I18nProvider>
 				<Toaster
