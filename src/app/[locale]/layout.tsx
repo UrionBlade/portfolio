@@ -32,10 +32,9 @@ export default async function RootLayout({
 	params,
 }: {
 	children: React.ReactNode;
-	params: { locale: string };
+	params: Promise<{ locale: string }>;
 }) {
-	const { locale } = await params; // Await params before accessing its properties
-
+	const { locale } = await params;
 	return (
 		<html lang={locale} dir={dir(locale)}>
 			<body className={`${poppins.className} antialiased`}>
