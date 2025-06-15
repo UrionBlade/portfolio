@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
 		PUBLIC_FILE.test(pathname) ||
 		locales.some((locale) => pathname.startsWith(`/${locale}`))
 	) {
-		return;
+		return NextResponse.next();
 	}
 
 	// Detect browser language
