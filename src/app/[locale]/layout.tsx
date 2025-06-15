@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
-import { dir } from "i18next";
 import { I18nProvider } from "@/i18n/I18nProvider";
 import { Toaster } from "react-hot-toast";
 
