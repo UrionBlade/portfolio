@@ -234,47 +234,42 @@ const ContactSection: FC = () => {
 							sendEmail(name, email, message)
 						}
 					>
-						{({ values, setFieldValue, handleSubmit, errors }) => {
-							console.log(errors);
-							return (
-								<form className="space-y-6" onSubmit={handleSubmit}>
-									<div>
-										<Input
-											placeholder={
-												t("contacts.placeholderName") || "Il tuo nome"
-											}
-											value={values.name}
-											onChange={(e) => setFieldValue("name", e.target.value)}
-											error={errors.name}
-										/>
-									</div>
-									<div>
-										<Input
-											placeholder={
-												t("contacts.placeholderEmail") || "La tua email"
-											}
-											value={values.email}
-											onChange={(e) => setFieldValue("email", e.target.value)}
-											error={errors.email}
-										/>
-									</div>
-									<div>
-										<Textarea
-											placeholder={
-												t("contacts.placeholderMessage") || "Il tuo messaggio"
-											}
-											rows={6}
-											value={values.message}
-											onChange={(e) => setFieldValue("message", e.target.value)}
-											error={errors.message}
-										/>
-									</div>
-									<Button disabled={loading} type="submit">
-										{t("contacts.sendButton") || "Invia"}
-									</Button>
-								</form>
-							);
-						}}
+						{({ values, setFieldValue, handleSubmit, errors }) => (
+							<form className="space-y-6" onSubmit={handleSubmit}>
+								<div>
+									<Input
+										placeholder={t("contacts.placeholderName") || "Il tuo nome"}
+										value={values.name}
+										onChange={(e) => setFieldValue("name", e.target.value)}
+										error={errors.name}
+									/>
+								</div>
+								<div>
+									<Input
+										placeholder={
+											t("contacts.placeholderEmail") || "La tua email"
+										}
+										value={values.email}
+										onChange={(e) => setFieldValue("email", e.target.value)}
+										error={errors.email}
+									/>
+								</div>
+								<div>
+									<Textarea
+										placeholder={
+											t("contacts.placeholderMessage") || "Il tuo messaggio"
+										}
+										rows={6}
+										value={values.message}
+										onChange={(e) => setFieldValue("message", e.target.value)}
+										error={errors.message}
+									/>
+								</div>
+								<Button disabled={loading} type="submit">
+									{t("contacts.sendButton") || "Invia"}
+								</Button>
+							</form>
+						)}
 					</Formik>
 				</div>
 			</div>

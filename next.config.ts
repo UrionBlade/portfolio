@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
 							script-src 'self' 'unsafe-inline';
 							style-src 'self' 'unsafe-inline';
 							img-src 'self' data:;
-							font-src 'self';
+							font-src 'self' data:;
 							connect-src 'self' https://api.emailjs.com;
 						`
 							.replace(/\s{2,}/g, " ")
