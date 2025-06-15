@@ -14,12 +14,9 @@ export default function ThemeToggle() {
 
 	return (
 		<label className="relative inline-block w-16 h-9 cursor-pointer">
-			<label htmlFor="theme-toggle" className="hidden">
-				Toggle Theme
-			</label>
 			<input
 				type="checkbox"
-				id="theme-toggle"
+				aria-label="toggle theme"
 				className="opacity-0 w-0 h-0 peer"
 				checked={dark}
 				onChange={toggleTheme}
