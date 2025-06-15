@@ -32,12 +32,10 @@ export default async function RootLayout({
 	children: React.ReactNode;
 	params: { locale: string };
 }) {
-	const { locale } = await params;
-
 	return (
-		<html lang={locale}>
+		<html lang={params.locale}>
 			<body className={`${poppins.className} antialiased`}>
-				<I18nProvider locale={locale}>{children}</I18nProvider>
+				<I18nProvider locale={params.locale}>{children}</I18nProvider>
 				<Toaster
 					position="top-center"
 					toastOptions={{ duration: 3000, style: { marginTop: "2rem" } }}
