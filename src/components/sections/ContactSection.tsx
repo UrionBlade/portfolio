@@ -1,16 +1,16 @@
-import { useMemo, useState, useEffect, type FC } from "react";
+import { useDeviceDetection } from "@/hooks/useDeviceDetection";
+import { useTheme } from "@/hooks/useTheme";
+import emailjs from "@emailjs/browser";
 import { Formik } from "formik";
-import * as yup from "yup";
+import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
+import { type FC, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import * as yup from "yup";
+import Button from "../dumb/Button";
 import Input from "../dumb/Input";
 import Textarea from "../dumb/Textarea";
-import Button from "../dumb/Button";
-import emailjs from "@emailjs/browser";
-import { Mail, Phone, MapPin } from "lucide-react";
-import Image from "next/image";
-import { useTheme } from "@/hooks/useTheme";
-import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 
 const ContactSection: FC = () => {
 	const { t } = useTranslation();

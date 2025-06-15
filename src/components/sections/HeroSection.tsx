@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
-import type { FC } from "react";
-import { Sparkles } from "lucide-react";
-import Button from "../dumb/Button";
-import { useTheme } from "@/hooks/useTheme";
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
+import { useTheme } from "@/hooks/useTheme";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import type { FC } from "react";
+import { useTranslation } from "react-i18next";
+import Button from "../dumb/Button";
 
 interface HeroSectionProps {
 	onCTAProject?: () => void;

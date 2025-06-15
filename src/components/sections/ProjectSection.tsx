@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, useMemo } from "react";
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useTheme } from "@/hooks/useTheme";
 import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const projects = [
 	{

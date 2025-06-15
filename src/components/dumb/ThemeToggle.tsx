@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
+import { Moon, Sun } from "lucide-react";
+import { useEffect } from "react";
 
 export default function ThemeToggle() {
 	const { theme, toggleTheme } = useTheme();

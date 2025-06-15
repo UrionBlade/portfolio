@@ -1,7 +1,7 @@
 "use client";
+import { useGuide } from "@/hooks/useGuide";
 import { useTranslation } from "react-i18next";
 import Button from "../dumb/Button";
-import { useGuide } from "@/hooks/useGuide";
 
 const SiteGuide = () => {
 	const { isSeen, setIsSeen } = useGuide();

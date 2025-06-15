@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
-import type { FC, ReactNode, MouseEvent } from "react";
+import type { FC, MouseEvent, ReactNode } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { useRef, useCallback, useEffect } from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;

@@ -1,7 +1,7 @@
-import { useMemo } from "react";
 import { useTheme } from "@/hooks/useTheme";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const AboutSection = () => {

@@ -1,15 +1,15 @@
-import { useTranslation } from "react-i18next";
+import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
-import { useEffect, useRef, useState } from "react";
 import {
 	MonitorSmartphone,
-	ShoppingBag,
 	MousePointerClick,
+	ShoppingBag,
 	Workflow,
 } from "lucide-react";
-import { useDeviceDetection } from "@/hooks/useDeviceDetection";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const ServicesSection = () => {
 	const { t } = useTranslation();
