@@ -6,6 +6,7 @@ import "swiper/css/effect-creative";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -38,6 +39,7 @@ export default async function RootLayout({
 					position="top-center"
 					toastOptions={{ duration: 3000, style: { marginTop: "2rem" } }}
 				/>
+				<Analytics />
 			</body>
 		</html>
 	);
