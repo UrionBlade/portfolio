@@ -1,5 +1,5 @@
 import { useTheme } from "@/hooks/useTheme";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -8,6 +8,7 @@ const AboutSection = () => {
 	const { theme } = useTheme();
 	const isDark = useMemo(() => theme === "dark", [theme]);
 	const { t } = useTranslation();
+	const [isGrabbing, setIsGrabbing] = useState(false);
 
 	const timeline = t("about.timeline", { returnObjects: true }) as Array<{
 		year: string;
@@ -39,7 +40,11 @@ const AboutSection = () => {
 							640: { slidesPerView: 2.5 },
 							1024: { slidesPerView: 3.5 },
 						}}
-						className="pb-8"
+						className={`pb-8 ${isGrabbing ? "cursor-grabbing" : "cursor-grab"}`}
+						onTouchStart={() => setIsGrabbing(true)}
+						onTouchEnd={() => setIsGrabbing(false)}
+						onMouseDown={() => setIsGrabbing(true)}
+						onMouseUp={() => setIsGrabbing(false)}
 					>
 						{timeline.map((item) => (
 							<SwiperSlide key={item.title} className="relative h-full">
