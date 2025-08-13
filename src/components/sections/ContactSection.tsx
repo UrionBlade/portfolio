@@ -138,7 +138,7 @@ const ContactSection: FC = () => {
 	}, [isDark]);
 
 	return (
-		<section className="relative w-full h-full px-6 py-24 overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
+		<section className="relative w-full h-full px-6 py-32 md:py-24 overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
 			{isDesktop && !isDark && (
 				<>
 					<div className="absolute bottom-40 left-20 w-32 h-32 rotate-180 z-[15]">

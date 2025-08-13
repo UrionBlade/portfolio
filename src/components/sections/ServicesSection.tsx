@@ -53,14 +53,14 @@ const ServicesSection = () => {
 		<section
 			ref={sectionRef}
 			id="services"
-			className="relative w-full h-full py-24 px-2 sm:px-6 text-black dark:text-white overflow-hidden bg-neutral-300 dark:bg-dark-bg-2 md:flex md:justify-center md:items-center"
+			className="relative w-full h-full py-48 md:py-24 px-2 sm:px-6 text-black dark:text-white overflow-hidden bg-neutral-300 dark:bg-dark-bg-2 md:flex md:justify-center md:items-center"
 		>
 			{!isDark && (
 				<>
 					{/* Colorful duplicate layer below */}
 					<div className="absolute z-0 inset-0 md:inset-auto md:w-full md:h-full md:flex md:justify-center md:items-center">
 						<div className="absolute inset-0 bg-gradient-to-br from-pink-700 via-coral-700 to-orange-700 animate-[pulse_10s_infinite]" />
-						<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-24">
+						<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-48 md:py-24">
 							<h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-neutral-900 drop-shadow-lg">
 								{t("services.title")}
 							</h2>
