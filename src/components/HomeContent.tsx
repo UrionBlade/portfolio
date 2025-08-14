@@ -54,7 +54,7 @@ export default function Home() {
 	const { t } = useTranslation("translation");
 
 	return (
-		<main className="w-screen h-screen overflow-hidden relative bg-frame-white p-[clamp(8px,2vw,16px)] cursor-default">
+		<main className="w-screen h-[100dvh] overflow-hidden relative bg-frame-white p-[clamp(8px,2vw,16px)] cursor-default">
 			<SiteGuide />
 			<div className="absolute top-4 z-40 w-[calc(100vw-2rem)] flex justify-between items-center lg:px-6">
 				<Image
