@@ -1,3 +1,4 @@
+import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,7 @@ const AboutSection = () => {
 	const { theme } = useTheme();
 	const isDark = useMemo(() => theme === "dark", [theme]);
 	const { t } = useTranslation();
+	const { isMobile } = useDeviceDetection();
 	const [isGrabbing, setIsGrabbing] = useState(false);
 
 	const timeline = t("about.timeline", { returnObjects: true }) as Array<{
@@ -130,12 +132,14 @@ const AboutSection = () => {
 						fillOpacity="1"
 						d="M0,160C360,240,1080,80,1440,160V320H0Z"
 					>
-						<animate
-							attributeName="d"
-							dur="15s"
-							repeatCount="indefinite"
-							values="M0,160C360,240,1080,80,1440,160V320H0Z;M0,180C480,120,960,200,1440,140V320H0Z;M0,160C360,240,1080,80,1440,160V320H0Z"
-						/>
+						{!isMobile && (
+							<animate
+								attributeName="d"
+								dur="15s"
+								repeatCount="indefinite"
+								values="M0,160C360,240,1080,80,1440,160V320H0Z;M0,180C480,120,960,200,1440,140V320H0Z;M0,160C360,240,1080,80,1440,160V320H0Z"
+							/>
+						)}
 					</path>
 				</svg>
 				<svg
@@ -149,12 +153,14 @@ const AboutSection = () => {
 						fillOpacity="0.5"
 						d="M0,180C480,120,960,200,1440,140V320H0Z"
 					>
-						<animate
-							attributeName="d"
-							dur="20s"
-							repeatCount="indefinite"
-							values="M0,180C480,120,960,200,1440,140V320H0Z;M0,200C360,160,1080,240,1440,180V320H0Z;M0,180C480,120,960,200,1440,140V320H0Z"
-						/>
+						{!isMobile && (
+							<animate
+								attributeName="d"
+								dur="20s"
+								repeatCount="indefinite"
+								values="M0,180C480,120,960,200,1440,140V320H0Z;M0,200C360,160,1080,240,1440,180V320H0Z;M0,180C480,120,960,200,1440,140V320H0Z"
+							/>
+						)}
 					</path>
 				</svg>
 				<svg
@@ -168,12 +174,14 @@ const AboutSection = () => {
 						fillOpacity="0.4"
 						d="M0,190C400,150,1040,250,1440,200V320H0Z"
 					>
-						<animate
-							attributeName="d"
-							dur="25s"
-							repeatCount="indefinite"
-							values="M0,190C400,150,1040,250,1440,200V320H0Z;M0,170C380,190,1080,180,1440,210V320H0Z;M0,190C400,150,1040,250,1440,200V320H0Z"
-						/>
+						{!isMobile && (
+							<animate
+								attributeName="d"
+								dur="25s"
+								repeatCount="indefinite"
+								values="M0,190C400,150,1040,250,1440,200V320H0Z;M0,170C380,190,1080,180,1440,210V320H0Z;M0,190C400,150,1040,250,1440,200V320H0Z"
+							/>
+						)}
 					</path>
 				</svg>
 			</div>

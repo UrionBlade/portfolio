@@ -239,7 +239,8 @@ const ProjectsSection = () => {
 			className="relative h-full w-full overflow-hidden dark:bg-dark-bg-1 bg-sky-500"
 			id="projects"
 		>
-			{!isDark && <GooeyBackground />}
+			{/* gooey SVG filter is a mobile-GPU killer — desktop light only */}
+			{!isDark && !isMobile && <GooeyBackground />}
 			<FrameContent className="max-w-screen-xl mx-auto">
 				<div className="mb-6 lg:mb-8 shrink-0">
 					<h2 className="font-display text-3xl md:text-5xl font-bold text-left text-white">

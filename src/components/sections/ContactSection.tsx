@@ -1,3 +1,4 @@
+import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -20,6 +21,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 
 	const { theme } = useTheme();
 	const isDark = useMemo(() => theme === "dark", [theme]);
+	const { isMobile } = useDeviceDetection();
 
 	const cvHref = i18n.language?.toLowerCase().startsWith("en")
 		? "/cv/Matteo_Poli_CV_EN.pdf"
@@ -61,8 +63,9 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 
 	return (
 		<section className="relative w-full h-full overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-2">
-			{/* Playful physics stickers (light mode only, lazy-loaded) */}
-			{!isDark && active && <StickerField />}
+			{/* Playful physics stickers (light + desktop only, lazy-loaded) —
+			    matter.js + canvas shadows are too heavy for mobile GPUs */}
+			{!isDark && !isMobile && active && <StickerField />}
 
 			<FrameContent className="max-w-screen-xl mx-auto pointer-events-none">
 				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-center">

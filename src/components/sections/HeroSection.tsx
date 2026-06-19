@@ -154,8 +154,10 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 			}
 		}
 
-		// Static, calm grid for reduced-motion users.
-		if (reduce) return;
+		// Static grid for reduced-motion AND mobile: the per-frame style writes on
+		// ~100 cells are costly on mobile GPUs, and there's no mouse to react to
+		// anyway. Mobile/reduced-motion keep the calm, static colored grid.
+		if (reduce || isMobile) return;
 
 		let mouseX = -9999;
 		let mouseY = -9999;
