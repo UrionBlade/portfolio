@@ -128,6 +128,7 @@
 		"placeholderEmail": "La tua email",
 		"placeholderMessage": "Il tuo messaggio",
 		"sendButton": "Invia messaggio",
+		"sending": "Invio…",
 		"success": "Messaggio inviato con successo!",
 		"error": "Invio non riuscito. Riprova o scrivimi direttamente via email.",
 		"copied": "Copiato negli appunti!"

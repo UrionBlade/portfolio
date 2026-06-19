@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type SwiperCore from "swiper";
-import { EffectCreative, Mousewheel } from "swiper/modules";
+import { EffectCreative, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), {
@@ -103,6 +103,7 @@ export default function Home() {
 				direction="vertical"
 				slidesPerView={1}
 				mousewheel={true}
+				keyboard={{ enabled: true }}
 				effect="creative"
 				onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
 				creativeEffect={{
@@ -114,7 +115,7 @@ export default function Home() {
 						translate: [0, "100%", 0],
 					},
 				}}
-				modules={[Mousewheel, EffectCreative]}
+				modules={[Mousewheel, EffectCreative, Keyboard]}
 			>
 				<SwiperSlide>
 					<HeroSection
@@ -164,18 +165,32 @@ export default function Home() {
 				<div className="flex justify-end items-center gap-2 w-[190px]">
 					{!isMobile && (
 						<>
-							<ArrowUp
-								className={`w-8 h-8 hidden lg:inline ${activeIndex === 0 ? "cursor-not-allowed" : "hover:animate-bounce cursor-pointer"}`}
-								color={activeIndex === 0 ? "#d1d1d1" : "#f6f6f6"}
+							<button
+								type="button"
+								aria-label={t("footer.navigation.prev")}
+								disabled={activeIndex === 0}
 								onClick={() => swiper?.slidePrev()}
-							/>
-							<ArrowDown
-								className={`w-8 h-8 hidden lg:inline ${activeIndex === SECTION_NUMBER - 1 ? "cursor-not-allowed" : "hover:animate-bounce cursor-pointer"}`}
-								color={
-									activeIndex === SECTION_NUMBER - 1 ? "#d1d1d1" : "#f6f6f6"
-								}
+								className="hidden lg:inline-flex cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-gray-50"
+							>
+								<ArrowUp
+									className="w-8 h-8 hover:animate-bounce motion-reduce:hover:animate-none"
+									color="#f6f6f6"
+									aria-hidden="true"
+								/>
+							</button>
+							<button
+								type="button"
+								aria-label={t("footer.navigation.next")}
+								disabled={activeIndex === SECTION_NUMBER - 1}
 								onClick={() => swiper?.slideNext()}
-							/>
+								className="hidden lg:inline-flex cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-gray-50"
+							>
+								<ArrowDown
+									className="w-8 h-8 hover:animate-bounce motion-reduce:hover:animate-none"
+									color="#f6f6f6"
+									aria-hidden="true"
+								/>
+							</button>
 						</>
 					)}
 					<h2 className="text-gray-50 font-light text-xs md:text-lg select-none cursor-text text-end">

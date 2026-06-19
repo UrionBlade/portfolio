@@ -22,7 +22,7 @@ const SOURCES = [
 	"color-palette",
 	"gift",
 ];
-const COUNT = 14;
+const COUNT = 9;
 
 type Item = {
 	img: HTMLImageElement;

@@ -15,6 +15,10 @@ export function I18nProvider({
 		if (i18n.language !== locale) {
 			i18n.changeLanguage(locale);
 		}
+		// keep <html lang> in sync with the active locale
+		if (typeof document !== "undefined") {
+			document.documentElement.lang = locale;
+		}
 	}, [locale]);
 
 	return <>{children}</>;

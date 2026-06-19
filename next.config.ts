@@ -5,6 +5,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 
 const nextConfig: NextConfig = {
+	// Render metadata synchronously into <head> instead of streaming it —
+	// the page bails to client rendering (ssr:false), and streamed metadata
+	// gets injected too late for SEO crawlers/Lighthouse.
+	htmlLimitedBots: /.*/,
 	modularizeImports: {
 		uuid: {
 			transform: "uuid/{{member}}",

@@ -15,8 +15,47 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-	title: "Matteo Poli",
-	description: "Costruisco esperienze digitali che fanno dire 'wow'!",
+	metadataBase: new URL("https://www.matteo-poli.com"),
+	title: "Matteo Poli — Front-end Developer",
+	description:
+		"Front-end developer freelance: interfacce animate, veloci e accessibili in React, Next.js e TypeScript. Pluripremiato ai CSS Design Awards.",
+	applicationName: "Matteo Poli",
+	authors: [{ name: "Matteo Poli", url: "https://www.matteo-poli.com" }],
+	creator: "Matteo Poli",
+	keywords: [
+		"Matteo Poli",
+		"front-end developer",
+		"sviluppatore front-end",
+		"React",
+		"Next.js",
+		"TypeScript",
+		"Tailwind CSS",
+		"GSAP",
+		"Framer Motion",
+		"web developer freelance",
+		"Besozzo",
+		"Varese",
+		"CSS Design Awards",
+	],
+	robots: { index: true, follow: true },
+	alternates: {
+		canonical: "/",
+		languages: { it: "/it", en: "/en" },
+	},
+	openGraph: {
+		type: "website",
+		siteName: "Matteo Poli",
+		title: "Matteo Poli — Front-end Developer",
+		description:
+			"Interfacce animate, veloci e accessibili in React e Next.js. Pluripremiato ai CSS Design Awards.",
+		url: "https://www.matteo-poli.com",
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Matteo Poli — Front-end Developer",
+		description:
+			"Interfacce animate, veloci e accessibili. Pluripremiato ai CSS Design Awards.",
+	},
 };
 
 export const viewport: Viewport = {

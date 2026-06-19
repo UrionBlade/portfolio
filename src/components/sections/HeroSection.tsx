@@ -181,7 +181,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 			for (const cell of cells) {
 				// soft ambient wave so the grid breathes even at rest
 				const ambient =
-					0.06 + 0.06 * Math.sin(time * 0.0011 + (cell.cx + cell.cy) * 0.0045);
+					0.1 + 0.08 * Math.sin(time * 0.0011 + (cell.cx + cell.cy) * 0.0045);
 				// magnetic falloff around the cursor
 				const dx = cell.cx - mouseX;
 				const dy = cell.cy - mouseY;
@@ -255,9 +255,6 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.6, duration: 0.6 }}
 				>
-					<Button onClick={onCTAProject} variant="primary" type="button">
-						{t("hero.cta_projects")}
-					</Button>
 					<Button
 						onClick={() => {
 							const a = document.createElement("a");
@@ -267,10 +264,13 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 							a.click();
 							a.remove();
 						}}
-						variant="secondary"
+						variant="primary"
 						type="button"
 					>
 						{t("hero.cta_cv")}
+					</Button>
+					<Button onClick={onCTAProject} variant="secondary" type="button">
+						{t("hero.cta_projects")}
 					</Button>
 				</motion.div>
 

@@ -161,7 +161,9 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 										error={errors.message}
 									/>
 									<Button disabled={loading} type="submit">
-										{t("contacts.sendButton") || "Invia"}
+										{loading
+											? t("contacts.sending") || "Invio…"
+											: t("contacts.sendButton") || "Invia"}
 									</Button>
 								</form>
 							)}
