@@ -62,17 +62,24 @@ export const Button: FC<ButtonProps> = ({
 	};
 
 	useEffect(() => {
-		if (!isDark && btnRef.current) {
-			import("gsap").then((gsap) => {
-				gsap.default.to(btnRef.current, {
-					boxShadow: "0 0 20px 4px rgba(255,255,255,0.3)",
-					repeat: -1,
-					yoyo: true,
-					duration: 1.6,
-					ease: "sine.inOut",
-				});
+		if (isDark || !btnRef.current) return;
+		// box-shadow is repaint-heavy; skip the infinite glow on touch/mobile and
+		// for reduced-motion. Desktop pointer keeps the pulse.
+		if (
+			typeof window !== "undefined" &&
+			window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)")
+				.matches
+		)
+			return;
+		import("gsap").then((gsap) => {
+			gsap.default.to(btnRef.current, {
+				boxShadow: "0 0 20px 4px rgba(255,255,255,0.3)",
+				repeat: -1,
+				yoyo: true,
+				duration: 1.6,
+				ease: "sine.inOut",
 			});
-		}
+		});
 	}, [isDark]);
 
 	return (
