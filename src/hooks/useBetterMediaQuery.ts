@@ -13,13 +13,11 @@ const useBetterMediaQuery = (mediaQueryString: string) => {
 	useEffect(() => {
 		const mediaQueryList = window.matchMedia(mediaQueryString);
 
-		const listener = () => setMatches(!!mediaQueryList.matches);
-		listener();
-		mediaQueryList.addEventListener("change", debounce(listener, 100), {
-			passive: true,
-		});
-		return () =>
-			mediaQueryList.removeEventListener("change", debounce(listener, 100));
+		setMatches(mediaQueryList.matches);
+		// one debounced instance: add and remove must reference the same fn
+		const listener = debounce(() => setMatches(mediaQueryList.matches), 100);
+		mediaQueryList.addEventListener("change", listener, { passive: true });
+		return () => mediaQueryList.removeEventListener("change", listener);
 	}, [mediaQueryString]);
 
 	return matches;

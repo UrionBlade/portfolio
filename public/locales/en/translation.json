@@ -79,6 +79,7 @@
 		"title": "About me",
 		"description": "Freelance front-end developer with a strong focus on design, user experience, and code quality. I collaborate with dynamic teams to create modern and engaging solutions.",
 		"stackLabel": "My stack",
+		"timelineLabel": "My journey",
 		"quote": "The best interface is the one that fades away, but leaves a mark.",
 		"timeline": [
 			{

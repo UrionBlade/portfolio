@@ -239,7 +239,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 				</motion.h1>
 
 				<motion.p
-					className="mt-6 text-sm sm:text-lg md:text-2xl text-center text-white dark:text-neutral-300"
+					className="mt-6 max-w-[44rem] mx-auto text-sm sm:text-lg md:text-2xl text-center text-white dark:text-neutral-200"
 					initial={{ y: 20 }}
 					animate={{ y: 0 }}
 					transition={{ delay: 0.3, duration: 0.8 }}

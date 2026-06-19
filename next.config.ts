@@ -9,14 +9,6 @@ const nextConfig: NextConfig = {
 	// the page bails to client rendering (ssr:false), and streamed metadata
 	// gets injected too late for SEO crawlers/Lighthouse.
 	htmlLimitedBots: /.*/,
-	modularizeImports: {
-		uuid: {
-			transform: "uuid/{{member}}",
-		},
-		yup: {
-			transform: "yup/{{member}}",
-		},
-	},
 	async headers() {
 		return [
 			{

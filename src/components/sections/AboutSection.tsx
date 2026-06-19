@@ -1,8 +1,10 @@
 import { useTheme } from "@/hooks/useTheme";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/free-mode";
 import FrameContent from "../dumb/FrameContent";
 
 const AboutSection = () => {
@@ -36,20 +38,22 @@ const AboutSection = () => {
 			id="about"
 		>
 			<FrameContent>
-				<div className="relative z-10 w-full text-center mb-10">
-					<h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
+				{/* Header — centered, constrained measure */}
+				<div className="relative z-10 w-full text-center mb-8">
+					<h2 className="font-display text-4xl md:text-5xl font-extrabold mb-4">
 						{t("about.title")}
 					</h2>
-					<p className="text-lg md:text-xl text-white/90 dark:text-white/80 mx-auto max-w-6xl">
+					<p className="text-base md:text-lg text-white/90 mx-auto max-w-[42rem]">
 						{t("about.description")}
 					</p>
 				</div>
 
-				<div className="relative z-10 w-full max-w-[44rem] mx-auto mb-12 text-center">
-					<p className="text-xs uppercase tracking-[0.2em] text-white/60 dark:text-yellow-500 mb-3">
+				{/* Stack — centered */}
+				<div className="relative z-10 w-full mb-10 text-center">
+					<p className="text-xs uppercase tracking-[0.2em] text-white/70 dark:text-yellow-500 mb-3">
 						{t("about.stackLabel")}
 					</p>
-					<ul className="flex flex-wrap justify-center gap-2">
+					<ul className="flex flex-wrap justify-center gap-2 mx-auto max-w-[44rem]">
 						{stack.map((tech) => (
 							<li
 								key={tech}
@@ -61,37 +65,46 @@ const AboutSection = () => {
 					</ul>
 				</div>
 
-				<div className="relative z-10 w-full mb-20 px-2 sm:px-6">
-					<div className="relative w-full">
-						<div className="absolute top-[70px] left-0 w-full h-[2px] bg-white/30 dark:bg-yellow-500" />
+				{/* Timeline — draggable (free momentum), edge-faded, no controls.
+				    The grab cursor + the slides fading out at both edges make the
+				    horizontal drag clear without any chrome. */}
+				<div className="relative z-10 w-full mb-14">
+					<p className="text-center text-xs uppercase tracking-[0.2em] text-white/70 dark:text-yellow-500 mb-7">
+						{t("about.timelineLabel")}
+					</p>
+					<div className="relative [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
+						{/* connecting rail the nodes sit on (aligned to the dot centers) */}
+						<div className="absolute top-[48px] left-0 w-full h-px bg-white/25 dark:bg-yellow-500/60" />
 						<Swiper
-							spaceBetween={24}
-							slidesPerView={1.2}
+							modules={[FreeMode]}
+							freeMode={{ enabled: true, momentum: true, momentumRatio: 0.6 }}
+							spaceBetween={16}
+							slidesPerView={1.4}
 							breakpoints={{
-								640: { slidesPerView: 2.5 },
-								1024: { slidesPerView: 3.5 },
+								640: { slidesPerView: 2.6 },
+								1024: { slidesPerView: 3.6 },
 							}}
-							className={`pb-8 ${isGrabbing ? "cursor-grabbing" : "cursor-grab"}`}
+							className={isGrabbing ? "cursor-grabbing" : "cursor-grab"}
 							onTouchStart={() => setIsGrabbing(true)}
 							onTouchEnd={() => setIsGrabbing(false)}
 							onMouseDown={() => setIsGrabbing(true)}
 							onMouseUp={() => setIsGrabbing(false)}
 						>
 							{timeline.map((item) => (
-								<SwiperSlide key={item.title} className="relative h-full">
-									<div className="flex flex-col items-center">
-										<p className="text-white/70 dark:text-yellow-500 italic text-sm mb-2">
+								<SwiperSlide key={item.title} className="select-none">
+									<div className="flex flex-col items-center text-center">
+										{/* year, sitting just above the rail */}
+										<p className="font-display text-xl sm:text-2xl font-extrabold tabular-nums leading-none text-white dark:text-yellow-500 h-9 flex items-center">
 											{item.year}
 										</p>
-										<div className="h-[40px] w-[2px] bg-white/40 dark:bg-yellow-500 mb-4" />
-										<div className="text-center px-4">
-											<p className="text-white font-bold text-base mb-1">
-												{item.title}
-											</p>
-											<p className="text-sm text-white mx-auto leading-snug max-w-72">
-												{item.description}
-											</p>
-										</div>
+										{/* node dot, centered on the rail (rail is at 58px) */}
+										<span className="mt-[6px] w-3 h-3 rounded-full bg-white dark:bg-yellow-500 ring-4 ring-white/10 dark:ring-yellow-500/20" />
+										<p className="mt-7 font-display text-white font-bold text-base sm:text-lg">
+											{item.title}
+										</p>
+										<p className="mt-1.5 text-sm text-white/70 leading-snug max-w-[15rem] px-2">
+											{item.description}
+										</p>
 									</div>
 								</SwiperSlide>
 							))}
@@ -99,7 +112,8 @@ const AboutSection = () => {
 					</div>
 				</div>
 
-				<div className="relative z-10 text-center italic text-white/80 dark:text-white/60">
+				{/* Quote — centered */}
+				<div className="relative z-10 text-center italic text-white/80 dark:text-white/70 mx-auto max-w-[42rem]">
 					<p>{t("about.quote")}</p>
 				</div>
 			</FrameContent>

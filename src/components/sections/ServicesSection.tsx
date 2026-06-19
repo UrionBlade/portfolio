@@ -1,33 +1,110 @@
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
-import { Accessibility, Blocks, Gauge, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-// per-card brand accents for the dark-mode icons (a second accent beyond yellow)
-const DARK_ICON_COLORS = [
-	"text-coral-400",
-	"text-orange-400",
-	"text-mint-400",
-	"text-sky-400",
-];
+type Tone = "ink" | "snow";
+type Item = { title: string; text: string };
+
+// ink = dark text on the bright layer (revealed by the spotlight),
+// snow = light text on the dark overlay (the default, fully legible state).
+// Both layers render identical markup so the mask reveal lines up perfectly.
+const TONES: Record<
+	Tone,
+	{ head: string; body: string; idx: string; idxHover: string; rule: string }
+> = {
+	ink: {
+		head: "text-neutral-900",
+		body: "text-neutral-800",
+		idx: "text-neutral-900/25",
+		idxHover: "group-hover:text-neutral-900/60",
+		rule: "border-neutral-900/15",
+	},
+	snow: {
+		head: "text-white",
+		body: "text-neutral-200",
+		idx: "text-white/25",
+		idxHover: "group-hover:text-yellow-500",
+		rule: "border-white/15",
+	},
+};
+
+function ServicesContent({
+	items,
+	tone,
+}: {
+	items: [string, Item][];
+	tone: Tone;
+}) {
+	const { t } = useTranslation();
+	const c = TONES[tone];
+
+	return (
+		<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8">
+			<header className="max-w-[42rem]">
+				<h2
+					className={`font-display text-3xl sm:text-4xl md:text-5xl font-extrabold leading-none ${c.head}`}
+				>
+					{t("services.title")}
+				</h2>
+				<p className={`mt-4 text-base sm:text-lg ${c.body}`}>
+					{t("services.description")}
+				</p>
+			</header>
+
+			<ol className="mt-8 sm:mt-12 grid gap-x-10 sm:grid-cols-2">
+				{items.map(([key, { title, text }], i) => {
+					const featured = i === 0;
+					return (
+						<li
+							key={key}
+							className={`group flex gap-4 sm:gap-6 border-t py-5 sm:py-6 ${c.rule} ${
+								featured ? "sm:col-span-2" : ""
+							}`}
+						>
+							<span
+								className={`font-display font-extrabold leading-none tabular-nums transition-colors duration-300 ${c.idx} ${c.idxHover} ${
+									featured ? "text-4xl sm:text-6xl" : "text-3xl sm:text-4xl"
+								}`}
+							>
+								{String(i + 1).padStart(2, "0")}
+							</span>
+							<div className="min-w-0">
+								<h3
+									className={`font-display font-bold ${c.head} ${
+										featured ? "text-xl sm:text-3xl" : "text-lg sm:text-xl"
+									}`}
+								>
+									{title}
+								</h3>
+								<p
+									className={`mt-1.5 ${c.body} ${
+										featured
+											? "text-sm sm:text-lg max-w-[40rem]"
+											: "text-sm sm:text-base"
+									}`}
+								>
+									{text}
+								</p>
+							</div>
+						</li>
+					);
+				})}
+			</ol>
+		</div>
+	);
+}
 
 const ServicesSection = () => {
-	const { t } = useTranslation();
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
+	const { t } = useTranslation();
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const maskRef = useRef<HTMLDivElement>(null);
 	const { isMobile } = useDeviceDetection();
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 	const items = Object.entries(
-		t("services.items", { returnObjects: true }) as Record<
-			string,
-			{ title: string; text: string }
-		>,
+		t("services.items", { returnObjects: true }) as Record<string, Item>,
 	);
 
 	useEffect(() => {
@@ -45,93 +122,29 @@ const ServicesSection = () => {
 		};
 	}, [isDark]);
 
-	const icons = [
-		<Sparkles key="sparkles" className="w-6 h-6" />,
-		<Gauge key="gauge" className="w-6 h-6" />,
-		<Accessibility key="accessibility" className="w-6 h-6" />,
-		<Blocks key="blocks" className="w-6 h-6" />,
-	];
-
 	return (
 		<section
 			ref={sectionRef}
 			id="services"
-			className="relative w-full h-full py-48 md:py-24 px-2 sm:px-6 text-black dark:text-white overflow-hidden bg-neutral-300 dark:bg-dark-bg-2 md:flex md:justify-center md:items-center"
+			className="relative w-full h-full overflow-hidden flex items-center bg-neutral-200 dark:bg-dark-bg-2"
 		>
-			{!isDark && (
+			{isDark ? (
+				<ServicesContent items={items} tone="snow" />
+			) : (
 				<>
-					{/* Colorful duplicate layer below */}
-					<div className="absolute z-0 inset-0 md:inset-auto md:w-full md:h-full md:flex md:justify-center md:items-center">
-						<div className="absolute inset-0 bg-gradient-to-br from-pink-700 via-coral-700 to-orange-700 animate-[pulse_10s_infinite]" />
-						<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-48 md:py-24">
-							<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-neutral-900 drop-shadow-lg">
-								{t("services.title")}
-							</h2>
-							<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12 text-neutral-800 ">
-								{t("services.description")}
-							</p>
-							{isMobile ? (
-								<>
-									<Swiper
-										spaceBetween={16}
-										pagination={{
-											clickable: true,
-											el: ".custom-pagination",
-											type: "bullets",
-											bulletClass: "bg-dark-accent h-2 w-2 rounded-full",
-											bulletActiveClass: "!bg-coral-200",
-										}}
-										modules={[Pagination]}
-										className="pb-8"
-									>
-										{items.map(([key, { title, text }]) => (
-											<SwiperSlide key={`slide-${key}`}>
-												<div className="group p-4 rounded-xl bg-white/30 shadow-2xl flex flex-col items-start gap-4 backdrop-blur-md mx-2 transition-transform duration-300 ease-out hover:scale-105 hover:rotate-1 hover:shadow-pink-300/50">
-													<div className="flex items-center justify-start gap-4">
-														<div className="w-10 h-10 rounded-xl bg-white/70 flex items-center justify-center shrink-0 shadow-md transform transition-transform duration-300 ease-out group-hover:rotate-12">
-															{icons[Number(key) % icons.length]}
-														</div>
-														<h3 className="text-lg font-semibold mb-1 text-neutral-900">
-															{title}
-														</h3>
-													</div>
-													<p className="text-sm text-neutral-700">{text}</p>
-												</div>
-											</SwiperSlide>
-										))}
-									</Swiper>
-									<div className="custom-pagination mt-4 flex justify-center gap-2" />
-								</>
-							) : (
-								<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-									{items.map(([key, { title, text }]) => (
-										<div
-											key={`mask-${key}`}
-											className="group p-4 sm:p-6 rounded-xl bg-white/30 shadow-2xl flex items-start gap-4 backdrop-blur-md transition-transform duration-300 ease-out hover:scale-105 hover:rotate-1 hover:shadow-pink-300/50"
-										>
-											<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/70 flex items-center justify-center shrink-0 shadow-md transform transition-transform duration-300 ease-out group-hover:rotate-12">
-												{icons[Number(key) % icons.length]}
-											</div>
-											<div>
-												<h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-neutral-900">
-													{title}
-												</h3>
-												<p className="text-sm sm:text-base text-neutral-700">
-													{text}
-												</p>
-											</div>
-										</div>
-									))}
-								</div>
-							)}
-						</div>
+					{/* Bright layer (ink) — revealed by the spotlight; shown directly on mobile.
+					    z-0 makes it a stacking context so the overlay paints fully above it. */}
+					<div className="absolute inset-0 z-0 flex items-center">
+						<div className="absolute inset-0 bg-gradient-to-br from-sun-200 via-coral-300 to-orchid-300" />
+						<ServicesContent items={items} tone="ink" />
 					</div>
 
-					{/* Dark overlay layer with mask */}
+					{/* Dark overlay (snow) — the default, fully legible state. A radial
+					    hole follows the cursor to reveal the bright layer beneath.
+					    Desktop only; mobile shows the bright layer above. */}
 					{!isMobile && (
 						<div
-							ref={maskRef}
-							className="absolute w-full h-full flex justify-center items-center z-10 bg-dark-bg-2 text-white pointer-events-none"
+							className="absolute inset-0 z-10 flex items-center bg-dark-bg-2 pointer-events-none"
 							style={{
 								WebkitMaskImage: `radial-gradient(circle 340px at ${mousePosition.x}px ${mousePosition.y}px, transparent 98%, black 100%)`,
 								maskImage: `radial-gradient(circle 340px at ${mousePosition.x}px ${mousePosition.y}px, transparent 98%, black 100%)`,
@@ -141,110 +154,10 @@ const ServicesSection = () => {
 									"mask-image 0.2s ease-out, -webkit-mask-image 0.2s ease-out",
 							}}
 						>
-							<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-24">
-								<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
-									{t("services.title")}
-								</h2>
-								<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12 ">
-									{t("services.description")}
-								</p>
-								<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-									{items.map(([key, { title, text }]) => (
-										<div
-											key={key}
-											className="p-4 sm:p-6 rounded-xl bg-dark-muted shadow-lg flex items-start gap-4 transition-transform duration-200 hover:scale-105"
-										>
-											<div
-												className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
-											>
-												{icons[Number(key) % icons.length]}
-											</div>
-											<div>
-												<h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-white">
-													{title}
-												</h3>
-												<p className="text-sm sm:text-base text-neutral-300">
-													{text}
-												</p>
-											</div>
-										</div>
-									))}
-								</div>
-							</div>
+							<ServicesContent items={items} tone="snow" />
 						</div>
 					)}
 				</>
-			)}
-
-			{/* Fallback dark section if dark mode */}
-			{isDark && (
-				<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6">
-					<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
-						{t("services.title")}
-					</h2>
-					<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12">
-						{t("services.description")}
-					</p>
-					{isMobile ? (
-						<>
-							<Swiper
-								spaceBetween={16}
-								pagination={{
-									clickable: true,
-									el: ".custom-pagination",
-									type: "bullets",
-									bulletClass: "bg-dark-accent h-2 w-2 rounded-full",
-									bulletActiveClass: "!bg-yellow-500",
-								}}
-								modules={[Pagination]}
-								className="pb-8"
-							>
-								{items.map(([key, { title, text }]) => (
-									<SwiperSlide key={`dark-slide-${key}`}>
-										<div className="p-4 rounded-xl bg-dark-muted shadow-lg flex flex-col items-start gap-4 mx-2">
-											<div className="flex items-center justify-start gap-4">
-												<div
-													className={`w-10 h-10 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
-												>
-													{icons[Number(key) % icons.length]}
-												</div>
-												<h3 className="text-lg font-semibold mb-1 text-white">
-													{title}
-												</h3>
-											</div>
-											<p className="text-sm text-neutral-300">{text}</p>
-										</div>
-									</SwiperSlide>
-								))}
-							</Swiper>
-
-							<div className="custom-pagination mt-4 flex justify-center gap-2" />
-						</>
-					) : (
-						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-							{items.map(([key, { title, text }]) => (
-								<div
-									key={key}
-									className="p-4 sm:p-6 rounded-xl bg-dark-muted shadow-lg flex items-start gap-4 transition-transform duration-200 hover:scale-105"
-								>
-									<div
-										className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
-									>
-										{icons[Number(key) % icons.length]}
-									</div>
-									<div>
-										<h3 className="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2 text-white">
-											{title}
-										</h3>
-										<p className="text-sm sm:text-base text-neutral-300">
-											{text}
-										</p>
-									</div>
-								</div>
-							))}
-						</div>
-					)}
-				</div>
 			)}
 		</section>
 	);

@@ -1,11 +1,9 @@
 import { useTheme } from "@/hooks/useTheme";
-import { Formik } from "formik";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import dynamic from "next/dynamic";
 import { type FC, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import * as yup from "yup";
 import Button from "../dumb/Button";
 import FrameContent from "../dumb/FrameContent";
 import Input from "../dumb/Input";
@@ -27,29 +25,32 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 		? "/cv/Matteo_Poli_CV_EN.pdf"
 		: "/cv/Matteo_Poli_CV_IT.pdf";
 
-	const initialValues = { name: "", email: "", message: "" };
-	const validationSchema = yup.object().shape({
-		name: yup.string().required("Required"),
-		email: yup.string().email("Invalid email").required("Required"),
-		message: yup.string().required("Required"),
-	});
-
-	const sendEmail = async (name: string, email: string, message: string) => {
+	// ponytail: HTML5 validation (required + type=email) over a schema lib.
+	// add yup/zod back only when rules outgrow what the browser enforces.
+	const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const form = e.currentTarget;
+		const data = new FormData(form);
 		try {
 			setLoading(true);
 			const emailjs = (await import("@emailjs/browser")).default;
 			await emailjs.send(
 				"service_8c0pmqx",
 				"template_p1s2o3v",
-				{ name, email, message },
+				{
+					name: data.get("name"),
+					email: data.get("email"),
+					message: data.get("message"),
+				},
 				"qbspO0cIvvnJZOjVk",
 			);
-			setLoading(false);
 			toast(t("contacts.success") || "Message sent successfully!");
+			form.reset();
 		} catch (error) {
 			console.error(error);
-			setLoading(false);
 			toast.error(t("contacts.error") || "Invio non riuscito. Riprova.");
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -124,50 +125,33 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 					</div>
 
 					{/* Right: form in a glass card (works in light + dark) */}
-					<div className="pointer-events-auto relative z-10 rounded-3xl p-6 md:p-8 bg-white/15 dark:bg-white/[0.04] backdrop-blur-xl border border-white/30 dark:border-white/10 shadow-2xl">
-						<Formik
-							initialValues={initialValues}
-							validationSchema={validationSchema}
-							validateOnChange={false}
-							validateOnBlur
-							validateOnMount={false}
-							onSubmit={({ name, email, message }) =>
-								sendEmail(name, email, message)
-							}
-						>
-							{({ values, setFieldValue, handleSubmit, errors }) => (
-								<form className="space-y-5" onSubmit={handleSubmit}>
-									<Input
-										placeholder={t("contacts.placeholderName") || "Il tuo nome"}
-										value={values.name}
-										onChange={(e) => setFieldValue("name", e.target.value)}
-										error={errors.name}
-									/>
-									<Input
-										placeholder={
-											t("contacts.placeholderEmail") || "La tua email"
-										}
-										value={values.email}
-										onChange={(e) => setFieldValue("email", e.target.value)}
-										error={errors.email}
-									/>
-									<Textarea
-										placeholder={
-											t("contacts.placeholderMessage") || "Il tuo messaggio"
-										}
-										rows={5}
-										value={values.message}
-										onChange={(e) => setFieldValue("message", e.target.value)}
-										error={errors.message}
-									/>
-									<Button disabled={loading} type="submit">
-										{loading
-											? t("contacts.sending") || "Invio…"
-											: t("contacts.sendButton") || "Invia"}
-									</Button>
-								</form>
-							)}
-						</Formik>
+					<div className="pointer-events-auto relative z-10 rounded-3xl p-6 md:p-8 bg-sky-800 dark:bg-dark-surface border border-white/15 dark:border-white/10 shadow-2xl">
+						<form className="space-y-5" onSubmit={sendEmail}>
+							<Input
+								name="name"
+								required
+								placeholder={t("contacts.placeholderName") || "Il tuo nome"}
+							/>
+							<Input
+								name="email"
+								type="email"
+								required
+								placeholder={t("contacts.placeholderEmail") || "La tua email"}
+							/>
+							<Textarea
+								name="message"
+								required
+								rows={5}
+								placeholder={
+									t("contacts.placeholderMessage") || "Il tuo messaggio"
+								}
+							/>
+							<Button disabled={loading} type="submit">
+								{loading
+									? t("contacts.sending") || "Invio…"
+									: t("contacts.sendButton") || "Invia"}
+							</Button>
+						</form>
 					</div>
 				</div>
 			</FrameContent>
