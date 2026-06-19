@@ -40,7 +40,7 @@ function ServicesContent({
 	const c = TONES[tone];
 
 	return (
-		<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-24 pb-16 md:py-0">
+		<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-32 pb-16 md:py-0">
 			<header className="max-w-[42rem]">
 				<h2
 					className={`font-display text-3xl sm:text-4xl md:text-5xl font-extrabold leading-none ${c.head}`}

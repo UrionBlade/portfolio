@@ -211,6 +211,15 @@
 		transform: translateX(130vw);
 	}
 }
+/* Phones: scale the rem base down a touch so each fixed-height section's
+   content is shorter — leaves room to sit clear of the logo bar without
+   overflowing the footer (type + spacing both shrink proportionally). */
+@media (max-width: 767px) {
+	:root {
+		font-size: 15px;
+	}
+}
+
 /* Large displays: scale the rem base up so content fills the frame instead of
    floating tiny and centered with huge empty margins (everything sized in rem
    scales proportionally — type, spacing, max-widths). */

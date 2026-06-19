@@ -23,7 +23,7 @@ interface FrameContentProps {
  */
 const FrameContent: FC<FrameContentProps> = ({ children, className = "" }) => (
 	<div
-		className={`relative z-20 flex h-full w-full flex-col justify-start px-6 pt-24 pb-16 md:justify-center md:pt-32 md:pb-20 ${className}`}
+		className={`relative z-20 flex h-full w-full flex-col justify-start px-6 pt-32 pb-16 md:justify-center md:pt-32 md:pb-20 ${className}`}
 	>
 		{children}
 	</div>
