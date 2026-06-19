@@ -167,7 +167,7 @@ const ProjectCard = ({
 			target="_blank"
 			rel="noopener noreferrer"
 			aria-label={`${name} — ${t("projects.visit")}`}
-			className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-[2rem] ${project.span} min-h-[12rem] lg:min-h-0 transition-transform duration-500 ease-out hover:-translate-y-1 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
+			className={`group relative flex h-full flex-col justify-end overflow-hidden rounded-[2rem] cursor-pointer ${project.span} min-h-[12rem] lg:min-h-0 transition-transform duration-500 ease-out hover:-translate-y-1 focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-white motion-reduce:transition-none motion-reduce:hover:translate-y-0`}
 		>
 			<Image
 				src={project.image}
@@ -242,7 +242,7 @@ const ProjectsSection = () => {
 			{!isDark && <GooeyBackground />}
 			<FrameContent className="max-w-screen-xl mx-auto">
 				<div className="mb-6 lg:mb-8 shrink-0">
-					<h2 className="text-3xl md:text-5xl font-bold text-left text-white">
+					<h2 className="font-display text-3xl md:text-5xl font-bold text-left text-white">
 						{t("projects.title")}
 					</h2>
 					<p className="hidden lg:block text-white/85 text-base mt-3 max-w-[42rem]">

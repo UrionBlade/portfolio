@@ -3,6 +3,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer utilities {
+	.font-display {
+		font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+	}
 	.cursor-default {
 		cursor: url(/cursors/pointer.png), default;
 	}

@@ -37,7 +37,7 @@ const AboutSection = () => {
 		>
 			<FrameContent>
 				<div className="relative z-10 w-full text-center mb-10">
-					<h2 className="text-4xl md:text-5xl font-bold mb-6">
+					<h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
 						{t("about.title")}
 					</h2>
 					<p className="text-lg md:text-xl text-white/90 dark:text-white/80 mx-auto max-w-6xl">

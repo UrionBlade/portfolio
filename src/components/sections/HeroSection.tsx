@@ -229,7 +229,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 				</motion.div>
 
 				<motion.h1
-					className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-center drop-shadow-lg"
+					className="font-display text-3xl sm:text-5xl md:text-7xl font-extrabold text-center drop-shadow-lg"
 					initial={false}
 				>
 					{t("hero.headline")}{" "}
@@ -284,7 +284,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={t("hero.awards")}
-						className="group flex items-center gap-2.5 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+						className="group flex items-center gap-2.5 rounded-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
 					>
 						{AWARDS.map((a) => (
 							<Image

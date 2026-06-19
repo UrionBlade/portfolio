@@ -68,7 +68,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 					{/* Left: headline + contact channels */}
 					<div className="space-y-6">
 						<div>
-							<h2 className="text-gray-50 text-5xl md:text-6xl font-extrabold leading-none">
+							<h2 className="font-display text-gray-50 text-5xl md:text-6xl font-extrabold leading-none">
 								{t("contacts.title")}
 							</h2>
 							<p className="text-white/80 text-base md:text-lg mt-4 max-w-[26rem]">
@@ -108,7 +108,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 								href="https://www.linkedin.com/in/urion"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="inline-flex items-center gap-2 rounded-full bg-white text-black font-semibold text-sm px-4 py-2 shadow-lg transition-transform hover:scale-105"
+								className="inline-flex items-center gap-2 rounded-full bg-white text-black font-semibold text-sm px-4 py-2 shadow-lg cursor-pointer transition-transform hover:scale-105"
 							>
 								<Linkedin className="w-4 h-4" fill="currentColor" />
 								LinkedIn
@@ -116,7 +116,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 							<a
 								href={cvHref}
 								download
-								className="inline-flex items-center gap-2 rounded-full border border-white/60 text-white font-semibold text-sm px-4 py-2 transition-colors hover:bg-white hover:text-black"
+								className="inline-flex items-center gap-2 rounded-full border border-white/60 text-white font-semibold text-sm px-4 py-2 cursor-pointer transition-colors hover:bg-white hover:text-black"
 							>
 								{t("actions.cv")}
 							</a>

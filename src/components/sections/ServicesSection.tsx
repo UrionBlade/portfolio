@@ -6,6 +6,14 @@ import { useTranslation } from "react-i18next";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+// per-card brand accents for the dark-mode icons (a second accent beyond yellow)
+const DARK_ICON_COLORS = [
+	"text-coral-400",
+	"text-orange-400",
+	"text-mint-400",
+	"text-sky-400",
+];
+
 const ServicesSection = () => {
 	const { t } = useTranslation();
 	const { theme } = useTheme();
@@ -56,7 +64,7 @@ const ServicesSection = () => {
 					<div className="absolute z-0 inset-0 md:inset-auto md:w-full md:h-full md:flex md:justify-center md:items-center">
 						<div className="absolute inset-0 bg-gradient-to-br from-pink-700 via-coral-700 to-orange-700 animate-[pulse_10s_infinite]" />
 						<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-48 md:py-24">
-							<h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-neutral-900 drop-shadow-lg">
+							<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6 text-neutral-900 drop-shadow-lg">
 								{t("services.title")}
 							</h2>
 							<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12 text-neutral-800 ">
@@ -134,7 +142,7 @@ const ServicesSection = () => {
 							}}
 						>
 							<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6 py-24">
-								<h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
+								<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
 									{t("services.title")}
 								</h2>
 								<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12 ">
@@ -146,7 +154,9 @@ const ServicesSection = () => {
 											key={key}
 											className="p-4 sm:p-6 rounded-xl bg-dark-muted shadow-lg flex items-start gap-4 transition-transform duration-200 hover:scale-105"
 										>
-											<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 text-yellow-500">
+											<div
+												className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
+											>
 												{icons[Number(key) % icons.length]}
 											</div>
 											<div>
@@ -169,7 +179,7 @@ const ServicesSection = () => {
 			{/* Fallback dark section if dark mode */}
 			{isDark && (
 				<div className="relative z-10 max-w-6xl mx-auto text-center px-2 sm:px-6">
-					<h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
+					<h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-bold mb-4 sm:mb-6">
 						{t("services.title")}
 					</h2>
 					<p className="text-base sm:text-lg md:text-xl mx-auto mb-8 sm:mb-12">
@@ -193,7 +203,9 @@ const ServicesSection = () => {
 									<SwiperSlide key={`dark-slide-${key}`}>
 										<div className="p-4 rounded-xl bg-dark-muted shadow-lg flex flex-col items-start gap-4 mx-2">
 											<div className="flex items-center justify-start gap-4">
-												<div className="w-10 h-10 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 text-yellow-500">
+												<div
+													className={`w-10 h-10 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
+												>
 													{icons[Number(key) % icons.length]}
 												</div>
 												<h3 className="text-lg font-semibold mb-1 text-white">
@@ -215,7 +227,9 @@ const ServicesSection = () => {
 									key={key}
 									className="p-4 sm:p-6 rounded-xl bg-dark-muted shadow-lg flex items-start gap-4 transition-transform duration-200 hover:scale-105"
 								>
-									<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 text-yellow-500">
+									<div
+										className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-dark-surface flex items-center justify-center shrink-0 ${DARK_ICON_COLORS[Number(key) % DARK_ICON_COLORS.length]}`}
+									>
 										{icons[Number(key) % icons.length]}
 									</div>
 									<div>

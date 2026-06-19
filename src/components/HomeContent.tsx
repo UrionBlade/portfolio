@@ -74,7 +74,7 @@ export default function Home() {
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label={t("actions.linkedin")}
-						className="flex items-center justify-center w-9 h-9 rounded-full bg-white/15 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus-visible:outline-2 focus-visible:outline-white"
+						className="flex items-center justify-center w-9 h-9 rounded-full bg-white/15 text-white backdrop-blur-sm cursor-pointer transition-colors hover:bg-white/30 focus-visible:outline-2 focus-visible:outline-white"
 					>
 						<Linkedin
 							className="w-5 h-5"
@@ -87,7 +87,7 @@ export default function Home() {
 						href={cvHref}
 						download
 						aria-label={t("actions.cv")}
-						className="flex items-center gap-1.5 rounded-full bg-white text-black font-semibold text-sm px-3 h-9 shadow-md transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+						className="flex items-center gap-1.5 rounded-full bg-white text-black font-semibold text-sm px-3 h-9 shadow-md cursor-pointer transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
 					>
 						<FileDown className="w-4 h-4" />
 						<span>CV</span>

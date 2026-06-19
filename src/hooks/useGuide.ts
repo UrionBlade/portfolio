@@ -15,7 +15,7 @@ export const useGuide = create<GuideStore>()(
 			},
 		}),
 		{
-			name: "theme-store",
+			name: "guide-store",
 		},
 	),
 );

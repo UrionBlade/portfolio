@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins } from "next/font/google";
+import { Bricolage_Grotesque, Poppins } from "next/font/google";
 import "./globals.css";
 import "swiper/css";
 import "swiper/css/effect-creative";
@@ -13,6 +13,14 @@ const poppins = Poppins({
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 	subsets: ["latin"],
 	display: "swap",
+});
+
+// Distinctive display face for headings (paired with Poppins for body)
+const bricolage = Bricolage_Grotesque({
+	weight: ["600", "700", "800"],
+	subsets: ["latin"],
+	display: "swap",
+	variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -82,7 +90,9 @@ export default async function RootLayout({
 					}}
 				/>
 			</head>
-			<body className={`${poppins.className} antialiased`}>
+			<body
+				className={`${poppins.className} ${bricolage.variable} antialiased`}
+			>
 				<ThemeBoot />
 				{children}
 				<Toaster
