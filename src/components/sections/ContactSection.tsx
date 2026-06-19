@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import Button from "../dumb/Button";
+import FrameContent from "../dumb/FrameContent";
 import Input from "../dumb/Input";
 import Textarea from "../dumb/Textarea";
 
@@ -43,12 +44,18 @@ const ContactSection: FC = () => {
 			setLoading(false);
 			toast(t("contacts.success") || "Message sent successfully!");
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 			setLoading(false);
+			toast.error(t("contacts.error") || "Invio non riuscito. Riprova.");
 		}
 	};
 
 	useEffect(() => {
+		if (
+			typeof window !== "undefined" &&
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches
+		)
+			return;
 		if (!isDark) {
 			const canvas = document.getElementById("bg-rings") as HTMLCanvasElement;
 			if (canvas) {
@@ -138,10 +145,10 @@ const ContactSection: FC = () => {
 	}, [isDark]);
 
 	return (
-		<section className="relative w-full h-full px-6 py-32 md:py-24 overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
+		<section className="relative w-full h-full overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-1">
 			{isDesktop && !isDark && (
 				<>
-					<div className="absolute bottom-40 left-20 w-32 h-32 rotate-180 z-[15]">
+					<div className="absolute bottom-40 left-20 w-32 h-32 rotate-180 z-[1]">
 						<Image
 							src="/images/loto.png"
 							alt="loto"
@@ -149,7 +156,7 @@ const ContactSection: FC = () => {
 							className="w-full h-auto object-cover"
 						/>
 					</div>
-					<div className="absolute bottom-32 left-42 w-32 h-32 rotate-[240deg] z-[15]">
+					<div className="absolute bottom-32 left-42 w-32 h-32 rotate-[240deg] z-[1]">
 						<Image
 							src="/images/loto.png"
 							alt="loto"
@@ -157,7 +164,7 @@ const ContactSection: FC = () => {
 							className="w-full h-auto object-cover"
 						/>
 					</div>
-					<div className="absolute bottom-20 left-18 w-32 h-32 rotate-[240deg] z-[15]">
+					<div className="absolute bottom-20 left-18 w-32 h-32 rotate-[240deg] z-[1]">
 						<Image
 							src="/images/loto.png"
 							alt="loto"
@@ -165,7 +172,7 @@ const ContactSection: FC = () => {
 							className="w-full h-auto object-cover"
 						/>
 					</div>
-					<div className="absolute bottom-28 left-26 w-32 h-32 z-[15]">
+					<div className="absolute bottom-28 left-26 w-32 h-32 z-[1]">
 						<Image
 							src="/images/flower.png"
 							alt="loto"
@@ -182,97 +189,103 @@ const ContactSection: FC = () => {
 				/>
 			)}
 			<div className="absolute top-0 left-0 w-full h-full bg-white/5 backdrop-blur-[1px] z-0" />
-			<div className="relative z-10 w-full md:not-only:h-full md:max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-center gap-6 md:gap-12">
-				<div className="flex-1 space-y-6">
-					<span className="flex items-center gap-4">
-						<h2 className="text-gray-50 text-4xl font-bold">
-							{t("contacts.title")}
-						</h2>
-					</span>
-					{isDesktop && (
-						<div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
-					)}
-					<div className="flex items-center gap-4">
-						<Mail className="w-6 h-6 text-gray-50" />
-						<button
-							onClick={() => {
-								navigator.clipboard.writeText(t("contacts.email"));
-								toast(t("contacts.copied"));
-							}}
-							type="button"
-							className="underline text-gray-50 text-base cursor-pointer"
-						>
-							{t("contacts.email")}
-						</button>
-					</div>
-					<div className="flex items-center gap-4 mt-4">
-						<Phone className="w-6 h-6 text-gray-50" />
-						<button
-							onClick={() => {
-								navigator.clipboard.writeText(t("contacts.phone"));
-								toast(t("contacts.copied"));
-							}}
-							type="button"
-							className="underline text-gray-50 text-base cursor-pointer"
-						>
-							{t("contacts.phone")}
-						</button>
-					</div>
-					<div className="flex items-center gap-4 mt-4">
-						<MapPin className="w-6 h-6 text-gray-50" />
-						<h3 className="text-gray-50 text-base">{t("contacts.location")}</h3>
-					</div>
-				</div>
-				<div className="w-full flex-1">
-					<Formik
-						initialValues={initialValues}
-						validationSchema={validationSchema}
-						validateOnChange={false}
-						validateOnBlur
-						validateOnMount={false}
-						onSubmit={({ name, email, message }) =>
-							sendEmail(name, email, message)
-						}
-					>
-						{({ values, setFieldValue, handleSubmit, errors }) => (
-							<form className="space-y-6" onSubmit={handleSubmit}>
-								<div>
-									<Input
-										placeholder={t("contacts.placeholderName") || "Il tuo nome"}
-										value={values.name}
-										onChange={(e) => setFieldValue("name", e.target.value)}
-										error={errors.name}
-									/>
-								</div>
-								<div>
-									<Input
-										placeholder={
-											t("contacts.placeholderEmail") || "La tua email"
-										}
-										value={values.email}
-										onChange={(e) => setFieldValue("email", e.target.value)}
-										error={errors.email}
-									/>
-								</div>
-								<div>
-									<Textarea
-										placeholder={
-											t("contacts.placeholderMessage") || "Il tuo messaggio"
-										}
-										rows={6}
-										value={values.message}
-										onChange={(e) => setFieldValue("message", e.target.value)}
-										error={errors.message}
-									/>
-								</div>
-								<Button disabled={loading} type="submit">
-									{t("contacts.sendButton") || "Invia"}
-								</Button>
-							</form>
+			<FrameContent className="max-w-screen-xl mx-auto">
+				<div className="w-full flex flex-col md:flex-row items-start md:items-center justify-center gap-6 md:gap-12">
+					<div className="flex-1 space-y-6">
+						<span className="flex items-center gap-4">
+							<h2 className="text-gray-50 text-4xl font-bold">
+								{t("contacts.title")}
+							</h2>
+						</span>
+						{isDesktop && (
+							<div className="w-full h-[2px] bg-gray-50 my-6 md:my-8" />
 						)}
-					</Formik>
+						<div className="flex items-center gap-4">
+							<Mail className="w-6 h-6 text-gray-50" />
+							<button
+								onClick={() => {
+									navigator.clipboard.writeText(t("contacts.email"));
+									toast(t("contacts.copied"));
+								}}
+								type="button"
+								className="underline text-gray-50 text-base cursor-pointer"
+							>
+								{t("contacts.email")}
+							</button>
+						</div>
+						<div className="flex items-center gap-4 mt-4">
+							<Phone className="w-6 h-6 text-gray-50" />
+							<button
+								onClick={() => {
+									navigator.clipboard.writeText(t("contacts.phone"));
+									toast(t("contacts.copied"));
+								}}
+								type="button"
+								className="underline text-gray-50 text-base cursor-pointer"
+							>
+								{t("contacts.phone")}
+							</button>
+						</div>
+						<div className="flex items-center gap-4 mt-4">
+							<MapPin className="w-6 h-6 text-gray-50" />
+							<h3 className="text-gray-50 text-base">
+								{t("contacts.location")}
+							</h3>
+						</div>
+					</div>
+					<div className="w-full flex-1">
+						<Formik
+							initialValues={initialValues}
+							validationSchema={validationSchema}
+							validateOnChange={false}
+							validateOnBlur
+							validateOnMount={false}
+							onSubmit={({ name, email, message }) =>
+								sendEmail(name, email, message)
+							}
+						>
+							{({ values, setFieldValue, handleSubmit, errors }) => (
+								<form className="space-y-6" onSubmit={handleSubmit}>
+									<div>
+										<Input
+											placeholder={
+												t("contacts.placeholderName") || "Il tuo nome"
+											}
+											value={values.name}
+											onChange={(e) => setFieldValue("name", e.target.value)}
+											error={errors.name}
+										/>
+									</div>
+									<div>
+										<Input
+											placeholder={
+												t("contacts.placeholderEmail") || "La tua email"
+											}
+											value={values.email}
+											onChange={(e) => setFieldValue("email", e.target.value)}
+											error={errors.email}
+										/>
+									</div>
+									<div>
+										<Textarea
+											placeholder={
+												t("contacts.placeholderMessage") || "Il tuo messaggio"
+											}
+											rows={6}
+											value={values.message}
+											onChange={(e) => setFieldValue("message", e.target.value)}
+											error={errors.message}
+										/>
+									</div>
+									<Button disabled={loading} type="submit">
+										{t("contacts.sendButton") || "Invia"}
+									</Button>
+								</form>
+							)}
+						</Formik>
+					</div>
 				</div>
-			</div>
+			</FrameContent>
 		</section>
 	);
 };

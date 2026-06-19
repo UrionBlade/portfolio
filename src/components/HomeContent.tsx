@@ -3,7 +3,7 @@
 import ThemeToggle from "@/components/dumb/ThemeToggle";
 import SiteGuide from "@/components/sections/SiteGuide";
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, ArrowUp, FileDown, Linkedin } from "lucide-react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
@@ -51,7 +51,10 @@ export default function Home() {
 	const [swiper, setSwiper] = useState<SwiperCore | null>(null);
 	const { isMobile, isDesktop } = useDeviceDetection();
 
-	const { t } = useTranslation("translation");
+	const { t, i18n } = useTranslation("translation");
+	const cvHref = i18n.language?.toLowerCase().startsWith("en")
+		? "/cv/Matteo_Poli_CV_EN.pdf"
+		: "/cv/Matteo_Poli_CV_IT.pdf";
 
 	return (
 		<main className="w-screen h-[100dvh] overflow-hidden relative bg-frame-white p-[clamp(8px,2vw,16px)] cursor-default">
@@ -66,11 +69,31 @@ export default function Home() {
 					onClick={() => swiper?.slideTo(0)}
 					priority
 				/>
-				<ThemeToggle />
+				<div className="flex items-center gap-2 md:gap-3">
+					<a
+						href="https://www.linkedin.com/in/urion"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={t("actions.linkedin")}
+						className="flex items-center justify-center w-9 h-9 rounded-full bg-white/15 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus-visible:outline-2 focus-visible:outline-white"
+					>
+						<Linkedin className="w-5 h-5" />
+					</a>
+					<a
+						href={cvHref}
+						download
+						aria-label={t("actions.cv")}
+						className="flex items-center gap-1.5 rounded-full bg-white text-black font-semibold text-sm px-3 h-9 shadow-md transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+					>
+						<FileDown className="w-4 h-4" />
+						<span>CV</span>
+					</a>
+					<ThemeToggle />
+				</div>
 			</div>
 
 			<Swiper
-				className="w-full h-[calc(100vh-1.5rem)] md:h-[calc(100vh-2rem)] overflow-hidden"
+				className="w-full h-full overflow-hidden"
 				onSwiper={setSwiper}
 				direction="vertical"
 				slidesPerView={1}

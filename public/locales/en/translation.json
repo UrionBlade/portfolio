@@ -5,38 +5,79 @@
 		"cta": "Close"
 	},
 	"hero": {
+		"available": "Open to new opportunities",
 		"custom_development": "Custom development",
 		"headline": "I build digital experiences that make you say ",
 		"exclamation": "wow",
-		"description": "Custom animations, fluid designs, and code that converts. I work with small businesses to create products that feel like magic.",
+		"description": "Front-end developer. I craft animated, fast and accessible interfaces — for companies and teams who want products that feel like magic.",
 		"cta_projects": "View projects",
-		"cta_contact": "Pitch me an idea"
+		"cta_contact": "Pitch me an idea",
+		"cta_cv": "Download CV"
 	},
 	"services": {
-		"title": "What I can build for you",
-		"description": "Every project is tailor-made to communicate better, sell more, or simply impress.",
+		"title": "What I do",
+		"description": "No templates. I build bespoke interfaces, crafted down to the detail — from the first pixel to the last animation.",
 		"items": {
 			"0": {
-				"title": "Showcase websites",
-				"text": "Present your company online with style and speed. Responsive, modern, and memorable."
+				"title": "Animation & micro-interactions",
+				"text": "Living interfaces at 60fps with Framer Motion and GSAP: transitions, scroll-driven effects and details that guide the user."
 			},
 			"1": {
-				"title": "E-commerce",
-				"text": "An online store that converts, with a simple and intuitive shopping experience."
+				"title": "Performance & SEO",
+				"text": "Optimized Next.js, green Core Web Vitals, lazy-loading and fast rendering. Fast for users, visible on Google."
 			},
 			"2": {
-				"title": "Landing pages",
-				"text": "Pages focused on one goal: conversion. Perfect for marketing campaigns or ads."
+				"title": "Accessibility & responsive",
+				"text": "WCAG, keyboard navigation, proper contrast and fluid layouts that truly work on every screen."
 			},
 			"3": {
-				"title": "Custom applications",
-				"text": "Management tools, portals, or internal tools. Built around your workflow, not the other way around."
+				"title": "Scalable code",
+				"text": "TypeScript, reusable components and design systems in Tailwind. Clean code a team can maintain."
+			}
+		}
+	},
+	"projects": {
+		"title": "Some of my projects",
+		"description": "Real sites for real businesses and lab-grown concepts. No templates: every pixel is hand-written.",
+		"visit": "Visit the site",
+		"role": "Design & development",
+		"items": {
+			"watermelon": {
+				"name": "Watermelon Studio",
+				"tag": "Agency",
+				"role": "Founder · design & development",
+				"description": "My web design agency: bold, bespoke digital experiences, awarded at the CSS Design Awards."
+			},
+			"rachele": {
+				"name": "Rachele Dolcezze",
+				"tag": "Showcase site",
+				"role": "Design & development",
+				"description": "Artisan pastry shop in Travedona Monate: a soft, mouth-watering showcase for handmade sweets."
+			},
+			"silvana": {
+				"name": "Silvana Barbato",
+				"tag": "Showcase site",
+				"role": "Design & development",
+				"description": "Interior designer in Varese. A site as clean and elegant as the spaces she designs."
+			},
+			"lafontana": {
+				"name": "La Fontana",
+				"tag": "Showcase site",
+				"role": "Design & development",
+				"description": "Architecture and engineering firm in Monza, since 1963: one partner, from idea to construction site."
+			},
+			"inkhaus": {
+				"name": "Inkhaus",
+				"tag": "Concept",
+				"role": "Design & development",
+				"description": "Milan tattoo studio: dark, bold and dripping with ink like its flash sheets."
 			}
 		}
 	},
 	"about": {
 		"title": "About me",
 		"description": "Freelance front-end developer with a strong focus on design, user experience, and code quality. I collaborate with dynamic teams to create modern and engaging solutions.",
+		"stackLabel": "My stack",
 		"quote": "The best interface is the one that fades away, but leaves a mark.",
 		"timeline": [
 			{
@@ -81,13 +122,18 @@
 		"description": "Do you have an idea, a project, a challenge? Write to me.",
 		"email": "matteo.poli4@gmail.com",
 		"phone": "+39 377 30 66 802",
-		"location": "Como, Italy",
+		"location": "Besozzo (VA), Italy",
 		"placeholderName": "Your name",
 		"placeholderEmail": "Your email",
 		"placeholderMessage": "Your message",
 		"sendButton": "Send message",
 		"success": "Message sent successfully!",
+		"error": "Sending failed. Try again or email me directly.",
 		"copied": "Copied to clipboard!"
+	},
+	"actions": {
+		"linkedin": "Go to my LinkedIn profile",
+		"cv": "Download CV"
 	},
 	"footer": {
 		"copyright": "© 2025 - Matteo Poli",

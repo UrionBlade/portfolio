@@ -1,11 +1,6 @@
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
-import {
-	MonitorSmartphone,
-	MousePointerClick,
-	ShoppingBag,
-	Workflow,
-} from "lucide-react";
+import { Accessibility, Blocks, Gauge, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pagination } from "swiper/modules";
@@ -43,10 +38,10 @@ const ServicesSection = () => {
 	}, [isDark]);
 
 	const icons = [
-		<MonitorSmartphone key="monitor-smartphone" className="w-6 h-6" />,
-		<ShoppingBag key="shopping-bag" className="w-6 h-6" />,
-		<MousePointerClick key="mouse-pointer-click" className="w-6 h-6" />,
-		<Workflow key="workflow" className="w-6 h-6" />,
+		<Sparkles key="sparkles" className="w-6 h-6" />,
+		<Gauge key="gauge" className="w-6 h-6" />,
+		<Accessibility key="accessibility" className="w-6 h-6" />,
+		<Blocks key="blocks" className="w-6 h-6" />,
 	];
 
 	return (

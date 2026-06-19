@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import FrameContent from "../dumb/FrameContent";
 
 const AboutSection = () => {
 	const { theme } = useTheme();
@@ -16,61 +17,92 @@ const AboutSection = () => {
 		description: string;
 	}>;
 
+	const stack = [
+		"React",
+		"TypeScript",
+		"Next.js",
+		"JavaScript",
+		"Tailwind CSS",
+		"GSAP",
+		"Framer Motion",
+		"Node.js",
+		"Git",
+		"Figma",
+	];
+
 	return (
 		<section
-			className="relative w-full min-h-screen px-6 py-24 flex flex-col justify-center items-center overflow-hidden text-white dark:text-white bg-gradient-to-b from-violet-600 to-purple-800 dark:from-dark-muted dark:to-dark-bg-2"
+			className="relative w-full h-full overflow-hidden text-white dark:text-white bg-gradient-to-b from-violet-600 to-purple-800 dark:from-dark-muted dark:to-dark-bg-2"
 			id="about"
 		>
-			<div className="relative z-10 w-full text-center mb-16">
-				<h2 className="text-4xl md:text-5xl font-bold mb-6">
-					{t("about.title")}
-				</h2>
-				<p className="text-lg md:text-xl text-white/90 dark:text-white/80 mx-auto max-w-6xl">
-					{t("about.description")}
-				</p>
-			</div>
-
-			<div className="relative z-10 w-full mb-20 px-2 sm:px-6">
-				<div className="relative w-full">
-					<div className="absolute top-[70px] left-0 w-full h-[2px] bg-white/30 dark:bg-yellow-500" />
-					<Swiper
-						spaceBetween={24}
-						slidesPerView={1.2}
-						breakpoints={{
-							640: { slidesPerView: 2.5 },
-							1024: { slidesPerView: 3.5 },
-						}}
-						className={`pb-8 ${isGrabbing ? "cursor-grabbing" : "cursor-grab"}`}
-						onTouchStart={() => setIsGrabbing(true)}
-						onTouchEnd={() => setIsGrabbing(false)}
-						onMouseDown={() => setIsGrabbing(true)}
-						onMouseUp={() => setIsGrabbing(false)}
-					>
-						{timeline.map((item) => (
-							<SwiperSlide key={item.title} className="relative h-full">
-								<div className="flex flex-col items-center">
-									<p className="text-white/70 dark:text-yellow-500 italic text-sm mb-2">
-										{item.year}
-									</p>
-									<div className="h-[40px] w-[2px] bg-white/40 dark:bg-yellow-500 mb-4" />
-									<div className="text-center px-4">
-										<p className="text-white font-bold text-base mb-1">
-											{item.title}
-										</p>
-										<p className="text-sm text-white mx-auto leading-snug max-w-72">
-											{item.description}
-										</p>
-									</div>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
+			<FrameContent>
+				<div className="relative z-10 w-full text-center mb-10">
+					<h2 className="text-4xl md:text-5xl font-bold mb-6">
+						{t("about.title")}
+					</h2>
+					<p className="text-lg md:text-xl text-white/90 dark:text-white/80 mx-auto max-w-6xl">
+						{t("about.description")}
+					</p>
 				</div>
-			</div>
 
-			<div className="relative z-10 text-center italic text-white/80 dark:text-white/60">
-				<p>{t("about.quote")}</p>
-			</div>
+				<div className="relative z-10 w-full max-w-[44rem] mx-auto mb-12 text-center">
+					<p className="text-xs uppercase tracking-[0.2em] text-white/60 dark:text-yellow-500 mb-3">
+						{t("about.stackLabel")}
+					</p>
+					<ul className="flex flex-wrap justify-center gap-2">
+						{stack.map((tech) => (
+							<li
+								key={tech}
+								className="px-3 py-1 rounded-full text-sm bg-white/10 border border-white/25 text-white"
+							>
+								{tech}
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<div className="relative z-10 w-full mb-20 px-2 sm:px-6">
+					<div className="relative w-full">
+						<div className="absolute top-[70px] left-0 w-full h-[2px] bg-white/30 dark:bg-yellow-500" />
+						<Swiper
+							spaceBetween={24}
+							slidesPerView={1.2}
+							breakpoints={{
+								640: { slidesPerView: 2.5 },
+								1024: { slidesPerView: 3.5 },
+							}}
+							className={`pb-8 ${isGrabbing ? "cursor-grabbing" : "cursor-grab"}`}
+							onTouchStart={() => setIsGrabbing(true)}
+							onTouchEnd={() => setIsGrabbing(false)}
+							onMouseDown={() => setIsGrabbing(true)}
+							onMouseUp={() => setIsGrabbing(false)}
+						>
+							{timeline.map((item) => (
+								<SwiperSlide key={item.title} className="relative h-full">
+									<div className="flex flex-col items-center">
+										<p className="text-white/70 dark:text-yellow-500 italic text-sm mb-2">
+											{item.year}
+										</p>
+										<div className="h-[40px] w-[2px] bg-white/40 dark:bg-yellow-500 mb-4" />
+										<div className="text-center px-4">
+											<p className="text-white font-bold text-base mb-1">
+												{item.title}
+											</p>
+											<p className="text-sm text-white mx-auto leading-snug max-w-72">
+												{item.description}
+											</p>
+										</div>
+									</div>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</div>
+				</div>
+
+				<div className="relative z-10 text-center italic text-white/80 dark:text-white/60">
+					<p>{t("about.quote")}</p>
+				</div>
+			</FrameContent>
 
 			<div className="absolute bottom-0 left-0 w-full h-[60vh] z-0 overflow-hidden">
 				<svg

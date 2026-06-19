@@ -5,38 +5,79 @@
 		"cta": "Chiudi"
 	},
 	"hero": {
+		"available": "Disponibile per nuove opportunità",
 		"custom_development": "Sviluppo su misura",
 		"headline": "Costruisco esperienze digitali che fanno dire ",
 		"exclamation": "wow",
-		"description": "Animazioni su misura, design fluidi e codice che converte. Lavoro con piccole aziende per creare prodotti che sembrano magia.",
+		"description": "Front-end developer. Creo interfacce animate, veloci e accessibili — per aziende e team che vogliono prodotti che sembrano magia.",
 		"cta_projects": "Guarda i progetti",
-		"cta_contact": "Scrivimi un’idea"
+		"cta_contact": "Scrivimi un’idea",
+		"cta_cv": "Scarica il CV"
 	},
 	"services": {
-		"title": "Cosa posso realizzare per te",
-		"description": "Ogni progetto è costruito su misura per comunicare meglio, vendere di più o semplicemente stupire.",
+		"title": "Cosa so fare",
+		"description": "Niente template. Costruisco interfacce su misura, curate nei dettagli, dal primo pixel all'ultima animazione.",
 		"items": {
 			"0": {
-				"title": "Siti vetrina",
-				"text": "Presenta la tua azienda online con stile e velocità. Responsive, moderni e memorabili."
+				"title": "Animazioni & micro-interazioni",
+				"text": "Interfacce vive a 60fps con Framer Motion e GSAP: transizioni, effetti scroll-driven e dettagli che guidano l'utente."
 			},
 			"1": {
-				"title": "E-commerce",
-				"text": "Un negozio online che converte, con un'esperienza d'acquisto semplice e intuitiva."
+				"title": "Performance & SEO",
+				"text": "Next.js ottimizzato, Core Web Vitals nel verde, lazy-loading e rendering veloce. Rapido per gli utenti, visibile su Google."
 			},
 			"2": {
-				"title": "Landing page",
-				"text": "Pagine focalizzate su un obiettivo: convertire. Perfette per campagne marketing o annunci."
+				"title": "Accessibilità & responsive",
+				"text": "WCAG, navigazione da tastiera, contrasti corretti e layout fluidi che funzionano davvero su ogni schermo."
 			},
 			"3": {
-				"title": "Applicazioni su misura",
-				"text": "Gestionali, portali o tool interni. Costruiti attorno al tuo flusso di lavoro, non il contrario."
+				"title": "Codice scalabile",
+				"text": "TypeScript, componenti riutilizzabili e design system in Tailwind. Codice pulito che un team può mantenere."
+			}
+		}
+	},
+	"projects": {
+		"title": "Alcuni tra i miei progetti",
+		"description": "Siti reali per attività vere e concept nati in laboratorio. Niente template: ogni pixel è scritto a mano.",
+		"visit": "Visita il sito",
+		"role": "Design & sviluppo",
+		"items": {
+			"watermelon": {
+				"name": "Watermelon Studio",
+				"tag": "Agenzia",
+				"role": "Fondatore · design & sviluppo",
+				"description": "La mia agenzia di web design: esperienze digitali audaci e su misura, premiate ai CSS Design Awards."
+			},
+			"rachele": {
+				"name": "Rachele Dolcezze",
+				"tag": "Sito vetrina",
+				"role": "Design & sviluppo",
+				"description": "Pasticceria artigianale a Travedona Monate: una vetrina morbida e golosa per dolci fatti a mano."
+			},
+			"silvana": {
+				"name": "Silvana Barbato",
+				"tag": "Sito vetrina",
+				"role": "Design & sviluppo",
+				"description": "Interior designer a Varese. Un sito pulito ed elegante quanto gli spazi che progetta."
+			},
+			"lafontana": {
+				"name": "La Fontana",
+				"tag": "Sito vetrina",
+				"role": "Design & sviluppo",
+				"description": "Studio di architettura e ingegneria a Monza, dal 1963: un unico interlocutore, dall'idea al cantiere."
+			},
+			"inkhaus": {
+				"name": "Inkhaus",
+				"tag": "Concept",
+				"role": "Design & sviluppo",
+				"description": "Studio di tatuaggi milanese: scuro, deciso e pieno d'inchiostro come i suoi flash."
 			}
 		}
 	},
 	"about": {
 		"title": "Chi sono",
 		"description": "Sviluppatore front-end freelance con una forte attenzione al design, all'esperienza utente e alla qualità del codice. Collaboro con team dinamici per creare soluzioni moderne e coinvolgenti.",
+		"stackLabel": "Il mio stack",
 		"quote": "L'interfaccia migliore è quella che sa farsi dimenticare, ma resta impressa.",
 		"timeline": [
 			{
@@ -81,13 +122,18 @@
 		"description": "Hai un’idea, un progetto, una sfida? Scrivimi.",
 		"email": "matteo.poli4@gmail.com",
 		"phone": "+39 377 30 66 802",
-		"location": "Como, Italia",
+		"location": "Besozzo (VA), Italia",
 		"placeholderName": "Il tuo nome",
 		"placeholderEmail": "La tua email",
 		"placeholderMessage": "Il tuo messaggio",
 		"sendButton": "Invia messaggio",
 		"success": "Messaggio inviato con successo!",
+		"error": "Invio non riuscito. Riprova o scrivimi direttamente via email.",
 		"copied": "Copiato negli appunti!"
+	},
+	"actions": {
+		"linkedin": "Vai al mio profilo LinkedIn",
+		"cv": "Scarica il CV"
 	},
 	"footer": {
 		"copyright": "© 2025 - Matteo Poli",

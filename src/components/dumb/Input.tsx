@@ -25,6 +25,7 @@ const Input: React.FC<InputProps> = ({
 				value={value}
 				onChange={onChange}
 				placeholder={placeholder}
+				aria-label={placeholder}
 				className={twMerge(
 					"w-full px-5 py-3 rounded-md border transition-all duration-300",
 					isDark

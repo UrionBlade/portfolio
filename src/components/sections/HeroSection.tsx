@@ -3,21 +3,25 @@
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "../dumb/Button";
+import FrameContent from "../dumb/FrameContent";
 
 interface HeroSectionProps {
 	onCTAProject?: () => void;
 	onCTAContact?: () => void;
 }
 
-const HeroSection: FC<HeroSectionProps> = ({ onCTAProject, onCTAContact }) => {
-	const { t } = useTranslation();
+const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
+	const { t, i18n } = useTranslation();
 	const { theme } = useTheme();
 	const { isMobile } = useDeviceDetection();
+
+	const cvHref = i18n.language?.toLowerCase().startsWith("en")
+		? "/cv/Matteo_Poli_CV_EN.pdf"
+		: "/cv/Matteo_Poli_CV_IT.pdf";
 
 	const isDark = useMemo(() => theme === "dark", [theme]);
 
@@ -98,13 +102,15 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject, onCTAContact }) => {
 			colorStep++;
 		};
 
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
 		animate();
 		const interval = setInterval(animate, 10000);
 		return () => clearInterval(interval);
 	}, [isDark, isMobile]);
 
 	return (
-		<section className="relative w-full h-full overflow-hidden text-white bg-dark-muted dark:bg-dark-bg-1 dark:text-white px-6 transition-colors duration-500">
+		<section className="relative w-full h-full overflow-hidden text-white bg-dark-muted dark:bg-dark-bg-1 dark:text-white transition-colors duration-500">
 			{/* Background grid effect - only on light mode */}
 			<div
 				id="grid-bg"
@@ -112,16 +118,19 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject, onCTAContact }) => {
 			/>
 
 			{/* Content */}
-			<div className="relative z-10 w-full h-full max-w-6xl mx-auto flex flex-col justify-center items-center">
+			<FrameContent className="items-center max-w-6xl mx-auto">
 				<motion.div
-					className={`flex items-center gap-3 ${currentAccent} mb-4`}
+					className="flex items-center gap-2 mb-6 rounded-full bg-white/10 border border-white/25 backdrop-blur-sm px-4 py-1.5"
 					initial={{ opacity: 0, y: -20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
 				>
-					<Sparkles className="w-6 h-6 animate-bounce" />
-					<span className="text-sm uppercase tracking-wider font-bold">
-						{t("hero.custom_development")}
+					<span className="relative flex h-2.5 w-2.5">
+						<span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping motion-reduce:hidden" />
+						<span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-400" />
+					</span>
+					<span className="text-xs sm:text-sm uppercase tracking-wider font-bold text-white">
+						{t("hero.available")}
 					</span>
 				</motion.div>
 
@@ -155,11 +164,22 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject, onCTAContact }) => {
 					<Button onClick={onCTAProject} variant="primary" type="button">
 						{t("hero.cta_projects")}
 					</Button>
-					<Button onClick={onCTAContact} variant="secondary" type="button">
-						{t("hero.cta_contact")}
+					<Button
+						onClick={() => {
+							const a = document.createElement("a");
+							a.href = cvHref;
+							a.download = "";
+							document.body.appendChild(a);
+							a.click();
+							a.remove();
+						}}
+						variant="secondary"
+						type="button"
+					>
+						{t("hero.cta_cv")}
 					</Button>
 				</motion.div>
-			</div>
+			</FrameContent>
 		</section>
 	);
 };

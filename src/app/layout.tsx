@@ -5,8 +5,8 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
-import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
 	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],

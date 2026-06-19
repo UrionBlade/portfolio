@@ -26,6 +26,7 @@ const Textarea: React.FC<TextareaProps> = ({
 				value={value}
 				onChange={onChange}
 				placeholder={placeholder}
+				aria-label={placeholder}
 				rows={rows}
 				className={twMerge(
 					"w-full px-5 py-3 rounded-md border transition-all duration-300 resize-none",
