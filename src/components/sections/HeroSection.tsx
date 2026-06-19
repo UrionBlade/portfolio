@@ -14,6 +14,14 @@ interface HeroSectionProps {
 	onCTAContact?: () => void;
 }
 
+const ACCENT_STEPS = [
+	"text-purple-300",
+	"text-coral-200",
+	"text-orange-200",
+	"text-mint-300",
+	"text-sky-300",
+];
+
 const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 	const { t, i18n } = useTranslation();
 	const { theme } = useTheme();
@@ -25,88 +33,154 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 
 	const isDark = useMemo(() => theme === "dark", [theme]);
 
-	const accentSteps: string[] = [
-		"text-purple-300",
-		"text-coral-200",
-		"text-orange-200",
-		"text-mint-300",
-		"text-sky-300",
-	];
-
 	const [accentStep, setAccentStep] = useState(0);
 	const currentAccent = useMemo(() => {
 		if (isDark) return "text-yellow-500";
-		return accentSteps[accentStep % accentSteps.length];
+		return ACCENT_STEPS[accentStep % ACCENT_STEPS.length];
 	}, [isDark, accentStep]);
 
+	// Cycle the "wow" accent color (light mode only, respects reduced motion).
 	useEffect(() => {
-		if (typeof window === "undefined") return;
-
-		if (isDark) {
-			const container = document.getElementById("grid-bg");
-			if (container) container.innerHTML = "";
+		if (isDark) return;
+		if (
+			typeof window !== "undefined" &&
+			window.matchMedia("(prefers-reduced-motion: reduce)").matches
+		)
 			return;
-		}
+		const id = setInterval(
+			() => setAccentStep((p) => (p + 1) % ACCENT_STEPS.length),
+			2600,
+		);
+		return () => clearInterval(id);
+	}, [isDark]);
+
+	// Magnetic, mouse-reactive color grid (light mode only).
+	useEffect(() => {
 		if (typeof window === "undefined") return;
 		const container = document.getElementById("grid-bg");
 		if (!container) return;
 
-		const size = isMobile ? 40 : 140;
+		if (isDark) {
+			container.innerHTML = "";
+			return;
+		}
+
+		const reduce = window.matchMedia(
+			"(prefers-reduced-motion: reduce)",
+		).matches;
+
+		const size = isMobile ? 56 : 120;
 		const cols = Math.ceil(window.innerWidth / size);
 		const rows = Math.ceil(window.innerHeight / size);
-		const total = cols * rows;
+
+		// Brand palette sampled as a smooth left→right gradient.
+		const palette = [
+			[255, 107, 107], // coral
+			[255, 128, 0], // orange
+			[0, 255, 184], // mint
+			[0, 127, 255], // sky
+			[209, 55, 255], // orchid
+		];
+		const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+		const colorAt = (f: number) => {
+			const x = Math.max(0, Math.min(0.9999, f)) * (palette.length - 1);
+			const i = Math.floor(x);
+			const t = x - i;
+			const a = palette[i];
+			const b = palette[Math.min(palette.length - 1, i + 1)];
+			return [
+				Math.round(lerp(a[0], b[0], t)),
+				Math.round(lerp(a[1], b[1], t)),
+				Math.round(lerp(a[2], b[2], t)),
+			];
+		};
 
 		container.innerHTML = "";
 		container.style.display = "grid";
 		container.style.gridTemplateColumns = `repeat(${cols}, ${size}px)`;
 		container.style.gridTemplateRows = `repeat(${rows}, ${size}px)`;
 
-		const blocks: HTMLDivElement[] = [];
-
-		for (let i = 0; i < total; i++) {
-			const div = document.createElement("div");
-			div.style.width = `${size}px`;
-			div.style.height = `${size}px`;
-			div.style.transition =
-				"background 0.8s ease-in-out, transform 1.2s cubic-bezier(0.77, 0, 0.175, 1)";
-
-			div.style.background = "#cc5252"; // coral-600
-			blocks.push(div);
-			container.appendChild(div);
+		type Cell = {
+			el: HTMLDivElement;
+			cx: number;
+			cy: number;
+			rgb: number[];
+			intensity: number;
+		};
+		const cells: Cell[] = [];
+		for (let r = 0; r < rows; r++) {
+			for (let c = 0; c < cols; c++) {
+				const wrap = document.createElement("div");
+				wrap.style.width = `${size}px`;
+				wrap.style.height = `${size}px`;
+				wrap.style.padding = "4px";
+				wrap.style.boxSizing = "border-box";
+				const el = document.createElement("div");
+				const rgb = colorAt(c / Math.max(1, cols - 1));
+				el.style.width = "100%";
+				el.style.height = "100%";
+				el.style.borderRadius = "12px";
+				el.style.backgroundColor = `rgba(${rgb[0]},${rgb[1]},${rgb[2]},0.14)`;
+				el.style.willChange = "transform, background-color";
+				wrap.appendChild(el);
+				container.appendChild(wrap);
+				cells.push({
+					el,
+					cx: c * size + size / 2,
+					cy: r * size + size / 2,
+					rgb,
+					intensity: 0,
+				});
+			}
 		}
 
-		let colorStep = 0;
-		const colors = ["#cc5252", "#cc6600", "#00996e", "#0066cc", "#811f99"];
+		// Static, calm grid for reduced-motion users.
+		if (reduce) return;
 
-		const animate = () => {
-			const delayMap: Map<number, HTMLDivElement[]> = new Map();
-			setAccentStep((prev) =>
-				prev + 1 > accentSteps.length - 1 ? 0 : prev + 1,
-			);
-			for (let row = 0; row < rows; row++) {
-				for (let col = 0; col < cols; col++) {
-					const index = row * cols + col;
-					const diagonal = row + col;
-					if (!delayMap.has(diagonal)) delayMap.set(diagonal, []);
-					const delay = diagonal * 100;
-					setTimeout(() => {
-						const block = blocks[index];
-						block.style.transform = "rotateY(180deg)";
-						block.style.background = colors[colorStep % colors.length];
-						setTimeout(() => {
-							block.style.transform = "rotateY(0deg)";
-						}, 600);
-					}, delay);
-				}
-			}
-			colorStep++;
+		let mouseX = -9999;
+		let mouseY = -9999;
+		const radius = isMobile ? 170 : 260;
+		const onMove = (e: PointerEvent) => {
+			const rect = container.getBoundingClientRect();
+			mouseX = e.clientX - rect.left;
+			mouseY = e.clientY - rect.top;
 		};
+		const onLeave = (e: PointerEvent) => {
+			if (e.relatedTarget) return; // only when the pointer truly leaves the window
+			mouseX = -9999;
+			mouseY = -9999;
+		};
+		window.addEventListener("pointermove", onMove);
+		window.addEventListener("pointerout", onLeave);
 
-		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		let raf = 0;
+		let startTs = 0;
+		const tick = (ts: number) => {
+			if (!startTs) startTs = ts;
+			const time = ts - startTs;
+			for (const cell of cells) {
+				// soft ambient wave so the grid breathes even at rest
+				const ambient =
+					0.06 + 0.06 * Math.sin(time * 0.0011 + (cell.cx + cell.cy) * 0.0045);
+				// magnetic falloff around the cursor
+				const dx = cell.cx - mouseX;
+				const dy = cell.cy - mouseY;
+				const m = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / radius);
+				const target = Math.max(ambient, m * m);
+				cell.intensity += (target - cell.intensity) * 0.12;
+				const i = cell.intensity;
+				cell.el.style.backgroundColor = `rgba(${cell.rgb[0]},${cell.rgb[1]},${cell.rgb[2]},${(0.1 + i * 0.85).toFixed(3)})`;
+				cell.el.style.transform = `scale(${(1 + i * 0.16).toFixed(3)})`;
+			}
+			raf = requestAnimationFrame(tick);
+		};
+		raf = requestAnimationFrame(tick);
 
-		animate();
-		const interval = setInterval(animate, 10000);
-		return () => clearInterval(interval);
+		return () => {
+			cancelAnimationFrame(raf);
+			window.removeEventListener("pointermove", onMove);
+			window.removeEventListener("pointerout", onLeave);
+		};
 	}, [isDark, isMobile]);
 
 	return (

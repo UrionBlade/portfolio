@@ -58,74 +58,95 @@ const PROJECTS: ProjectConfig[] = [
 	},
 ];
 
-const GooeyBackground = () => {
-	const COLOR = "#339aff";
-	return (
-		<svg
-			className="absolute inset-0 w-full h-full z-10 pointer-events-none motion-reduce:hidden"
-			viewBox="0 0 800 600"
-			preserveAspectRatio="xMidYMid slice"
-		>
-			<title>Animated gooey background</title>
-			<defs>
-				<filter id="goo">
-					<feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
-					<feColorMatrix
-						in="blur"
-						mode="matrix"
-						values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 30 -10"
-						result="goo"
-					/>
-					<feBlend in="SourceGraphic" in2="goo" />
-				</filter>
-			</defs>
-			<g filter="url(#goo)">
-				<circle cx="200" cy="300" r="80" fill={COLOR}>
+// Slow, organic metaballs that merge and drift behind the project grid.
+const BLOBS = [
+	{
+		r: 130,
+		fill: "#66b3ff",
+		cx: "120;360;180;120",
+		cy: "180;120;260;180",
+		dx: "22s",
+		dy: "18s",
+	},
+	{
+		r: 170,
+		fill: "#339aff",
+		cx: "520;300;560;520",
+		cy: "360;420;320;360",
+		dx: "26s",
+		dy: "21s",
+	},
+	{
+		r: 90,
+		fill: "#99ccff",
+		cx: "360;220;420;360",
+		cy: "120;220;160;120",
+		dx: "19s",
+		dy: "15s",
+	},
+	{
+		r: 140,
+		fill: "#1f86f0",
+		cx: "640;480;680;640",
+		cy: "200;300;160;200",
+		dx: "24s",
+		dy: "20s",
+	},
+	{
+		r: 110,
+		fill: "#66b3ff",
+		cx: "240;460;300;240",
+		cy: "460;380;500;460",
+		dx: "23s",
+		dy: "17s",
+	},
+];
+
+const GooeyBackground = () => (
+	<svg
+		className="absolute inset-0 w-full h-full z-10 pointer-events-none opacity-90 motion-reduce:hidden"
+		viewBox="0 0 800 600"
+		preserveAspectRatio="xMidYMid slice"
+	>
+		<title>Animated gooey background</title>
+		<defs>
+			<filter id="goo">
+				<feGaussianBlur in="SourceGraphic" stdDeviation="22" result="blur" />
+				<feColorMatrix
+					in="blur"
+					mode="matrix"
+					values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -11"
+					result="goo"
+				/>
+				<feBlend in="SourceGraphic" in2="goo" />
+			</filter>
+		</defs>
+		<g filter="url(#goo)">
+			{BLOBS.map((b) => (
+				<circle key={`${b.cx}-${b.cy}`} cx={120} cy={180} r={b.r} fill={b.fill}>
 					<animate
 						attributeName="cx"
-						values="200;400;180;200"
-						dur="8s"
+						values={b.cx}
+						dur={b.dx}
+						calcMode="spline"
+						keyTimes="0;0.4;0.7;1"
+						keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
 						repeatCount="indefinite"
 					/>
 					<animate
 						attributeName="cy"
-						values="300;200;320;300"
-						dur="6s"
+						values={b.cy}
+						dur={b.dy}
+						calcMode="spline"
+						keyTimes="0;0.4;0.7;1"
+						keySplines="0.4 0 0.2 1;0.4 0 0.2 1;0.4 0 0.2 1"
 						repeatCount="indefinite"
 					/>
 				</circle>
-				<circle cx="500" cy="350" r="100" fill={COLOR}>
-					<animate
-						attributeName="cx"
-						values="500;300;520;500"
-						dur="10s"
-						repeatCount="indefinite"
-					/>
-					<animate
-						attributeName="cy"
-						values="350;400;340;350"
-						dur="7s"
-						repeatCount="indefinite"
-					/>
-				</circle>
-				<circle cx="350" cy="200" r="60" fill={COLOR}>
-					<animate
-						attributeName="cx"
-						values="350;450;330;350"
-						dur="9s"
-						repeatCount="indefinite"
-					/>
-					<animate
-						attributeName="cy"
-						values="200;250;190;200"
-						dur="5s"
-						repeatCount="indefinite"
-					/>
-				</circle>
-			</g>
-		</svg>
-	);
-};
+			))}
+		</g>
+	</svg>
+);
 
 const ProjectCard = ({
 	project,

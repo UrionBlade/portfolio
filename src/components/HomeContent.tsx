@@ -77,7 +77,12 @@ export default function Home() {
 						aria-label={t("actions.linkedin")}
 						className="flex items-center justify-center w-9 h-9 rounded-full bg-white/15 text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus-visible:outline-2 focus-visible:outline-white"
 					>
-						<Linkedin className="w-5 h-5" />
+						<Linkedin
+							className="w-5 h-5"
+							fill="currentColor"
+							aria-hidden="true"
+						/>
+						<span className="sr-only">LinkedIn</span>
 					</a>
 					<a
 						href={cvHref}
