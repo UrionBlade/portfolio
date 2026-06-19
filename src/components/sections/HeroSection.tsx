@@ -214,7 +214,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 			{/* Content */}
 			<FrameContent className="items-center max-w-6xl mx-auto">
 				<motion.div
-					className="flex items-center gap-2 mb-6 rounded-full bg-white/10 border border-white/25 backdrop-blur-sm px-4 py-1.5"
+					className="flex items-center gap-2 mb-6 rounded-full bg-white/12 border border-white/20 px-4 py-1.5"
 					initial={{ y: -20 }}
 					animate={{ y: 0 }}
 					transition={{ duration: 0.6 }}
@@ -251,6 +251,9 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 					className="mt-8 flex flex-col md:flex-row justify-center items-center gap-4 w-full"
 					initial={false}
 				>
+					<Button onClick={onCTAProject} variant="primary" type="button">
+						{t("hero.cta_projects")}
+					</Button>
 					<Button
 						onClick={() => {
 							const a = document.createElement("a");
@@ -260,13 +263,10 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 							a.click();
 							a.remove();
 						}}
-						variant="primary"
+						variant="secondary"
 						type="button"
 					>
 						{t("hero.cta_cv")}
-					</Button>
-					<Button onClick={onCTAProject} variant="secondary" type="button">
-						{t("hero.cta_projects")}
 					</Button>
 				</motion.div>
 
@@ -293,7 +293,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 								alt={a.alt}
 								width={48}
 								height={48}
-								className="w-10 h-10 md:w-12 md:h-12 drop-shadow-md transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-0.5 motion-reduce:transition-none"
+								className="w-12 h-12 md:w-14 md:h-14 drop-shadow-md transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-0.5 motion-reduce:transition-none"
 							/>
 						))}
 					</a>

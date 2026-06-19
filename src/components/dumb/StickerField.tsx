@@ -95,7 +95,9 @@ const StickerField = () => {
 			engine.gravity.y = 0; // float & scatter, no bottom pile
 			const world = engine.world;
 
-			const items: Item[] = Array.from({ length: COUNT }, (_, i) => {
+			// fewer stickers on small screens — 9 pile up and cover the content
+			const count = container.clientWidth < 640 ? 5 : COUNT;
+			const items: Item[] = Array.from({ length: count }, (_, i) => {
 				const idx = i % imgs.length;
 				const img = imgs[idx];
 				const target = (96 + Math.random() * 46) * dpr;

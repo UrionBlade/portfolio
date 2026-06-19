@@ -39,7 +39,7 @@ const AboutSection = () => {
 		>
 			<FrameContent>
 				{/* Header — centered, constrained measure */}
-				<div className="relative z-10 w-full text-center mb-8">
+				<div className="relative z-10 w-full text-center mb-4 md:mb-6">
 					<h2 className="font-display text-4xl md:text-5xl font-extrabold mb-4">
 						{t("about.title")}
 					</h2>
@@ -49,7 +49,7 @@ const AboutSection = () => {
 				</div>
 
 				{/* Stack — centered */}
-				<div className="relative z-10 w-full mb-10 text-center">
+				<div className="relative z-10 w-full mb-4 md:mb-6 text-center">
 					<p className="text-xs uppercase tracking-[0.2em] text-white/70 dark:text-yellow-500 mb-3">
 						{t("about.stackLabel")}
 					</p>
@@ -68,8 +68,8 @@ const AboutSection = () => {
 				{/* Timeline — draggable (free momentum), edge-faded, no controls.
 				    The grab cursor + the slides fading out at both edges make the
 				    horizontal drag clear without any chrome. */}
-				<div className="relative z-10 w-full mb-14">
-					<p className="text-center text-xs uppercase tracking-[0.2em] text-white/70 dark:text-yellow-500 mb-7">
+				<div className="relative z-10 w-full mb-6 md:mb-8">
+					<p className="text-center text-xs uppercase tracking-[0.2em] text-white/70 dark:text-yellow-500 mb-3 md:mb-5">
 						{t("about.timelineLabel")}
 					</p>
 					<div className="relative [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]">
@@ -99,7 +99,7 @@ const AboutSection = () => {
 										</p>
 										{/* node dot, centered on the rail (rail is at 58px) */}
 										<span className="mt-[6px] w-3 h-3 rounded-full bg-white dark:bg-yellow-500 ring-4 ring-white/10 dark:ring-yellow-500/20" />
-										<p className="mt-7 font-display text-white font-bold text-base sm:text-lg">
+										<p className="mt-5 md:mt-7 font-display text-white font-bold text-base sm:text-lg">
 											{item.title}
 										</p>
 										<p className="mt-1.5 text-sm text-white/70 leading-snug max-w-[15rem] px-2">
@@ -112,8 +112,8 @@ const AboutSection = () => {
 					</div>
 				</div>
 
-				{/* Quote — centered */}
-				<div className="relative z-10 text-center italic text-white/80 dark:text-white/70 mx-auto max-w-[42rem]">
+				{/* Quote — centered, hidden on mobile where vertical room is tight */}
+				<div className="relative z-10 hidden md:block text-center italic text-white/80 dark:text-white/70 mx-auto max-w-[42rem]">
 					<p>{t("about.quote")}</p>
 				</div>
 			</FrameContent>

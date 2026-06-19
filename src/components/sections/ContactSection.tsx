@@ -65,14 +65,14 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 			{!isDark && active && <StickerField />}
 
 			<FrameContent className="max-w-screen-xl mx-auto pointer-events-none">
-				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-center">
 					{/* Left: headline + contact channels */}
-					<div className="space-y-6">
+					<div className="space-y-3 md:space-y-6">
 						<div>
-							<h2 className="font-display text-gray-50 text-5xl md:text-6xl font-extrabold leading-none">
+							<h2 className="font-display text-gray-50 text-4xl md:text-6xl font-extrabold leading-none">
 								{t("contacts.title")}
 							</h2>
-							<p className="text-white/80 text-base md:text-lg mt-4 max-w-[26rem]">
+							<p className="text-white/80 text-base md:text-lg mt-3 md:mt-4 max-w-[26rem]">
 								{t("contacts.description")}
 							</p>
 						</div>
@@ -124,9 +124,9 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 						</div>
 					</div>
 
-					{/* Right: form in a glass card (works in light + dark) */}
-					<div className="pointer-events-auto relative z-10 rounded-3xl p-6 md:p-8 bg-sky-800 dark:bg-dark-surface border border-white/15 dark:border-white/10 shadow-2xl">
-						<form className="space-y-5" onSubmit={sendEmail}>
+					{/* Right: form in a solid panel (works in light + dark) */}
+					<div className="pointer-events-auto relative z-10 rounded-3xl p-5 md:p-8 bg-sky-800 dark:bg-dark-surface border border-white/15 dark:border-white/10 shadow-2xl">
+						<form className="space-y-4 md:space-y-5" onSubmit={sendEmail}>
 							<Input
 								name="name"
 								required
@@ -141,7 +141,8 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 							<Textarea
 								name="message"
 								required
-								rows={5}
+								rows={3}
+								className="md:min-h-32"
 								placeholder={
 									t("contacts.placeholderMessage") || "Il tuo messaggio"
 								}

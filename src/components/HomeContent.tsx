@@ -137,7 +137,7 @@ export default function Home() {
 			</Swiper>
 			<footer className="w-full left-0 bottom-4 md:bottom-8 absolute z-40 px-4 md:px-8 flex justify-between items-center">
 				<div className="w-[190px]">
-					<h2 className="text-gray-50 font-light text-[0.5rem] sm:text-xs md:text-lg">
+					<h2 className="text-gray-50 font-light text-[0.5rem] sm:text-xs md:text-base whitespace-nowrap">
 						{t("footer.copyright")}
 					</h2>
 				</div>

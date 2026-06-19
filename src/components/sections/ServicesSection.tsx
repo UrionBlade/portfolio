@@ -16,14 +16,14 @@ const TONES: Record<
 	ink: {
 		head: "text-neutral-900",
 		body: "text-neutral-800",
-		idx: "text-neutral-900/25",
+		idx: "text-neutral-900/35",
 		idxHover: "group-hover:text-neutral-900/60",
 		rule: "border-neutral-900/15",
 	},
 	snow: {
 		head: "text-white",
 		body: "text-neutral-200",
-		idx: "text-white/25",
+		idx: "text-white/35",
 		idxHover: "group-hover:text-yellow-500",
 		rule: "border-white/15",
 	},
@@ -40,31 +40,31 @@ function ServicesContent({
 	const c = TONES[tone];
 
 	return (
-		<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8">
+		<div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 pt-24 pb-16 md:py-0">
 			<header className="max-w-[42rem]">
 				<h2
 					className={`font-display text-3xl sm:text-4xl md:text-5xl font-extrabold leading-none ${c.head}`}
 				>
 					{t("services.title")}
 				</h2>
-				<p className={`mt-4 text-base sm:text-lg ${c.body}`}>
+				<p className={`mt-3 text-sm sm:text-lg ${c.body}`}>
 					{t("services.description")}
 				</p>
 			</header>
 
-			<ol className="mt-8 sm:mt-12 grid gap-x-10 sm:grid-cols-2">
+			<ol className="mt-4 sm:mt-12 grid gap-x-10 sm:grid-cols-2">
 				{items.map(([key, { title, text }], i) => {
 					const featured = i === 0;
 					return (
 						<li
 							key={key}
-							className={`group flex gap-4 sm:gap-6 border-t py-5 sm:py-6 ${c.rule} ${
+							className={`group flex gap-3 sm:gap-6 border-t py-3 sm:py-6 ${c.rule} ${
 								featured ? "sm:col-span-2" : ""
 							}`}
 						>
 							<span
 								className={`font-display font-extrabold leading-none tabular-nums transition-colors duration-300 ${c.idx} ${c.idxHover} ${
-									featured ? "text-4xl sm:text-6xl" : "text-3xl sm:text-4xl"
+									featured ? "text-3xl sm:text-6xl" : "text-2xl sm:text-4xl"
 								}`}
 							>
 								{String(i + 1).padStart(2, "0")}
@@ -126,7 +126,7 @@ const ServicesSection = () => {
 		<section
 			ref={sectionRef}
 			id="services"
-			className="relative w-full h-full overflow-hidden flex items-center bg-neutral-200 dark:bg-dark-bg-2"
+			className="relative w-full h-full overflow-hidden flex items-start md:items-center bg-neutral-200 dark:bg-dark-bg-2"
 		>
 			{isDark ? (
 				<ServicesContent items={items} tone="snow" />
@@ -134,7 +134,7 @@ const ServicesSection = () => {
 				<>
 					{/* Bright layer (ink) — revealed by the spotlight; shown directly on mobile.
 					    z-0 makes it a stacking context so the overlay paints fully above it. */}
-					<div className="absolute inset-0 z-0 flex items-center">
+					<div className="absolute inset-0 z-0 flex items-start md:items-center">
 						<div className="absolute inset-0 bg-gradient-to-br from-sun-200 via-coral-300 to-orchid-300" />
 						<ServicesContent items={items} tone="ink" />
 					</div>

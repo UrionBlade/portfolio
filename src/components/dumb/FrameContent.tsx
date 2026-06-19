@@ -16,10 +16,14 @@ interface FrameContentProps {
  *
  * Insets are calibrated to the real chrome size: the logo occupies ~108px from
  * the top of a slide, the footer ~48px from the bottom.
+ *
+ * On mobile the content is top-aligned (it starts below the logo bar) — tall
+ * sections were otherwise centered and overflowed UP behind the header. On md+
+ * it centers as before.
  */
 const FrameContent: FC<FrameContentProps> = ({ children, className = "" }) => (
 	<div
-		className={`relative z-20 flex h-full w-full flex-col justify-center px-6 pt-28 pb-20 md:pt-32 ${className}`}
+		className={`relative z-20 flex h-full w-full flex-col justify-start px-6 pt-24 pb-16 md:justify-center md:pt-32 md:pb-20 ${className}`}
 	>
 		{children}
 	</div>

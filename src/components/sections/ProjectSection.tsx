@@ -178,7 +178,7 @@ const ProjectCard = ({
 				className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
 			/>
 			{/* legibility scrim */}
-			<div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-transparent" />
+			<div className="absolute inset-0 bg-gradient-to-t from-black/95 from-10% via-black/75 via-45% to-transparent" />
 
 			{/* tag + external arrow */}
 			<div className="absolute top-4 left-4 right-4 flex items-start justify-between gap-2">
