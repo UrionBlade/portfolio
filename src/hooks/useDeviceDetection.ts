@@ -1,4 +1,3 @@
-import { useMediaQuery } from "@react-hook/media-query";
 import useBetterMediaQuery from "./useBetterMediaQuery";
 
 export const useDeviceDetection = () => {
@@ -29,9 +28,9 @@ export const useDeviceDetection = () => {
 	);
 
 	//lg
-	const is1024 = useMediaQuery("only screen and (min-width: 1024px)");
+	const is1024 = useBetterMediaQuery("only screen and (min-width: 1024px)");
 
-	const is768 = useMediaQuery(
+	const is768 = useBetterMediaQuery(
 		"only screen and (min-width: 768px) and (max-width: 1023px)",
 	);
 

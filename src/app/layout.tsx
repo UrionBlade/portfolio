@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
+import ThemeBoot from "@/components/dumb/ThemeBoot";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "react-hot-toast";
 
@@ -71,8 +72,18 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="it">
+		<html lang="it" suppressHydrationWarning>
+			<head>
+				<script
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: tiny trusted no-flash theme script
+					dangerouslySetInnerHTML={{
+						__html:
+							"(function(){try{var r=localStorage.getItem('theme-store');var t=r?JSON.parse(r).state.theme:null;if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}})();",
+					}}
+				/>
+			</head>
 			<body className={`${poppins.className} antialiased`}>
+				<ThemeBoot />
 				{children}
 				<Toaster
 					position="top-center"

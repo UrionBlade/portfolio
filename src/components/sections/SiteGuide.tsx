@@ -1,15 +1,18 @@
 "use client";
 import { useGuide } from "@/hooks/useGuide";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "../dumb/Button";
 
 const SiteGuide = () => {
 	const { isSeen, setIsSeen } = useGuide();
 	const { t } = useTranslation();
+	const [mounted, setMounted] = useState(false);
 
-	if (!window) return null;
+	// render only after mount so SSR/first paint match (and no window access)
+	useEffect(() => setMounted(true), []);
 
-	if (isSeen) return null;
+	if (!mounted || isSeen) return null;
 
 	return (
 		<div className="fixed inset-0 z-50 pointer-events-none">

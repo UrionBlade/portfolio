@@ -12,11 +12,9 @@ interface ThemeStore {
 export const useTheme = create<ThemeStore>()(
 	persist(
 		(set, get) => ({
-			theme:
-				typeof window !== "undefined" &&
-				window.matchMedia("(prefers-color-scheme: dark)").matches
-					? "dark"
-					: "light",
+			// deterministic initial so server and first client render match;
+			// the real theme is applied after mount by ThemeBoot
+			theme: "light",
 			setTheme: (theme) => {
 				set({ theme });
 				if (typeof document !== "undefined") {
@@ -30,6 +28,9 @@ export const useTheme = create<ThemeStore>()(
 		}),
 		{
 			name: "theme-store",
+			// don't rehydrate during initial render (avoids hydration mismatch);
+			// ThemeBoot triggers rehydration after mount
+			skipHydration: true,
 		},
 	),
 );

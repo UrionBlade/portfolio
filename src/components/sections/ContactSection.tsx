@@ -1,5 +1,4 @@
 import { useTheme } from "@/hooks/useTheme";
-import emailjs from "@emailjs/browser";
 import { Formik } from "formik";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -38,6 +37,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 	const sendEmail = async (name: string, email: string, message: string) => {
 		try {
 			setLoading(true);
+			const emailjs = (await import("@emailjs/browser")).default;
 			await emailjs.send(
 				"service_8c0pmqx",
 				"template_p1s2o3v",

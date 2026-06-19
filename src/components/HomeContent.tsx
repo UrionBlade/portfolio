@@ -1,6 +1,9 @@
 "use client";
 
 import ThemeToggle from "@/components/dumb/ThemeToggle";
+// Hero is server-rendered (above the fold) so the headline is in the initial
+// HTML → fast LCP + crawlable. Below-the-fold sections stay client-only.
+import HeroSection from "@/components/sections/HeroSection";
 import SiteGuide from "@/components/sections/SiteGuide";
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { ArrowDown, ArrowUp, FileDown, Linkedin } from "lucide-react";
@@ -11,10 +14,6 @@ import { useTranslation } from "react-i18next";
 import type SwiperCore from "swiper";
 import { EffectCreative, Keyboard, Mousewheel } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-const HeroSection = dynamic(() => import("@/components/sections/HeroSection"), {
-	ssr: false,
-});
 
 const AboutSection = dynamic(
 	() => import("@/components/sections/AboutSection"),

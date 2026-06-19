@@ -215,8 +215,8 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 			<FrameContent className="items-center max-w-6xl mx-auto">
 				<motion.div
 					className="flex items-center gap-2 mb-6 rounded-full bg-white/10 border border-white/25 backdrop-blur-sm px-4 py-1.5"
-					initial={{ opacity: 0, y: -20 }}
-					animate={{ opacity: 1, y: 0 }}
+					initial={{ y: -20 }}
+					animate={{ y: 0 }}
 					transition={{ duration: 0.6 }}
 				>
 					<span className="relative flex h-2.5 w-2.5">
@@ -230,9 +230,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 
 				<motion.h1
 					className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-center drop-shadow-lg"
-					initial={{ opacity: 0, y: 50 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.8, ease: "easeOut" }}
+					initial={false}
 				>
 					{t("hero.headline")}{" "}
 					<span className={`transition-colors duration-200 ${currentAccent}`}>
@@ -242,8 +240,8 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 
 				<motion.p
 					className="mt-6 text-sm sm:text-lg md:text-2xl text-center text-white dark:text-neutral-300"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
+					initial={{ y: 20 }}
+					animate={{ y: 0 }}
 					transition={{ delay: 0.3, duration: 0.8 }}
 				>
 					{t("hero.description")}
@@ -251,9 +249,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 
 				<motion.div
 					className="mt-8 flex flex-col md:flex-row justify-center items-center gap-4 w-full"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ delay: 0.6, duration: 0.6 }}
+					initial={false}
 				>
 					<Button
 						onClick={() => {
@@ -276,8 +272,8 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 
 				<motion.div
 					className="mt-7 flex flex-col items-center gap-2"
-					initial={{ opacity: 0, y: 10 }}
-					animate={{ opacity: 1, y: 0 }}
+					initial={{ y: 10 }}
+					animate={{ y: 0 }}
 					transition={{ delay: 0.95, duration: 0.6 }}
 				>
 					<span className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] text-white/70">
