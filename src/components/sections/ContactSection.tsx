@@ -69,7 +69,7 @@ const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 					{/* Left: headline + contact channels */}
 					<div className="space-y-3 md:space-y-6">
 						<div>
-							<h2 className="font-display text-gray-50 text-4xl md:text-6xl font-extrabold leading-none">
+							<h2 className="font-display text-gray-50 text-3xl md:text-6xl font-extrabold leading-none">
 								{t("contacts.title")}
 							</h2>
 							<p className="text-white/80 text-base md:text-lg mt-3 md:mt-4 max-w-[26rem]">
