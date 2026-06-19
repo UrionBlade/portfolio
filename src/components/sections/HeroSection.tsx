@@ -3,6 +3,7 @@
 import { useDeviceDetection } from "@/hooks/useDeviceDetection";
 import { useTheme } from "@/hooks/useTheme";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import type { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,6 +21,25 @@ const ACCENT_STEPS = [
 	"text-orange-200",
 	"text-mint-300",
 	"text-sky-300",
+];
+
+const AWARDS = [
+	{
+		src: "/images/awards/cssda-best-ui-purple.webp",
+		alt: "CSS Design Awards — Best UI",
+	},
+	{
+		src: "/images/awards/cssda-best-ux-orange.webp",
+		alt: "CSS Design Awards — Best UX",
+	},
+	{
+		src: "/images/awards/cssda-best-inn-green.webp",
+		alt: "CSS Design Awards — Best Innovation",
+	},
+	{
+		src: "/images/awards/cssda-special-kudos-yellow.webp",
+		alt: "CSS Design Awards — Special Kudos",
+	},
 ];
 
 const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
@@ -230,7 +250,7 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 				</motion.p>
 
 				<motion.div
-					className="mt-10 flex flex-col md:flex-row justify-center items-center gap-4 w-full"
+					className="mt-8 flex flex-col md:flex-row justify-center items-center gap-4 w-full"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.6, duration: 0.6 }}
@@ -252,6 +272,35 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 					>
 						{t("hero.cta_cv")}
 					</Button>
+				</motion.div>
+
+				<motion.div
+					className="mt-7 flex flex-col items-center gap-2"
+					initial={{ opacity: 0, y: 10 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.95, duration: 0.6 }}
+				>
+					<span className="text-[0.6rem] sm:text-[0.65rem] uppercase tracking-[0.2em] text-white/70">
+						{t("hero.awards")}
+					</span>
+					<a
+						href="https://www.cssdesignawards.com/sites/matteo-poli-portfolio/47906/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={t("hero.awards")}
+						className="group flex items-center gap-2.5 rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+					>
+						{AWARDS.map((a) => (
+							<Image
+								key={a.src}
+								src={a.src}
+								alt={a.alt}
+								width={48}
+								height={48}
+								className="w-10 h-10 md:w-12 md:h-12 drop-shadow-md transition-transform duration-300 ease-out hover:scale-110 hover:-translate-y-0.5 motion-reduce:transition-none"
+							/>
+						))}
+					</a>
 				</motion.div>
 			</FrameContent>
 		</section>
