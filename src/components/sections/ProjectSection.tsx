@@ -258,7 +258,7 @@ const ProjectsSection = () => {
 					>
 						{PROJECTS.map((project, i) => (
 							<SwiperSlide key={project.key} className="!h-full pb-2">
-								<ProjectCard project={project} priority={i === 0} />
+								<ProjectCard project={project} priority={false} />
 							</SwiperSlide>
 						))}
 					</Swiper>
@@ -268,7 +268,7 @@ const ProjectsSection = () => {
 							<ProjectCard
 								key={project.key}
 								project={project}
-								priority={i === 0}
+								priority={false}
 							/>
 						))}
 					</div>

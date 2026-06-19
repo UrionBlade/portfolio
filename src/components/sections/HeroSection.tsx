@@ -150,8 +150,8 @@ const HeroSection: FC<HeroSectionProps> = ({ onCTAProject }) => {
 			mouseX = -9999;
 			mouseY = -9999;
 		};
-		window.addEventListener("pointermove", onMove);
-		window.addEventListener("pointerout", onLeave);
+		window.addEventListener("pointermove", onMove, { passive: true });
+		window.addEventListener("pointerout", onLeave, { passive: true });
 
 		let raf = 0;
 		let startTs = 0;

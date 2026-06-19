@@ -132,7 +132,7 @@ export default function Home() {
 					<AboutSection />
 				</SwiperSlide>
 				<SwiperSlide>
-					<ContactSection />
+					<ContactSection active={activeIndex >= 3} />
 				</SwiperSlide>
 			</Swiper>
 			<footer className="w-full left-0 bottom-4 md:bottom-8 absolute z-40 px-4 md:px-8 flex justify-between items-center">

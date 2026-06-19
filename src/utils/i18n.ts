@@ -12,6 +12,11 @@ i18n
 		...i18nextConfig,
 		lng: i18nextConfig.defaultLocale,
 		fallbackLng: i18nextConfig.fallbackLng,
+		// only it/en exist as files; strip region (it-IT → it) so the backend
+		// never requests a missing locale and logs a 404 in console
+		supportedLngs: ["it", "en"],
+		load: "languageOnly",
+		nonExplicitSupportedLngs: true,
 		interpolation: {
 			escapeValue: false,
 		},

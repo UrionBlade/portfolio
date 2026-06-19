@@ -2,6 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 import emailjs from "@emailjs/browser";
 import { Formik } from "formik";
 import { Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import dynamic from "next/dynamic";
 import { type FC, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next";
@@ -9,10 +10,14 @@ import * as yup from "yup";
 import Button from "../dumb/Button";
 import FrameContent from "../dumb/FrameContent";
 import Input from "../dumb/Input";
-import StickerField from "../dumb/StickerField";
 import Textarea from "../dumb/Textarea";
 
-const ContactSection: FC = () => {
+// matter.js is heavy — load it only when the contact section is reached
+const StickerField = dynamic(() => import("../dumb/StickerField"), {
+	ssr: false,
+});
+
+const ContactSection: FC<{ active?: boolean }> = ({ active }) => {
 	const { t, i18n } = useTranslation();
 	const [loading, setLoading] = useState(false);
 
@@ -55,8 +60,8 @@ const ContactSection: FC = () => {
 
 	return (
 		<section className="relative w-full h-full overflow-hidden bg-gradient-to-b from-sky-700 to-blue-500 dark:from-dark-bg-1 dark:to-dark-bg-2">
-			{/* Playful physics stickers (light mode only) */}
-			{!isDark && <StickerField />}
+			{/* Playful physics stickers (light mode only, lazy-loaded) */}
+			{!isDark && active && <StickerField />}
 
 			<FrameContent className="max-w-screen-xl mx-auto pointer-events-none">
 				<div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
